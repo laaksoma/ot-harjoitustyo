@@ -1,6 +1,7 @@
-## This is a header!
+# Ohjelmistotekniikka, harjoitustyö
+## Tehtävät
+### Viikko 1
 
-And this is the **basic** text,
-and this is the *italic* text,
+[gitlog.txt](https://github.com/laaksoma/ot-harjoitustyo/blob/master/laskarit/gitlog.txt)
 
-*and this line will showcase them **both**!*
+[komentorivi.txt](https://github.com/laaksoma/ot-harjoitustyo/blob/master/laskarit/komentorivi.txt)
