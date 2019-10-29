@@ -1,0 +1,106 @@
+commit 4a17ad4e41c3d8dc9ab511e5b1aa9884c5266214
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 13:19:37 2019 +0200
+
+    harjoittelua filet
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d8e936a93227d5d46ff0125dcb9984ed72a6d05
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 13:14:03 2019 +0200
+
+    tiedostoja + tiedostot
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 2f0f291dc48e1c89ec0e76bd0e03cd7641503aef
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 12:18:50 2019 +0200
+
+    kolmas ja
+
+ kolmas.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 94808f079f118c70290a3e254c6e9d323238f3fd
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 12:15:56 2019 +0200
+
+    muutettu sisällöt eka ja kolmas
+
+ eka.txt    | 4 +++-
+ kolmas.txt | 2 +-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit 80d833abccebb33a60dd457d58929a79aead4ee1
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 12:13:44 2019 +0200
+
+    muutettu tiedosto ekaksi
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4ba289651c89e33df6d19506a5121b5a1cd2384e
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 12:12:15 2019 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 5ac4c4dccb15d28f7fd04ee7234e2263181cdc5e
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 12:08:06 2019 +0200
+
+    muutos tiedostoon
+
+ tiedosto.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 834dce1d53e6e12d3ad16e4c3b864682658b9595
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 11:52:40 2019 +0200
+
+    kaikki
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 3e91526967fd15a27ac9cdd4d267aac9789d45a7
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 11:52:02 2019 +0200
+
+    uudet
+
+ kolmas.txt       | 0
+ stuff/neljas.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 93987bbfda7437eadbefe34b54e3983912cd5732
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Tue Oct 29 11:38:48 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 2 ++
+ toinen.txt   | 0
+ 2 files changed, 2 insertions(+)
+
+commit 211f2e9eb83e5fa4f3d760fdf2afe241c0841973
+Author: Maria Laakso <maria.laakso@helsinki.fi>
+Date:   Mon Oct 28 19:18:16 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
