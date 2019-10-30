@@ -5,6 +5,8 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä tieto
 
 ## Käyttöliittymäluonnos
 
+![Hahmotelma](https://github.com/laaksoma/ot-harjoitustyo/blob/master/dokumentointi/kayttoliittymahahmotelma.png)
+
 ## Perusversion tarjoama toiminnallisuus
 
 * Ohjenäkymä
