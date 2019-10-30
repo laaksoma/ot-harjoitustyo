@@ -10,4 +10,4 @@ Viikko 1 | Viikko 2
 * kayttoohje.md
 * testaus.md
 * [tuntikirjanpito.md](https://github.com/laaksoma/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
-* [vaatimusmaarittely.md](https://github.com/laaksoma/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
+* [vaatimusmaarittely.md](https://github.com/laaksoma/ot-harjoitustyo/blob/master/dokumentointi/vaatimuusmaarittely.md)
