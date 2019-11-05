@@ -36,23 +36,23 @@ public class UserInterfaceTest {
     }
 
     @Test
-    public void getInputReturnsCorrectlyWhenInputIsOne() {
+    public void getGamemodeReturnsCorrectlyWhenInputIsOne() {
         input = "1";
         UserInterface UI = new UserInterface(new Scanner(input));
 
-        assertEquals(UI.getInput(), 1);
+        assertEquals(UI.getGamemode(), 1);
     }
     
     @Test
-    public void getInputReturnsCorrectlyWhenInputIsZero() {
+    public void getGamemodeReturnsCorrectlyWhenInputIsZero() {
         input = "0";
         UserInterface UI = new UserInterface(new Scanner(input));
 
-        assertEquals(UI.getInput(), 0);
+        assertEquals(UI.getGamemode(), 0);
     }
     
     @Test
-    public void getInputDoesNotCrashWhenGivenANonNumber() {
+    public void getGamemodeDoesNotCrashWhenGivenANonNumber() {
         input = "k";
         UserInterface UIk = new UserInterface(new Scanner(input));
         
@@ -62,7 +62,7 @@ public class UserInterfaceTest {
         input = "1";
         UserInterface UI1 = new UserInterface(new Scanner(input));
         
-        assertEquals(UI1.getInput(), 1);
+        assertEquals(UI1.getGamemode(), 1);
     }
 
 }

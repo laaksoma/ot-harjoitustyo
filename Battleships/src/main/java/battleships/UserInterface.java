@@ -1,6 +1,5 @@
 package battleships;
 
-
 import java.util.Scanner;
 
 public class UserInterface {
@@ -16,7 +15,7 @@ public class UserInterface {
         System.out.println("Would you like to play alone or with a friend?");
     }
 
-    public int getInput() {
+    public int getGamemode() {
         int playerInput = 3;
 
         while (playerInput != 1 && playerInput != 0) {
@@ -30,11 +29,4 @@ public class UserInterface {
         }
         return playerInput;
     }
-
-    public void start() {
-        welcome();
-
-        int gameMode = getInput();
-    }
-
 }
