@@ -40,12 +40,19 @@ public class Player {
             for (int j = 0; j < this.sea[0].length; j++) {
                 System.out.print(this.sea[i][j]);
             }
-            
+
             System.out.println();
+        }
+    }
+
+    public void setShips(int howMany) {
+        for(int i = 0; i < howMany; i++) {
+            this.ships.add(i);
         }
     }
 
     public ArrayList<Integer> getShips() {
         return this.ships;
     }
+
 }

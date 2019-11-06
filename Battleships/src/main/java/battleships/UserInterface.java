@@ -20,7 +20,7 @@ public class UserInterface {
 
         while (playerInput != 1 && playerInput != 0) {
             System.out.println("Alone (0) or with a friend(1)?");
-            
+
             try {
                 playerInput = Integer.parseInt(scanner.nextLine());
             } catch (Exception e) {
@@ -28,5 +28,14 @@ public class UserInterface {
             }
         }
         return playerInput;
+    }
+
+    public void printRulesForPlayerSetUp() {
+        System.out.println("You are given one (1) ship. Place them on the sea by giving");
+        System.out.println("the starting and ending coordinates of where you'd like to place your ships.");
+        System.out.println("The given coordinates must follow these rules:");
+        System.out.println("- all parts of the ship must be placed within the visible area");
+        System.out.println("- no ship is allowed to be stationed directly next to another");
+        System.out.println("- no ship is allowed to be stationed on top of another ship.");
     }
 }

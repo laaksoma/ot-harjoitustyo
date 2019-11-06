@@ -29,6 +29,8 @@ public class Game {
     }
     
     public void createBoard() {
+        System.out.println("Creating board for Player 1");
+        UI.printRulesForPlayerSetUp();
         
     }
     
