@@ -10,8 +10,10 @@ public class BattleshipsMain {
         
         Game battleships = new Game();
         
-        battleships.start();
+        if (battleships.start()) {
+            battleships.createBoard();
+        }
         
-        battleships.createBoard();
+        
     }
 }

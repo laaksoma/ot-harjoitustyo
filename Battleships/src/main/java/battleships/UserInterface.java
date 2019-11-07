@@ -31,11 +31,11 @@ public class UserInterface {
     }
 
     public void printRulesForPlayerSetUp() {
-        System.out.println("You are given one (1) ship. Place them on the sea by giving");
-        System.out.println("the starting and ending coordinates of where you'd like to place your ships.");
-        System.out.println("The given coordinates must follow these rules:");
-        System.out.println("- all parts of the ship must be placed within the visible area");
-        System.out.println("- no ship is allowed to be stationed directly next to another");
-        System.out.println("- no ship is allowed to be stationed on top of another ship.");
+        System.out.println("You are given one (1) ship. Place it on the sea by giving");
+        System.out.println("the starting coordinates and direction (WASD) of where you'd like to place your ship.");
+        System.out.println("The placement must follow these rules:");
+        System.out.println("all parts of the ship must be placed within the visible area,");
+        System.out.println("no ship is allowed to be stationed directly next to another ship, ");
+        System.out.println("and no ship is allowed to be stationed on top of another ship.");
     }
 }

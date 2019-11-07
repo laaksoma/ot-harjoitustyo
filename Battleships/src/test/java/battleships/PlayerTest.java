@@ -1,11 +1,7 @@
 package battleships;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,7 +21,7 @@ public class PlayerTest {
 
     @Test
     public void printSeaPrintsSeaCorrectly() {
-           
+
     }
 
     @Test
@@ -36,23 +32,42 @@ public class PlayerTest {
     @Test
     public void getShipsReturnsShipsCorrectly() {
     }
+
+    @Test
+    public void setShipsSetsCorrectShips() {
+        this.player.setShips(3);
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(3);
+        list.add(2);
+        list.add(1);
+        
+        assertTrue(list.equals(this.player.getShips()));
+    }
     
     @Test
-    public void setShipsSetsCorrectAmount() {
-        this.player.setShips(5);
+    public void addShipAddsCorrectly() {
+        player.addShipToTheSea(0, 1, 1);
         
-        assertEquals(5, this.player.getShips().size());
+        assertEquals(1, player.sea[0][1]);
+    }
+    
+    @Test
+    public void seaIsEmptyReturnsTrueWhenEmpty() {
+        assertTrue(player.seaIsEmpty());
+    }
+    
+    @Test
+    public void seaIsEmptyReturnsFalseWhenNotEmpty() {
+        player.addShipToTheSea(0, 1, 1);
+        
+        assertFalse(player.seaIsEmpty());
     }
 
 //    @Test
-//    public void setShipsSetsCorrectShipLenghts() {
-//        this.player.setShips(3);
-//        ArrayList<Integer> list = new ArrayList<Integer>();
-//        list.add(1);
-//        list.add(2);
-//        list.add(3);
-//        
-//        //assertTrue(list.equals(this.player.getShips()));
+//    public void setShipsSetsCorrectAmount() {
+//        this.player.setShips(5);
+//
+//        assertEquals(5, this.player.getShips().size());
 //    }
 
 //    @Test
@@ -73,4 +88,5 @@ public class PlayerTest {
 //
 //        return list;
 //    }
+
 }
