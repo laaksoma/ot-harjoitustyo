@@ -20,22 +20,68 @@ public class UserInterface {
 
         while (playerInput != 1 && playerInput != 0) {
             System.out.println("Alone (0) or with a friend(1)?");
-
-            try {
-                playerInput = Integer.parseInt(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("I didn't quite catch that, would you try again?");
-            }
+            playerInput = getANumber(0, 1);
         }
         return playerInput;
     }
 
-    public void printRulesForPlayerSetUp() {
-        System.out.println("You are given one (1) ship. Place it on the sea by giving");
-        System.out.println("the starting coordinates and direction (WASD) of where you'd like to place your ship.");
+    public void printRulesForPlayerSetUp(int numberOfShips) {
+        System.out.println("You are given one " + numberOfShips + " ship. Place them on the sea by giving");
+        System.out.println("the starting coordinates and direction (WASD) of where you'd like to place them.");
         System.out.println("The placement must follow these rules:");
         System.out.println("all parts of the ship must be placed within the visible area,");
         System.out.println("no ship is allowed to be stationed directly next to another ship, ");
-        System.out.println("and no ship is allowed to be stationed on top of another ship.");
+        System.out.println("and no ship is allowed to be stationed on top of another ship.\n");
+    }
+
+    public int getANumber(int min, int max) {
+        int playerInput = -1;
+
+        while (playerInput < min || playerInput > max) {
+            try {
+                playerInput = Integer.parseInt(scanner.nextLine());
+
+                if (playerInput < min || playerInput > max) {
+                    System.out.println("Please enter a number between " + min + " and " + max + ".");
+                }
+            } catch (Exception e) {
+                System.out.println("I didn't quite catch that, would you try again?");
+            }
+        }
+
+        return playerInput;
+    }
+
+    public String getDirection() {
+        String direction = "not allowed";
+        
+        while (directionNotAllowed(direction)) {
+            try {
+                System.out.print("Alignment: ");
+                direction = scanner.nextLine() + "\n";
+            } catch (Exception e) {
+                System.out.println("Please enter either W, A, S or D.");
+            }
+        }
+
+        return direction;
+    }
+
+    private boolean directionNotAllowed(String direction) {
+        direction = direction.trim();
+
+        if (direction.equals("w") || direction.equals("w")) {
+            return false;
+        } else if (direction.equals("A") || direction.equals("a")) {
+            return false;
+        } else if (direction.equals("S") || direction.equals("s")) {
+            return false;
+        } else if (direction.equals("D") || direction.equals("d")) {
+            return false;
+        }
+
+        System.out.println("\nPlease enter either W, A, S or D.");
+
+        return true;
     }
 }
