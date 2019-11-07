@@ -53,20 +53,43 @@ public class Game {
             System.out.println("The ship to be placed is " + ship);
             System.out.println("Where would you like to place it?");
             System.out.print("Row: ");
-            row = UI.getANumber(1, player.getSea().length);
+            row = UI.getANumber(1, player.getSeaSize());
             System.out.print("Column: ");
-            column = UI.getANumber(1, player.getSea().length);
+            column = UI.getANumber(1, player.getSeaSize());
             String dir = UI.getDirection();
             
             //make sure the coordinates are allowed!
             
+            
             player.addShipToTheSea(row, column, ship);
         }
+        
         //print the state of the sea
         //print ship is to be placed
         //ask for coordinates for the ship
         //ask for direction for the ship
-        //The last thing to do is to check if the player is happy with the ship placement!
+        //The last thing to do is to check if the player is happy with the ship placements!
+    }
+    
+    private boolean areCoordinatesAllowed(int row, int column, Player player) {
+        //why would they not be? 
+        //1. out of bounds (one or both)
+        //2. there is already a ship in these coordinates
+        //3. there is a neighbouring ship
+        
+        if (row < 1 || row > player.getSeaSize()) {
+            return false;
+        } else if (column < 1 || column > player.getSeaSize()) {
+            return false;
+        } else if (player.getSea()[row][column] != 0) {
+            return false;
+        }
+        
+        //add a method that check whether surrounding area is empty
+        //remember to add an exception number
+        //i.e. when probing for ship 2, number 2 is allowed
+        
+        return true;
     }
 
     public void playGame() {

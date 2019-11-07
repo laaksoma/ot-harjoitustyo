@@ -57,6 +57,10 @@ public class Player {
     public int[][] getSea() {
         return this.sea;
     }
+    
+    public int getSeaSize() {
+        return this.sea.length;
+    }
 
     public void printSea() {
         for (int i = 0; i < this.sea.length; i++) {
