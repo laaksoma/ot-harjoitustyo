@@ -88,6 +88,12 @@ public class Game {
         //add a method that check whether surrounding area is empty
         //remember to add an exception number
         //i.e. when probing for ship 2, number 2 is allowed
+        //remember to check whether the given coordinates are on the edge
+        // if yes, then only check the areas on the sea
+        //should the direction be checked here, too? 
+        //    if the coordinates are on the edge and the direction is not allowed, ask the coordinates again
+        
+        //add a method that repeats the ship for the length of the ship, to the given direction
         
         return true;
     }
