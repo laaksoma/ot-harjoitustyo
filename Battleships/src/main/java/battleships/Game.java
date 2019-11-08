@@ -43,10 +43,10 @@ public class Game {
     public void setUpBoard(Player player) {         //MOVE TO USERINTERFACE?    
         System.out.println("Creating board for " + player.getName() + "\n");
         UI.printRulesForPlayerSetUp(player.getShips().size());
-        
+
         int row;
         int column;
-        
+
         for (int ship : player.getShips()) {
             player.printSea();
 
@@ -57,26 +57,24 @@ public class Game {
             System.out.print("Column: ");
             column = UI.getANumber(1, player.getSeaSize());
             String dir = UI.getDirection();
-            
+
             //make sure the coordinates are allowed!
-            
-            
             player.addShipToTheSea(row, column, ship);
         }
-        
+
         //print the state of the sea
         //print ship is to be placed
         //ask for coordinates for the ship
         //ask for direction for the ship
         //The last thing to do is to check if the player is happy with the ship placements!
     }
-    
+
     private boolean areCoordinatesAllowed(int row, int column, Player player) {
         //why would they not be? 
         //1. out of bounds (one or both)
         //2. there is already a ship in these coordinates
         //3. there is a neighbouring ship
-        
+
         if (row < 1 || row > player.getSeaSize()) {
             return false;
         } else if (column < 1 || column > player.getSeaSize()) {
@@ -84,17 +82,26 @@ public class Game {
         } else if (player.getSea()[row][column] != 0) {
             return false;
         }
+
+        return true;
+    }
+
+    public boolean surroundsAreEmpty(int r, int c, int[][] sea, int exception) {
+
+        //what to do if on the edge?        
+        //row above = sea[r-1][c-1], sea[r-1][c], sea[r-1][c+1]
+        //row below = sea[row][]
+        //column to the right
+        //column to the left
         
-        //add a method that check whether surrounding area is empty
+        //add a method that checks whether surrounding area is empty
         //remember to add an exception number
         //i.e. when probing for ship 2, number 2 is allowed
         //remember to check whether the given coordinates are on the edge
         // if yes, then only check the areas on the sea
         //should the direction be checked here, too? 
         //    if the coordinates are on the edge and the direction is not allowed, ask the coordinates again
-        
         //add a method that repeats the ship for the length of the ship, to the given direction
-        
         return true;
     }
 
