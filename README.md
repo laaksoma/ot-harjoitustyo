@@ -1,3 +1,7 @@
+# HUOM!
+Testasin pyörittää projektia etänä laitoksen Linuxilla niin ssh.n kuin VMWaren kautta. En saanut itse ohjelmaa enkä testejä toimimaan oikein (ohjelma kyllä pyöri, mutta hyvin kummallisesti) ssh.lla tai VMWaren kautta komentorivillä, mutta etänä Linuxilla NetBeansia käyttäessä kaikki toimi. 
+
+
 # Ohjelmistotekniikka, harjoitustyö
 
 ## Dokumentaatio
