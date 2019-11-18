@@ -35,73 +35,76 @@ public class Game {
     public void createBoard() {
 
         for (Player player : this.listOfPlayers) {
-            player.setShips(2);                     //FOR NOW THE AMOUNT IS SET ON 1
+            player.setShips(2);                     //FOR NOW THE AMOUNT IS SET ON 2
             setUpBoard(player);
         }
     }
 
-    public void setUpBoard(Player player) {         //MOVE TO USERINTERFACE?    
+    public void setUpBoard(Player player) {                         //MOVE TO USERINTERFACE?    
         System.out.println("Creating board for " + player.getName() + "\n");
         UI.printRulesForPlayerSetUp(player.getShips().size());
 
         int row;
         int column;
 
-        for (int ship : player.getShips()) {
+        for (int i = 0; i < player.getShips().size(); i++) {
+            int ship = player.getShips().get(i);
             player.printSea();
 
             System.out.println("The ship to be placed is " + ship);
             System.out.println("Where would you like to place it?");
-            System.out.print("Row: ");
-            row = UI.getANumber(1, player.getSeaSize());
+            System.out.print("Row: ");                                  //player gives a number between 1 to 5
+            row = UI.getANumber(1, player.getSeaSize()) - 1;            //to match the index, it is coded as number-1
             System.out.print("Column: ");
-            column = UI.getANumber(1, player.getSeaSize());
+            column = UI.getANumber(1, player.getSeaSize()) - 1;
             String dir = UI.getDirection();
-
-            //make sure the coordinates are allowed!
-            player.addShipToTheSea(row, column, ship);
+            
+            if (areCoordinatesAllowed(row, column, player, ship)) {
+                player.addShipToTheSea(row, column, ship);
+            } else {
+                i--;
+                System.out.println("Another ship is too close!");
+                continue;
+            }   
         }
-
-        //print the state of the sea
-        //print ship is to be placed
-        //ask for coordinates for the ship
-        //ask for direction for the ship
-        //The last thing to do is to check if the player is happy with the ship placements!
     }
 
-    private boolean areCoordinatesAllowed(int row, int column, Player player) {
-        //why would they not be? 
-        //1. out of bounds (one or both)
-        //2. there is already a ship in these coordinates
-        //3. there is a neighbouring ship
+    private boolean areCoordinatesAllowed(int row, int column, Player player, int ship) {
 
-        if (row < 1 || row > player.getSeaSize()) {
+        if (row < 0 || row > (player.getSeaSize() - 1)) {                                 //1. out of bounds (one or both)
             return false;
-        } else if (column < 1 || column > player.getSeaSize()) {
+        } else if (column < 0 || column > (player.getSeaSize() - 1)) {                    //2. there is already a ship in these coordinates
             return false;
         } else if (player.getSea()[row][column] != 0) {
+            return false;
+        } else if (surroundsAreEmpty(row, column, player.getSea(), ship) != true) {        //3. there is a neighbouring ship
             return false;
         }
 
         return true;
     }
 
-    public boolean surroundsAreEmpty(int r, int c, int[][] sea, int exception) {
-
-        //what to do if on the edge?        
-        //row above = sea[r-1][c-1], sea[r-1][c], sea[r-1][c+1]
-        //row below = sea[row][]
-        //column to the right
-        //column to the left
+    public boolean surroundsAreEmpty(int row, int column, int[][] sea, int shipNumber) {
+        int r = row - 1;
         
-        //add a method that checks whether surrounding area is empty
-        //remember to add an exception number
-        //i.e. when probing for ship 2, number 2 is allowed
-        //remember to check whether the given coordinates are on the edge
-        // if yes, then only check the areas on the sea
-        //should the direction be checked here, too? 
-        //    if the coordinates are on the edge and the direction is not allowed, ask the coordinates again
-        //add a method that repeats the ship for the length of the ship, to the given direction
+        while (r <= (row + 1)) {
+            int c = column - 1;
+            
+            while (c <= (column + 1)) {
+                try {
+                    if (sea[r][c] != 0 && sea[r][c] != shipNumber) {
+                        return false;
+                    }
+                    c++;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    c++;
+                    continue;
+                }
+            }
+
+            r++;
+        }
+
         return true;
     }
 
