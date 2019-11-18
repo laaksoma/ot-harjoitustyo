@@ -7,6 +7,6 @@ Kayttoohje
 
 Testaus
 
-[Tuntikirjanpito](https://github.com/laaksoma/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
+[Tuntikirjanpito](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/tuntikirjanpito.md)
 
-[Vaatimusmaarittely](https://github.com/laaksoma/ot-harjoitustyo/blob/master/dokumentointi/vaatimuusmaarittely.md)
+[Vaatimusmaarittely](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/vaatimuusmaarittely.md)
