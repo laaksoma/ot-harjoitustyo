@@ -28,7 +28,7 @@ public class Game {
         }
     }
 
-    public void addPlayers(String playerName) {
+    private void addPlayers(String playerName) {
         listOfPlayers.add(new Player(playerName));
     }
 
@@ -40,7 +40,7 @@ public class Game {
         }
     }
 
-    public void setUpBoard(Player player) {                         //MOVE TO USERINTERFACE?    
+    public void setUpBoard(Player player) {                           
         System.out.println("Creating board for " + player.getName() + "\n");
         UI.printRulesForPlayerSetUp(player.getShips().size());
 
@@ -53,46 +53,66 @@ public class Game {
 
             System.out.println("The ship to be placed is " + ship);
             System.out.println("Where would you like to place it?");
-            System.out.print("Row: ");                                  //player gives a number between 1 to 5
-            row = UI.getANumber(1, player.getSeaSize()) - 1;            //to match the index, it is coded as number-1
+            System.out.print("Row: ");                                  
+            row = UI.getANumber(1, player.getSeaSize()) - 1;            
             System.out.print("Column: ");
             column = UI.getANumber(1, player.getSeaSize()) - 1;
-            String dir = UI.getDirection();
-            
-            if (areCoordinatesAllowed(row, column, player, ship)) {
-                player.addShipToTheSea(row, column, ship);
+            String dir = UI.getDirection().toLowerCase().substring(0, 1);
+
+            if (areCoordinatesAllowed(row, column, player, ship, dir)) {
+                placeShips(row, column, player, ship, dir);
             } else {
                 i--;
-                System.out.println("Another ship is too close!");
+                System.out.println("You must choose another placement!");
                 continue;
-            }   
+            }
         }
     }
 
-    private boolean areCoordinatesAllowed(int row, int column, Player player, int ship) {
+    private void placeShips(int row, int column, Player player, int ship, String dir) {
+        int r = row;
+        int c = column;
+        
+        for (int i = ship; i > 0; i--) {
+            if (dir.equals("w")) { 
+                player.addShipToTheSea(row, column, ship);
+                r--;
+            } else if (dir.equals("s")) { 
+                player.addShipToTheSea(row, column, ship);
+                r++;
+            } else if (dir.equals("a")) { 
+                player.addShipToTheSea(row, column, ship);
+                c--;
+            } else 
+                player.addShipToTheSea(row, column, ship);
+                c++;
+        }
+    }
 
-        if (row < 0 || row > (player.getSeaSize() - 1)) {                                 //1. out of bounds (one or both)
+    //add a game mode; for creating board 0, for playing 1?
+    //the "isPlacementAllowed" is only checked when creating the board?
+    private boolean areCoordinatesAllowed(int row, int column, Player player, int ship, String dir) {
+
+        if (row < 0 || row > (player.getSeaSize() - 1)) {
             return false;
-        } else if (column < 0 || column > (player.getSeaSize() - 1)) {                    //2. there is already a ship in these coordinates
+        } else if (column < 0 || column > (player.getSeaSize() - 1)) {
             return false;
         } else if (player.getSea()[row][column] != 0) {
             return false;
-        } else if (surroundsAreEmpty(row, column, player.getSea(), ship) != true) {        //3. there is a neighbouring ship
-            return false;
+        } else {
+            return isPlacementAllowed(row, column, player.getSea(), ship, dir);
         }
-
-        return true;
     }
 
-    public boolean surroundsAreEmpty(int row, int column, int[][] sea, int shipNumber) {
+    private boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
         int r = row - 1;
-        
+
         while (r <= (row + 1)) {
             int c = column - 1;
-            
+
             while (c <= (column + 1)) {
                 try {
-                    if (sea[r][c] != 0 && sea[r][c] != shipNumber) {
+                    if (sea[r][c] != 0 && sea[r][c] != ship) {
                         return false;
                     }
                     c++;
@@ -106,6 +126,101 @@ public class Game {
         }
 
         return true;
+    }
+
+    private boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
+        switch (dir) {
+            case "w": {
+                int r = row;
+                for (int i = ship; i > 0; i--) {
+                    if (surroundsAreEmpty(r, column, sea, ship)) {
+                        r--;
+                        continue;
+                    }
+                    return false;
+                }
+                break;
+            }
+            case "s": {
+                int r = row;
+                for (int i = ship; i > 0; i--) {
+                    if (surroundsAreEmpty(r, column, sea, ship)) {
+                        r++;
+                        continue;
+                    }
+                    return false;
+                }
+                break;
+            }
+            case "a": {
+                int c = column;
+                for (int i = ship; i > 0; i--) {
+                    if (surroundsAreEmpty(row, c, sea, ship)) {
+                        c--;
+                        continue;
+                    }
+
+                    return false;
+                }
+                break;
+            }
+            default: {
+                int c = column;
+                for (int i = ship; i > 0; i--) {
+                    if (surroundsAreEmpty(row, c, sea, ship)) {
+                        c++;
+                        continue;
+                    }
+                    return false;
+                }
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
+
+        if (ship != 1) {
+            if (row == 0 && dir.equals("w")) {
+                return false;
+            } else if (row == (sea.length - 1) && dir.equals("s")) {
+                return false;
+            } else if (column == 0 && dir.equals("a")) {
+                return false;
+            } else if (column == (sea.length - 1) && dir.equals("d")) {
+                return false;
+            }
+
+            int s = ship - 1;
+            switch (dir) {
+                case "w":
+                    if (row - s < 0) {
+                        return false;
+                    }
+                    break;
+                case "s":
+                    if (row + s > sea.length - 1) {
+                        return false;
+                    }
+                    break;
+                case "a":
+                    if (column - s < 0) {
+                        return false;
+                    }
+                    break;
+                default:
+                    if (column + s > sea.length - 1) {
+                        return false;
+                    }
+                    break;
+            }
+        } else {
+            return surroundsAreEmpty(row, column, sea, ship);
+        }
+
+        return isDirectionAllowed(row, column, sea, ship, dir);
     }
 
     public void playGame() {

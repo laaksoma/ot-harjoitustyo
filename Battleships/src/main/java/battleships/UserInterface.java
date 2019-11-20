@@ -26,7 +26,7 @@ public class UserInterface {
     }
 
     public void printRulesForPlayerSetUp(int numberOfShips) {
-        System.out.println("You are given one " + numberOfShips + " ship. Place them on the sea by giving");
+        System.out.println("You are given " + numberOfShips + " ships. Place them on the sea by giving");
         System.out.println("the starting coordinates and direction (WASD) of where you'd like to place them.");
         System.out.println("The placement must follow these rules:");
         System.out.println("all parts of the ship must be placed within the visible area,");

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 //0 stands for empty area
 //1 stands for area with a ship of size 1
 //Thus X stands for area with a ship of size X
+//-X stands for area with a ship of size X that was shot
 
 public class Player {
 
