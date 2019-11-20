@@ -7,5 +7,6 @@ Päivä | Aika | Työn sisältö
 5.11. | 5 | Pelin koodin aloittelua, testailua ja luokkien luontia. Javan kertausta.
 6.11. | 3 | Lisää koodausta ja testailua.
 7.11. | 4 | Koordinaattien kyselyä ja laudan luomisen aloitus.
-18.11. | 4 | Kolmannen viikon vaatimusten kohtaamisen tarkastus, sekä laudan luomiseen liittyvien metodien jatkamine.
-Yht. | 19 | 
+18.11. | 4 | Kolmannen viikon vaatimusten kohtaamisen tarkastus, sekä laudan luomiseen liittyvien metodien jatkaminen.
+20.11. | 5 | Laudan luomisen viimeistely, lisää testejä ja itse pelilogiikan aloittaminen.
+Yht. | 24 | 
