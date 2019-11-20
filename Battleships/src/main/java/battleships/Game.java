@@ -78,7 +78,7 @@ public class Game {
             //ask for coordinates where to hit
             //update the map
                 //if the player hit a ship, modify the value of the 
-                //given cell (player.modifySea() returns the value)
+                //git given cell (player.modifySea() returns the value)
                     //let them continue
                 //if they didn't hit, show the cell and let the other player take the turn
     }
