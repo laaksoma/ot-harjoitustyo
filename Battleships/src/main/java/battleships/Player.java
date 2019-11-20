@@ -36,6 +36,11 @@ public class Player {
         this.sea[row][column] = ship;
     }
     
+    public int modifySea(int row, int column) {
+        addShipToTheSea(row, column, -this.sea[row][column]);
+        return this.sea[row][column];
+    }
+    
     public void clearTheSea() {
         this.sea = createSea();
     }

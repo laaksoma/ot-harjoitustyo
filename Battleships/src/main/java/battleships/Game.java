@@ -32,10 +32,10 @@ public class Game {
         listOfPlayers.add(new Player(playerName));
     }
 
-    public void createBoard() {
+    public void createBoard() {                                 //FOR NOW THE AMOUNT OF SHIPS IS SET ON 2
 
         for (Player player : this.listOfPlayers) {
-            player.setShips(2);                     //FOR NOW THE AMOUNT IS SET ON 2
+            player.setShips(2);                     
             setUpBoard(player);
         }
     }
@@ -67,6 +67,20 @@ public class Game {
                 continue;
             }
         }
+    }
+    
+    public void playGame() {
+        //print the seas
+            //player always sees their own sea
+            //the other player's sea is coded as only zeros?
+                //when a ship is hit, it is shown as -X
+                    //when one's own "ship count" hits zero, they lose the game
+            //ask for coordinates where to hit
+            //update the map
+                //if the player hit a ship, modify the value of the 
+                //given cell (player.modifySea() returns the value)
+                    //let them continue
+                //if they didn't hit, show the cell and let the other player take the turn
     }
 
     private void placeShips(int row, int column, Player player, int ship, String dir) {
@@ -223,8 +237,6 @@ public class Game {
         return isDirectionAllowed(row, column, sea, ship, dir);
     }
 
-    public void playGame() {
-
-    }
+    
 
 }

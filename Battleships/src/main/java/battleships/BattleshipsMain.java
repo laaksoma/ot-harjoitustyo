@@ -1,4 +1,3 @@
-
 package battleships;
 
 //import java.util.Scanner;
@@ -14,6 +13,6 @@ public class BattleshipsMain {
             battleships.createBoard();
         }
         
-        
+        battleships.playGame();
     }
 }
