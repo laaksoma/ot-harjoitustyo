@@ -2,6 +2,7 @@ package battleships;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
@@ -35,12 +36,12 @@ public class Game {
     public void createBoard() {                                 //FOR NOW THE AMOUNT OF SHIPS IS SET ON 2
 
         for (Player player : this.listOfPlayers) {
-            player.setShips(2);                     
+            player.setShips(1);
             setUpBoard(player);
         }
     }
 
-    public void setUpBoard(Player player) {                           
+    public void setUpBoard(Player player) {
         System.out.println("Creating board for " + player.getName() + "\n");
         UI.printRulesForPlayerSetUp(player.getShips().size());
 
@@ -51,15 +52,14 @@ public class Game {
             int ship = player.getShips().get(i);
             player.printSea();
 
-            System.out.println("The ship to be placed is " + ship);
-            System.out.println("Where would you like to place it?");
-            System.out.print("Row: ");                                  
-            row = UI.getANumber(1, player.getSeaSize()) - 1;            
-            System.out.print("Column: ");
-            column = UI.getANumber(1, player.getSeaSize()) - 1;
+            UI.printForShipPlacement(ship);
+
+            row = UI.getRow(player.getSeaSize());
+            column = UI.getColumn(player.getSeaSize());
+
             String dir = UI.getDirection().toLowerCase().substring(0, 1);
 
-            if (areCoordinatesAllowed(row, column, player, ship, dir)) {
+            if (areCoordinatesAllowed(row, column, player, ship, dir, "create")) {
                 placeShips(row, column, player, ship, dir);
             } else {
                 i--;
@@ -68,44 +68,73 @@ public class Game {
             }
         }
     }
-    
+
     public void playGame() {
-        //print the seas
-            //player always sees their own sea
-            //the other player's sea is coded as only zeros?
-                //when a ship is hit, it is shown as -X
-                    //when one's own "ship count" hits zero, they lose the game
-            //ask for coordinates where to hit
-            //update the map
-                //if the player hit a ship, modify the value of the 
-                //git given cell (player.modifySea() returns the value)
-                    //let them continue
-                //if they didn't hit, show the cell and let the other player take the turn
+        int i = ThreadLocalRandom.current().nextInt(0, 1);
+        turn(listOfPlayers.get(i));
+
+        //a turn cycle goes on as long as turn does return true
+    }
+
+    private boolean turn(Player player) {
+        int i = getIndexForAnotherPlayer(player);
+        this.listOfPlayers.get(i).printMaskedSea();
+
+        while (true) {
+            UI.printRulesForPlayerTurn(player.getName());
+            int row = UI.getRow(player.getSeaSize());
+            int column = UI.getColumn(player.getSeaSize());
+
+            if (this.listOfPlayers.get(i).isAreaEmpty(row, column)) {
+                this.listOfPlayers.get(i).modifyMaskedSea(row, column, 0);
+                this.listOfPlayers.get(i).printMaskedSea();
+                break;
+            } else {
+                this.listOfPlayers.get(i).modifyMaskedSea(row, column, 1);
+                if (this.listOfPlayers.get(i).seaIsEmpty()) {
+                    UI.gameOver(player.getName());
+                    return false;
+                }
+            }
+
+            this.listOfPlayers.get(getIndexForAnotherPlayer(player)).printMaskedSea();
+
+        }
+
+        return true;
+
+    }
+
+    private int getIndexForAnotherPlayer(Player playerNotWanted) {
+        if (this.listOfPlayers.indexOf(playerNotWanted) == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     private void placeShips(int row, int column, Player player, int ship, String dir) {
         int r = row;
         int c = column;
-        
+
         for (int i = ship; i > 0; i--) {
-            if (dir.equals("w")) { 
-                player.addShipToTheSea(row, column, ship);
+            if (dir.equals("w")) {
+                player.addShipToTheSea(r, c, ship);
                 r--;
-            } else if (dir.equals("s")) { 
-                player.addShipToTheSea(row, column, ship);
+            } else if (dir.equals("s")) {
+                player.addShipToTheSea(r, c, ship);
                 r++;
-            } else if (dir.equals("a")) { 
-                player.addShipToTheSea(row, column, ship);
+            } else if (dir.equals("a")) {
+                player.addShipToTheSea(r, c, ship);
                 c--;
-            } else 
-                player.addShipToTheSea(row, column, ship);
+            } else {
+                player.addShipToTheSea(r, c, ship);
                 c++;
+            }
         }
     }
 
-    //add a game mode; for creating board 0, for playing 1?
-    //the "isPlacementAllowed" is only checked when creating the board?
-    private boolean areCoordinatesAllowed(int row, int column, Player player, int ship, String dir) {
+    private boolean areCoordinatesAllowed(int row, int column, Player player, int ship, String dir, String mode) {
 
         if (row < 0 || row > (player.getSeaSize() - 1)) {
             return false;
@@ -113,8 +142,10 @@ public class Game {
             return false;
         } else if (player.getSea()[row][column] != 0) {
             return false;
-        } else {
+        } else if (mode.equals("create")) {
             return isPlacementAllowed(row, column, player.getSea(), ship, dir);
+        } else {
+            return true;
         }
     }
 
@@ -236,7 +267,5 @@ public class Game {
 
         return isDirectionAllowed(row, column, sea, ship, dir);
     }
-
-    
 
 }

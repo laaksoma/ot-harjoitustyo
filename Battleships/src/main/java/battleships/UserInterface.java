@@ -34,6 +34,33 @@ public class UserInterface {
         System.out.println("and no ship is allowed to be stationed on top of another ship.\n");
     }
 
+    public void printRulesForPlayerTurn(String name) {
+        System.out.println();
+        System.out.println("It's turn for " + name + "!");
+        System.out.println("Where would you like to hit?");
+    }
+
+    public void printForShipPlacement(int ship) {
+        System.out.println("The ship to be placed is " + ship);
+        System.out.println("Where would you like to place it?");
+    }
+    
+    public void gameOver(String name) {
+        System.out.println("Congratulations " + name + ", you won!");
+    }
+
+    public int getRow(int seaSize) {
+        System.out.print("Row: ");
+
+        return getANumber(1, seaSize) - 1;
+    }
+
+    public int getColumn(int seaSize) {
+        System.out.print("Column: ");
+        
+        return getANumber(1, seaSize) - 1;
+    }
+
     public int getANumber(int min, int max) {
         int playerInput = -1;
 
@@ -54,7 +81,7 @@ public class UserInterface {
 
     public String getDirection() {
         String direction = "not allowed";
-        
+
         while (directionNotAllowed(direction)) {
             try {
                 System.out.print("Alignment: ");
