@@ -22,18 +22,18 @@ public class Game {
             System.out.println("Cannot play with an AI player at the given time.");
             return false;
         } else {                        //together
-            addPlayers("Player1");
-            addPlayers("Player2");
+            addPlayer("Player1");
+            addPlayer("Player2");
 
             return true;
         }
     }
 
-    private void addPlayers(String playerName) {
+    private void addPlayer(String playerName) {
         listOfPlayers.add(new Player(playerName));
     }
 
-    public void createBoard() {                                 //FOR NOW THE AMOUNT OF SHIPS IS SET ON 2
+    public void createBoard() {                                 //FOR NOW THE AMOUNT OF SHIPS IS SET ON 1
 
         for (Player player : this.listOfPlayers) {
             player.setShips(1);
@@ -72,8 +72,13 @@ public class Game {
     public void playGame() {
         int i = ThreadLocalRandom.current().nextInt(0, 1);
         turn(listOfPlayers.get(i));
-
+        
+        while (!eitherSeaIsEmpty()) {
+            
+        }
         //a turn cycle goes on as long as turn does return true
+        //always take the other player
+            //i = getIndexForAnotherPlayer(listOfPlayers.get(i));
     }
 
     private boolean turn(Player player) {
@@ -91,10 +96,11 @@ public class Game {
                 break;
             } else {
                 this.listOfPlayers.get(i).modifyMaskedSea(row, column, 1);
-                if (this.listOfPlayers.get(i).seaIsEmpty()) {
-                    UI.gameOver(player.getName());
-                    return false;
-                }
+//                if (this.listOfPlayers.get(i).seaIsEmpty()) {
+//                    UI.gameOver(player.getName());
+//                    return false;
+//                }
+//I NEED TO CHECK HERE IF GAME IS OVER
             }
 
             this.listOfPlayers.get(getIndexForAnotherPlayer(player)).printMaskedSea();
@@ -103,6 +109,16 @@ public class Game {
 
         return true;
 
+    }
+    
+    private boolean eitherSeaIsEmpty() {
+        boolean empty = false;
+        
+        for(Player player: this.listOfPlayers) {
+            empty = player.seaIsEmpty();
+        }
+        
+        return empty;
     }
 
     private int getIndexForAnotherPlayer(Player playerNotWanted) {
