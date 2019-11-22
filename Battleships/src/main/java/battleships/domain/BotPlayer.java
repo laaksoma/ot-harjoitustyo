@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BotPlayer extends Player {
 
     final ArrayList<String> listOfDirections;
-    final int listSize;
+    final int listSize;         //DO I NEED THIS?
     ArrayList<String> listCopy;
 
     public BotPlayer() {
@@ -35,19 +35,26 @@ public class BotPlayer extends Player {
 
         return direction;
     }
-    
+
     public int getRowOrColumn(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
     }
-    
-    @Override
-    public PlacementInfo decideCoordinates(int ship) {
-        return null;
-    }
-    
-    //use isPlacementAllowed from Game
-        //Game.getInstance().isPlacementAllowed(row, column, sea, ship, dir);
 
+    @Override
+    public PlacementInfo decideCoordinates(int ship, boolean needForDirection) {
+        int row = getRowOrColumn(1, Game.getGameBoardSize());
+        int column = getRowOrColumn(1, Game.getGameBoardSize());
+        String dir = null;
+        
+        if (needForDirection) {
+            dir = getDirection();
+        }
+
+        return new PlacementInfo(row, column, dir);
+    }
+
+    //use isPlacementAllowed from Game
+    //Game.getInstance().isPlacementAllowed(row, column, sea, ship, dir);
     //getDirection
     //get's randomly one direction from listOfDirections
     //remove chosen from the listCopy, so it cannot be chosen again with this iteration

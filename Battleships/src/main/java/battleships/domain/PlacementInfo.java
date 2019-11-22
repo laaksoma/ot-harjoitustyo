@@ -11,6 +11,21 @@ public class PlacementInfo {
         this.direction = d;
     }
 
+    public PlacementInfo() {
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
     public int getRow() {
         return this.row;
     }

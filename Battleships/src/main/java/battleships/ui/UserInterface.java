@@ -1,6 +1,7 @@
 package battleships.ui;
 
 import battleships.domain.Player;
+import battleships.domain.Sea;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -43,7 +44,8 @@ public class UserInterface {
         String name;
 
         try {
-            name = scanner.nextLine() + "\n";
+            name = scanner.nextLine();
+            System.out.println();
         } catch (Exception e) {
             System.out.println("I'm sorry, I couldn't catch your name. I shall call you player" + number);
             name = "Player" + number;
@@ -65,7 +67,7 @@ public class UserInterface {
 
     public void printRulesForPlayerTurn(String name) {
         System.out.println();
-        System.out.print("It's turn for " + name + "!");
+        System.out.println("It's turn for " + name + "!");
         System.out.println("Where would you like to hit?");
     }
 
@@ -74,12 +76,12 @@ public class UserInterface {
         System.out.println("Where would you like to place it?");
     }
 
-    public void printSea(Player player) {
+    public void printSea(Sea sea) {
         System.out.println("  1 2 3 4 5");
-        for (int i = 0; i < player.getSea().getSea().length; i++) {
+        for (int i = 0; i < sea.getSea().length; i++) {
             System.out.print((i + 1) + " ");
-            for (int j = 0; j < player.getSea().getSea()[0].length; j++) {
-                System.out.print(player.getSea().getSea()[i][j] + " ");
+            for (int j = 0; j < sea.getSea()[0].length; j++) {
+                System.out.print(sea.getSea()[i][j] + " ");
             }
             System.out.println();
         }

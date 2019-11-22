@@ -9,14 +9,14 @@ public class Game {
 
     UserInterface userInterface = new UserInterface(new Scanner(System.in));
     ArrayList<Player> listOfPlayers;
-    final int seaSize;
+    private static int gameBoardSize;
     int gameMode;
     private static Game instance = null;
     //private static boolean isHit = false;
 
     public Game() throws Exception {
         listOfPlayers = new ArrayList<Player>();
-        this.seaSize = 5;
+        this.gameBoardSize = 5;
 
         if (instance != null) {
             throw new Exception("Multiple singletons attempted!");
@@ -29,31 +29,35 @@ public class Game {
         return instance;
     }
 
+    public static int getGameBoardSize() {
+        return gameBoardSize;
+    }
+
     //DO YOU NEED THIS? IF NOT, REMOVE FROM ABOVE
 //    public static boolean getIsHit() {
 //        return isHit;
 //    }
     //MAKE VOID WHEN AI IS AN OPTION!
-    public boolean start() {
+    public void start() {
         userInterface.welcome();
 
         this.gameMode = userInterface.getGamemode();
 
-        return addPlayers();
+        addPlayers();
 
     }
 
     //MAKE VOID WHEN AI IS AN OPTION
-    private boolean addPlayers() {
+    private void addPlayers() {
         if (this.gameMode == 0) {
-            //listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(1)));
-            //listOfPlayers.add(new BotPlayer());
-            System.out.println("Cannot play with an AI player at the given time.");
-            return false;
+            listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(1)));
+            listOfPlayers.add(new BotPlayer());
+//            System.out.println("Cannot play with an AI player at the given time.");
+//            return false;
         } else {
             listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(1)));
             listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(2)));
-            return true;
+//            return true;
         }
     }
 
@@ -66,36 +70,35 @@ public class Game {
     }
 
     public void setUpBoard(Player player) {
-        userInterface.printRulesForPlayerSetUp(player.getShips().size(), player.getName());
+        if (player.getClass() == HumanPlayer.class) {
+            userInterface.printRulesForPlayerSetUp(player.getShips().size(), player.getName());
+        }
 
         setShipsForPlayer(player);
     }
 
-    //CHECK PLAYER TYPE HERE; player.getClass() == HumanPlayer.class;
     private void setShipsForPlayer(Player player) {
         for (int i = 0; i < player.getShips().size(); i++) {
             int ship = player.getShips().get(i);
 
-            if (player.getClass() == HumanPlayer.class) {
-                if (!askForShips(player, ship)) {
-                    i--;
+            if (!askForShips(player, ship)) {
+                if (player.getClass() == HumanPlayer.class) {
+                    System.out.println("You must choose another placement!");
                 }
+
+                i--;
             }
 
         }
     }
 
     private boolean askForShips(Player player, int ship) {
-        userInterface.printSea(player);
-        userInterface.printForShipPlacement(ship);
-
-        PlacementInfo info = player.decideCoordinates(ship);
+        PlacementInfo info = player.decideCoordinates(ship, true);
 
         if (areCoordinatesAllowed(info.getRow(), info.getColumn(), player, ship, info.getDirection(), "create")) {
             placeShips(info.getRow(), info.getColumn(), player, ship, info.getDirection());
             return true;
         } else {
-            System.out.println("You must choose another placement!");
             return false;
         }
     }
@@ -109,6 +112,8 @@ public class Game {
     }
 
     public void playGame() {
+        System.out.println("The game is on!");
+        
         int i = ThreadLocalRandom.current().nextInt(0, 1);
         boolean isGameGoing = turn(listOfPlayers.get(i));
 
@@ -124,10 +129,10 @@ public class Game {
         int i = getIndexForAnotherPlayer(player);
         userInterface.printMaskedSea(this.listOfPlayers.get(i));
 
-        while (true) {
-            userInterface.printRulesForPlayerTurn(player.getName());
-            int row = userInterface.getRow(this.seaSize);
-            int column = userInterface.getColumn(this.seaSize);
+        while (true) { //THE TURN GOES ON WHILE THIS IS TRUE
+            PlacementInfo info = player.decideCoordinates(0, false);
+            int row = info.getRow();
+            int column = info.getColumn();
 
             if (this.listOfPlayers.get(i).getSea().isAreaEmpty(row, column)) {
                 this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 0);
@@ -153,7 +158,6 @@ public class Game {
         }
 
         return true;
-
     }
 
     private int getIndexForAnotherPlayer(Player playerNotWanted) {
@@ -185,9 +189,9 @@ public class Game {
 
     private boolean areCoordinatesAllowed(int row, int column, Player player, int ship, String dir, String mode) {
 
-        if (row < 0 || row > (this.seaSize - 1)) {
+        if (row < 0 || row > (this.gameBoardSize - 1)) {
             return false;
-        } else if (column < 0 || column > (this.seaSize - 1)) {
+        } else if (column < 0 || column > (this.gameBoardSize - 1)) {
             return false;
         } else if (player.getSea().getSea()[row][column] != 0) {
             return false;
