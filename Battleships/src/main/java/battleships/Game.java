@@ -71,14 +71,13 @@ public class Game {
 
     public void playGame() {
         int i = ThreadLocalRandom.current().nextInt(0, 1);
-        turn(listOfPlayers.get(i));
+        boolean isGameGoing = turn(listOfPlayers.get(i));
         
-        while (!eitherSeaIsEmpty()) {
-            
+        while (isGameGoing) {
+            i = getIndexForAnotherPlayer(listOfPlayers.get(i));
+            isGameGoing = turn(listOfPlayers.get(i));
         }
-        //a turn cycle goes on as long as turn does return true
-        //always take the other player
-            //i = getIndexForAnotherPlayer(listOfPlayers.get(i));
+        
     }
 
     private boolean turn(Player player) {
@@ -96,14 +95,14 @@ public class Game {
                 break;
             } else {
                 this.listOfPlayers.get(i).modifyMaskedSea(row, column, 1);
-//                if (this.listOfPlayers.get(i).seaIsEmpty()) {
-//                    UI.gameOver(player.getName());
-//                    return false;
-//                }
-//I NEED TO CHECK HERE IF GAME IS OVER
+                if (this.listOfPlayers.get(i).seaIsEmpty()) {
+                    UI.gameOver(player.getName());
+                    return false;
+                }
+
             }
 
-            this.listOfPlayers.get(getIndexForAnotherPlayer(player)).printMaskedSea();
+            this.listOfPlayers.get(i).printMaskedSea();
 
         }
 
@@ -111,7 +110,7 @@ public class Game {
 
     }
     
-    private boolean eitherSeaIsEmpty() {
+    private boolean isEitherSeaEmpty() {
         boolean empty = false;
         
         for(Player player: this.listOfPlayers) {
