@@ -10,4 +10,5 @@ Päivä | Aika | Työn sisältö
 18.11. | 4 | Kolmannen viikon vaatimusten kohtaamisen tarkastus, sekä laudan luomiseen liittyvien metodien jatkaminen.
 20.11. | 5 | Laudan luomisen viimeistely, lisää testejä ja itse pelilogiikan aloittaminen.
 21.11. | 4 | Vuoropohjaisuuden hahmottelua ja luontia.
-Yht. | 28 | 
+22.11. | 11 | Vuoropohjaisuuden viimeistely, luokkien refaktorointia, rajapinnan toteutus pelaajille ja yksinkertaisen tekoälyn luonti.
+Yht. | 39 | 
