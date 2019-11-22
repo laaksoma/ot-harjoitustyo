@@ -29,7 +29,7 @@ Testit suoritetaan komennolla
 
 Testikattavuusraportti luodaan komennolla 
 
-> mvn jacoco:report
+> mvn test jacoco:report
 
 ja sitä voi tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
