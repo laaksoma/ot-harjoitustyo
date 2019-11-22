@@ -6,9 +6,20 @@ import java.util.Scanner;
 public class UserInterface {
 
     private Scanner scanner;
+    private static UserInterface instance;
 
-    public UserInterface(Scanner scanner) {
+    public UserInterface(Scanner scanner) throws Exception {
         this.scanner = scanner;
+        
+        if (instance != null) {
+            throw new Exception("Multiple singletons attempted!");
+        } else {
+            this.instance = this;
+        }
+    }
+    
+    public static UserInterface getInstance() {
+        return instance;
     }
 
     public static void welcome() {

@@ -71,7 +71,7 @@ public class Game {
         setShipsForPlayer(player);
     }
 
-    //CHECK PLAYER TYPE HERE; player.getClass() == HumanPlayer;
+    //CHECK PLAYER TYPE HERE; player.getClass() == HumanPlayer.class;
     private void setShipsForPlayer(Player player) {
         for (int i = 0; i < player.getShips().size(); i++) {
             int ship = player.getShips().get(i);
@@ -87,15 +87,12 @@ public class Game {
 
     private boolean askForShips(Player player, int ship) {
         userInterface.printSea(player);
-
         userInterface.printForShipPlacement(ship);
 
-        int row = userInterface.getRow(this.seaSize);
-        int column = userInterface.getColumn(this.seaSize);
-        String dir = getDirection(ship);
+        PlacementInfo info = player.decideCoordinates(ship);
 
-        if (areCoordinatesAllowed(row, column, player, ship, dir, "create")) {
-            placeShips(row, column, player, ship, dir);
+        if (areCoordinatesAllowed(info.getRow(), info.getColumn(), player, ship, info.getDirection(), "create")) {
+            placeShips(info.getRow(), info.getColumn(), player, ship, info.getDirection());
             return true;
         } else {
             System.out.println("You must choose another placement!");
@@ -103,7 +100,7 @@ public class Game {
         }
     }
 
-    private String getDirection(int ship) {
+    public String getDirection(int ship) {
         if (ship != 1) {
             return userInterface.getDirection().toLowerCase().substring(0, 1);
         } else {

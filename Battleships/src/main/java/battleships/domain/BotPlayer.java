@@ -40,6 +40,10 @@ public class BotPlayer extends Player {
         return ThreadLocalRandom.current().nextInt(min, max);
     }
     
+    @Override
+    public PlacementInfo decideCoordinates(int ship) {
+        return null;
+    }
     
     //use isPlacementAllowed from Game
         //Game.getInstance().isPlacementAllowed(row, column, sea, ship, dir);

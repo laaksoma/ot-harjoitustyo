@@ -34,5 +34,7 @@ public abstract class Player {
     public ArrayList<Integer> getShips() {
         return this.ships;
     }
+    
+    public abstract PlacementInfo decideCoordinates(int ship);
 
 }
