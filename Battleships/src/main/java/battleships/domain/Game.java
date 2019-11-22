@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
-    UserInterface UI = new UserInterface(new Scanner(System.in));
+    UserInterface userInterface = new UserInterface(new Scanner(System.in));
     ArrayList<Player> listOfPlayers;
 
     public Game() {
@@ -15,9 +15,9 @@ public class Game {
     }
 
     public boolean start() {
-        UI.welcome();
+        userInterface.welcome();
 
-        int gameMode = UI.getGamemode();
+        int gameMode = userInterface.getGamemode();
 
         if (gameMode == 0) {            //alone
             System.out.println("Cannot play with an AI player at the given time.");
@@ -44,12 +44,12 @@ public class Game {
 
     public void setUpBoard(Player player) {
         System.out.println("Creating board for " + player.getName() + "\n");
-        UI.printRulesForPlayerSetUp(player.getShips().size());
+        userInterface.printRulesForPlayerSetUp(player.getShips().size());
         
         askForShips(player);
     }
 
-    public void askForShips(Player player) {
+    private void askForShips(Player player) {
         int row;
         int column;
         
@@ -57,19 +57,18 @@ public class Game {
             int ship = player.getShips().get(i);
             player.printSea();
 
-            UI.printForShipPlacement(ship);
+            userInterface.printForShipPlacement(ship);
 
-            row = UI.getRow(player.getSeaSize());
-            column = UI.getColumn(player.getSeaSize());
+            row = userInterface.getRow(player.getSeaSize());
+            column = userInterface.getColumn(player.getSeaSize());
 
-            String dir = UI.getDirection().toLowerCase().substring(0, 1);
+            String dir = userInterface.getDirection().toLowerCase().substring(0, 1);
 
             if (areCoordinatesAllowed(row, column, player, ship, dir, "create")) {
                 placeShips(row, column, player, ship, dir);
             } else {
                 i--;
                 System.out.println("You must choose another placement!");
-
             }
         }
     }
@@ -90,9 +89,9 @@ public class Game {
         this.listOfPlayers.get(i).printMaskedSea();
 
         while (true) {
-            UI.printRulesForPlayerTurn(player.getName());
-            int row = UI.getRow(player.getSeaSize());
-            int column = UI.getColumn(player.getSeaSize());
+            userInterface.printRulesForPlayerTurn(player.getName());
+            int row = userInterface.getRow(player.getSeaSize());
+            int column = userInterface.getColumn(player.getSeaSize());
 
             if (this.listOfPlayers.get(i).isAreaEmpty(row, column)) {
                 this.listOfPlayers.get(i).modifyMaskedSea(row, column, 0);
@@ -103,7 +102,7 @@ public class Game {
                 this.listOfPlayers.get(i).modifyMaskedSea(row, column, 1);
                 System.out.println("It's a hit!");
                 if (this.listOfPlayers.get(i).seaIsEmpty()) {
-                    UI.gameOver(player.getName());
+                    userInterface.gameOver(player.getName());
                     return false;
                 }
 
@@ -117,15 +116,6 @@ public class Game {
 
     }
 
-//    private boolean isEitherSeaEmpty() {
-//        boolean empty = false;
-//        
-//        for(Player player: this.listOfPlayers) {
-//            empty = player.seaIsEmpty();
-//        }
-//        
-//        return empty;
-//    }
     private int getIndexForAnotherPlayer(Player playerNotWanted) {
         if (this.listOfPlayers.indexOf(playerNotWanted) == 0) {
             return 1;
