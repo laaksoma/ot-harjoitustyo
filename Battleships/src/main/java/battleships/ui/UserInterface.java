@@ -1,5 +1,6 @@
 package battleships.ui;
 
+import battleships.domain.Player;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -25,8 +26,25 @@ public class UserInterface {
         return playerInput;
     }
 
-    public void printRulesForPlayerSetUp(int numberOfShips) {
-        System.out.println("You are given " + numberOfShips + " ships. Place them on the sea by giving");
+    public String getPlayerName(int number) {
+        System.out.print("Please enter name for player" + number + ": ");
+
+        String name;
+
+        try {
+            name = scanner.nextLine() + "\n";
+        } catch (Exception e) {
+            System.out.println("I'm sorry, I couldn't catch your name. I shall call you player" + number);
+            name = "Player" + number;
+        }
+
+        return name;
+    }
+
+    public void printRulesForPlayerSetUp(int numberOfShips, String name) {
+        System.out.println();
+        System.out.print("Creating board for " + name + "\n");
+        System.out.println("You are given " + numberOfShips + " ships. Place them in the sea by giving");
         System.out.println("the starting coordinates and direction (WASD) of where you'd like to place them.");
         System.out.println("The placement must follow these rules:");
         System.out.println(" - all parts of the ship must be placed within the visible area,");
@@ -44,9 +62,33 @@ public class UserInterface {
         System.out.println("The length of the ship to be placed is " + ship + ".");
         System.out.println("Where would you like to place it?");
     }
-    
+
+    public void printSea(Player player) {
+        System.out.println("  1 2 3 4 5");
+        for (int i = 0; i < player.getSea().getSea().length; i++) {
+            System.out.print((i + 1) + " ");
+            for (int j = 0; j < player.getSea().getSea()[0].length; j++) {
+                System.out.print(player.getSea().getSea()[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    public void printMaskedSea(Player player) {
+        System.out.println("  1  2  3  4  5");
+        for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
+            System.out.print(i + 1);
+            for (int j = 0; j < player.getSea().getMaskedSea()[0].length; j++) {
+                System.out.print(player.getSea().getMaskedSea()[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
     public void gameOver(String name) {
-        System.out.println("Congratulations " + name + ", you won!");
+        System.out.print("Congratulations " + name + ", you won!");
     }
 
     public int getRow(int seaSize) {
@@ -57,11 +99,11 @@ public class UserInterface {
 
     public int getColumn(int seaSize) {
         System.out.print("Column: ");
-        
+
         return getANumber(1, seaSize) - 1;
     }
 
-    public int getANumber(int min, int max) {
+    private int getANumber(int min, int max) {
         int playerInput = -1;
 
         while (playerInput < min || playerInput > max) {
@@ -72,7 +114,7 @@ public class UserInterface {
                     System.out.println("Please enter a number between " + min + " and " + max + ".");
                 }
             } catch (Exception e) {
-                System.out.println("I didn't quite catch that, would you try again?");
+                System.out.println("Please enter a number between " + min + " and " + max + ".");
             }
         }
 

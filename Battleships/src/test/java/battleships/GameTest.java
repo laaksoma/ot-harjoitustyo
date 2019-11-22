@@ -31,10 +31,10 @@ public class GameTest {
         System.out.flush();
         System.setOut(originalOutput);
     }
-
+//
 //    @Test
 //    public void startPrintsCorrectlyWhenPlayingAlone() {
-//        input = "0";
+//        input = "0 \n";
 //        UserInterface UI = new UserInterface(new Scanner(input));
 //        game.start();
 //        

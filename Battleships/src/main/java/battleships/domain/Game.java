@@ -9,9 +9,11 @@ public class Game {
 
     UserInterface userInterface = new UserInterface(new Scanner(System.in));
     ArrayList<Player> listOfPlayers;
+    int seaSize;
 
     public Game() {
         listOfPlayers = new ArrayList<Player>();
+        this.seaSize = 5;
     }
 
     public boolean start() {
@@ -23,8 +25,8 @@ public class Game {
             System.out.println("Cannot play with an AI player at the given time.");
             return false;
         } else {                        //together
-            addPlayer("Player1");
-            addPlayer("Player2");
+            addPlayer(userInterface.getPlayerName(1));
+            addPlayer(userInterface.getPlayerName(2));
 
             return true;
         }
@@ -34,35 +36,30 @@ public class Game {
         listOfPlayers.add(new Player(playerName));
     }
 
-    public void createBoard() {                                 //FOR NOW THE AMOUNT OF SHIPS IS SET ON 1
-
+    //FOR NOW THE AMOUNT OF SHIPS IS SET
+    public void createBoard() {
         for (Player player : this.listOfPlayers) {
-            player.setShips(3);
+            player.setShips(2);
             setUpBoard(player);
         }
     }
 
     public void setUpBoard(Player player) {
-        System.out.println("Creating board for " + player.getName() + "\n");
-        userInterface.printRulesForPlayerSetUp(player.getShips().size());
-        
+        userInterface.printRulesForPlayerSetUp(player.getShips().size(), player.getName());
+
         askForShips(player);
     }
 
     private void askForShips(Player player) {
-        int row;
-        int column;
-        
         for (int i = 0; i < player.getShips().size(); i++) {
             int ship = player.getShips().get(i);
-            player.printSea();
+            userInterface.printSea(player);
 
             userInterface.printForShipPlacement(ship);
 
-            row = userInterface.getRow(player.getSeaSize());
-            column = userInterface.getColumn(player.getSeaSize());
-
-            String dir = userInterface.getDirection().toLowerCase().substring(0, 1);
+            int row = userInterface.getRow(this.seaSize);
+            int column = userInterface.getColumn(this.seaSize);
+            String dir = getDirection(ship);
 
             if (areCoordinatesAllowed(row, column, player, ship, dir, "create")) {
                 placeShips(row, column, player, ship, dir);
@@ -70,6 +67,14 @@ public class Game {
                 i--;
                 System.out.println("You must choose another placement!");
             }
+        }
+    }
+
+    private String getDirection(int ship) {
+        if (ship != 1) {
+            return userInterface.getDirection().toLowerCase().substring(0, 1);
+        } else {
+            return "w";
         }
     }
 
@@ -86,29 +91,31 @@ public class Game {
 
     private boolean turn(Player player) {
         int i = getIndexForAnotherPlayer(player);
-        this.listOfPlayers.get(i).printMaskedSea();
+        userInterface.printMaskedSea(this.listOfPlayers.get(i));
 
         while (true) {
             userInterface.printRulesForPlayerTurn(player.getName());
-            int row = userInterface.getRow(player.getSeaSize());
-            int column = userInterface.getColumn(player.getSeaSize());
+            int row = userInterface.getRow(this.seaSize);
+            int column = userInterface.getColumn(this.seaSize);
 
-            if (this.listOfPlayers.get(i).isAreaEmpty(row, column)) {
-                this.listOfPlayers.get(i).modifyMaskedSea(row, column, 0);
-                this.listOfPlayers.get(i).printMaskedSea();
+            if (this.listOfPlayers.get(i).getSea().isAreaEmpty(row, column)) {
+                this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 0);
+                userInterface.printMaskedSea(this.listOfPlayers.get(i));
                 System.out.println("It's a miss!");
                 break;
             } else {
-                this.listOfPlayers.get(i).modifyMaskedSea(row, column, 1);
-                System.out.println("It's a hit!");
-                if (this.listOfPlayers.get(i).seaIsEmpty()) {
+                this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 1);
+                userInterface.printMaskedSea(this.listOfPlayers.get(i));
+                if (this.listOfPlayers.get(i).getSea().seaIsEmpty()) {
                     userInterface.gameOver(player.getName());
                     return false;
                 }
 
+                System.out.println("It's a hit!");
+
             }
 
-            this.listOfPlayers.get(i).printMaskedSea();
+            userInterface.printMaskedSea(this.listOfPlayers.get(i));
 
         }
 
@@ -129,17 +136,15 @@ public class Game {
         int c = column;
 
         for (int i = ship; i > 0; i--) {
+            player.addShipForPlayer(r, c, ship);
+
             if (dir.equals("w")) {
-                player.addShipToTheSea(r, c, ship);
                 r--;
             } else if (dir.equals("s")) {
-                player.addShipToTheSea(r, c, ship);
                 r++;
             } else if (dir.equals("a")) {
-                player.addShipToTheSea(r, c, ship);
                 c--;
             } else {
-                player.addShipToTheSea(r, c, ship);
                 c++;
             }
         }
@@ -147,14 +152,14 @@ public class Game {
 
     private boolean areCoordinatesAllowed(int row, int column, Player player, int ship, String dir, String mode) {
 
-        if (row < 0 || row > (player.getSeaSize() - 1)) {
+        if (row < 0 || row > (this.seaSize - 1)) {
             return false;
-        } else if (column < 0 || column > (player.getSeaSize() - 1)) {
+        } else if (column < 0 || column > (this.seaSize - 1)) {
             return false;
-        } else if (player.getSea()[row][column] != 0) {
+        } else if (player.getSea().getSea()[row][column] != 0) {
             return false;
         } else if (mode.equals("create")) {
-            return isPlacementAllowed(row, column, player.getSea(), ship, dir);
+            return isPlacementAllowed(row, column, player.getSea().getSea(), ship, dir);
         } else {
             return true;
         }
