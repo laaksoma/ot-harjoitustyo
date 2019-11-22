@@ -14,21 +14,21 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä tieto
   - Nappi, jota painamalla pelaaja pääsee asetusnäkymään
   
 * Laivojen asettelun näkymä
-  - Pelaajalle tarjotaan ohjeet ja ruudukko laivojen asettamista varten
-    - Laivat asetetaan antamalla näiden alku- ja loppupisteen koordinaatit
+  - Pelaajalle tarjotaan ohjeet ja ruudukko laivojen asettamista varten TEHTY
+    - Laivat asetetaan antamalla näiden alku- ja loppupisteen koordinaatit TEHTY
     - Mikäli pelaaja yrittää asettaa laivat pelin sallimattomalla tavalla (esimerkiksi liian lähelle toisiaan 
-    tai pelilaudan ulkopuolelle), peli herjaa asiasta
-   - Kun kaikki laivat on asetettu paikoilleen, siirrytään automaattisesti pelinäkymään
+    tai pelilaudan ulkopuolelle), peli herjaa asiasta TEHTY
+   - Kun kaikki laivat on asetettu paikoilleen, siirrytään automaattisesti pelinäkymään TEHTY
  
 * Pelinäkymä
-  - Aloittaja arvotaan automaattisesti 
-  - Vuorossa oleva pelaaja yrittää upottaa toisen laivat arvaamalla näiden sijainnin ruutu kerrallaan
-    - Jos pelaaja osuu laivaan, tämän vuoro jatkuu - jos taas ei, siirtyy vuoro toiselle pelaajalle
+  - Aloittaja arvotaan automaattisesti TEHTY
+  - Vuorossa oleva pelaaja yrittää upottaa toisen laivat arvaamalla näiden sijainnin ruutu kerrallaan TEHTY
+    - Jos pelaaja osuu laivaan, tämän vuoro jatkuu - jos taas ei, siirtyy vuoro toiselle pelaajalle TEHTY
     - Pelaaja saa ilmoituksen, mikäli tämä yrittää arvata jo arvattua ruutua
   - Laivojen jäljellä oleva määrä näkyy pelaajalle
   - Pelaaja näkee sekä omansa että toisen meren tilanteen
-    - Jo arvatut ruudut on merkitty
-  - Pelin voittaja on se, joka ensin upottaa toisen laivat
+    - Jo arvatut ruudut on merkitty TEHTY
+  - Pelin voittaja on se, joka ensin upottaa toisen laivat TEHTY
 
 ## Jatkokehitysideoita
 
