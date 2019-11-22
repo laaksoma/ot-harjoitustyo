@@ -1,12 +1,11 @@
-package battleships;
+package battleships.ui;
 
-//import java.util.Scanner;
+import battleships.domain.Game;
+
 
 public class BattleshipsMain {
     
     public static void main(String[] args) {
-        //Scanner inputScanner = new Scanner(System.in);
-        
         Game battleships = new Game();
         
         if (battleships.start()) {

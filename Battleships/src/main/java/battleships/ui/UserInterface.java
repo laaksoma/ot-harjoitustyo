@@ -1,4 +1,4 @@
-package battleships;
+package battleships.ui;
 
 import java.util.Scanner;
 

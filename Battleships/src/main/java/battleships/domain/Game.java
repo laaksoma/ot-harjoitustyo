@@ -1,5 +1,6 @@
-package battleships;
+package battleships.domain;
 
+import battleships.ui.UserInterface;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -44,10 +45,14 @@ public class Game {
     public void setUpBoard(Player player) {
         System.out.println("Creating board for " + player.getName() + "\n");
         UI.printRulesForPlayerSetUp(player.getShips().size());
+        
+        askForShips(player);
+    }
 
+    public void askForShips(Player player) {
         int row;
         int column;
-
+        
         for (int i = 0; i < player.getShips().size(); i++) {
             int ship = player.getShips().get(i);
             player.printSea();
@@ -64,7 +69,7 @@ public class Game {
             } else {
                 i--;
                 System.out.println("You must choose another placement!");
-                continue;
+
             }
         }
     }
@@ -72,12 +77,12 @@ public class Game {
     public void playGame() {
         int i = ThreadLocalRandom.current().nextInt(0, 1);
         boolean isGameGoing = turn(listOfPlayers.get(i));
-        
+
         while (isGameGoing) {
             i = getIndexForAnotherPlayer(listOfPlayers.get(i));
             isGameGoing = turn(listOfPlayers.get(i));
         }
-        
+
     }
 
     private boolean turn(Player player) {
@@ -111,7 +116,7 @@ public class Game {
         return true;
 
     }
-    
+
 //    private boolean isEitherSeaEmpty() {
 //        boolean empty = false;
 //        
@@ -121,7 +126,6 @@ public class Game {
 //        
 //        return empty;
 //    }
-
     private int getIndexForAnotherPlayer(Player playerNotWanted) {
         if (this.listOfPlayers.indexOf(playerNotWanted) == 0) {
             return 1;

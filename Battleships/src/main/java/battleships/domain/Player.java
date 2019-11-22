@@ -1,11 +1,11 @@
-package battleships;
+package battleships.domain;
 
 import java.util.ArrayList;
 
 public class Player {
 
     String name;
-    int[][] sea;
+    public int[][] sea;
     String[][] maskedSea;
     ArrayList<Integer> ships;
 

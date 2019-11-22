@@ -1,5 +1,6 @@
 package battleships;
 
+import battleships.ui.UserInterface;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
