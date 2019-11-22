@@ -36,7 +36,7 @@ public class Game {
     public void createBoard() {                                 //FOR NOW THE AMOUNT OF SHIPS IS SET ON 1
 
         for (Player player : this.listOfPlayers) {
-            player.setShips(1);
+            player.setShips(3);
             setUpBoard(player);
         }
     }
@@ -92,9 +92,11 @@ public class Game {
             if (this.listOfPlayers.get(i).isAreaEmpty(row, column)) {
                 this.listOfPlayers.get(i).modifyMaskedSea(row, column, 0);
                 this.listOfPlayers.get(i).printMaskedSea();
+                System.out.println("It's a miss!");
                 break;
             } else {
                 this.listOfPlayers.get(i).modifyMaskedSea(row, column, 1);
+                System.out.println("It's a hit!");
                 if (this.listOfPlayers.get(i).seaIsEmpty()) {
                     UI.gameOver(player.getName());
                     return false;
@@ -110,15 +112,15 @@ public class Game {
 
     }
     
-    private boolean isEitherSeaEmpty() {
-        boolean empty = false;
-        
-        for(Player player: this.listOfPlayers) {
-            empty = player.seaIsEmpty();
-        }
-        
-        return empty;
-    }
+//    private boolean isEitherSeaEmpty() {
+//        boolean empty = false;
+//        
+//        for(Player player: this.listOfPlayers) {
+//            empty = player.seaIsEmpty();
+//        }
+//        
+//        return empty;
+//    }
 
     private int getIndexForAnotherPlayer(Player playerNotWanted) {
         if (this.listOfPlayers.indexOf(playerNotWanted) == 0) {

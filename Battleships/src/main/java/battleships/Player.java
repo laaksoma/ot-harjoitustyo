@@ -2,11 +2,6 @@ package battleships;
 
 import java.util.ArrayList;
 
-//In the sea, 
-//0 stands for empty area
-//1 stands for area with a ship of size 1
-//Thus X stands for area with a ship of size X
-//-X stands for area with a ship of size X that was shot
 public class Player {
 
     String name;
@@ -55,10 +50,10 @@ public class Player {
     }
     
     public String modifyMaskedSea(int row, int column, int value) {
-        if (value == 0) { //if there is no ship in the original coordinates; MISS
-            this.maskedSea[row][column] = " O";
+        if (value == 0) { 
+            this.maskedSea[row][column] = " O"; //MISS
         } else {
-            this.maskedSea[row][column] = " X";  //else HIT
+            this.maskedSea[row][column] = " X";  //HIT
             this.sea[row][column] = 0; 
         }
         
@@ -97,23 +92,35 @@ public class Player {
     }
 
     public void printSea() {
+        System.out.println("  1 2 3 4 5");
+        
         for (int i = 0; i < this.sea.length; i++) {
+            System.out.print((i + 1) + " ");
+            
             for (int j = 0; j < this.sea[0].length; j++) {
-                System.out.print(this.sea[i][j]);
+                System.out.print(this.sea[i][j] + " ");
             }
 
             System.out.println();
         }
+        
+        System.out.println();
     }
 
     public void printMaskedSea() {
+        System.out.println("  1  2  3  4  5");
+        
         for (int i = 0; i < this.maskedSea.length; i++) {
+            System.out.print(i + 1);
+            
             for (int j = 0; j < this.maskedSea[0].length; j++) {
-                System.out.print(this.maskedSea[i][j]);
+                System.out.print(this.maskedSea[i][j] + " ");
             }
 
             System.out.println();
         }
+        
+        System.out.println();
     }
 
     public void setShips(int howMany) {

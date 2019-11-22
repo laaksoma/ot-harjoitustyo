@@ -29,9 +29,9 @@ public class UserInterface {
         System.out.println("You are given " + numberOfShips + " ships. Place them on the sea by giving");
         System.out.println("the starting coordinates and direction (WASD) of where you'd like to place them.");
         System.out.println("The placement must follow these rules:");
-        System.out.println("all parts of the ship must be placed within the visible area,");
-        System.out.println("no ship is allowed to be stationed directly next to another ship, ");
-        System.out.println("and no ship is allowed to be stationed on top of another ship.\n");
+        System.out.println(" - all parts of the ship must be placed within the visible area,");
+        System.out.println(" - no ship is allowed to be stationed directly next to another ship, ");
+        System.out.println(" - and no ship is allowed to be stationed on top of another ship.\n");
     }
 
     public void printRulesForPlayerTurn(String name) {
@@ -41,7 +41,7 @@ public class UserInterface {
     }
 
     public void printForShipPlacement(int ship) {
-        System.out.println("The ship to be placed is " + ship);
+        System.out.println("The length of the ship to be placed is " + ship + ".");
         System.out.println("Where would you like to place it?");
     }
     
