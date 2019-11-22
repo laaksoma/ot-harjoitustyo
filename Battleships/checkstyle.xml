@@ -80,7 +80,11 @@
             <property name='allowEmptyMethods' value='false' />
         </module>
     </module>
-
+    
+    <module name="SuppressionFilter">
+        <property name="file" value="skipper_files.xml" />
+    </module>
+    
     <!-- File Length -->
 
     <module name='FileLength'>
