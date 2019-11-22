@@ -54,7 +54,7 @@ public class UserInterface {
 
     public void printRulesForPlayerTurn(String name) {
         System.out.println();
-        System.out.println("It's turn for " + name + "!");
+        System.out.print("It's turn for " + name + "!");
         System.out.println("Where would you like to hit?");
     }
 

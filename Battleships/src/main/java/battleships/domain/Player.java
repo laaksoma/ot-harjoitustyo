@@ -2,17 +2,14 @@ package battleships.domain;
 
 import java.util.ArrayList;
 
-public class Player {
-
+public abstract class Player {
     String name;
     Sea sea;
- //   String[][] maskedSea;
     ArrayList<Integer> ships;
 
     public Player(String playerName) {
         this.name = playerName;
         this.sea = new Sea();
-//        this.maskedSea = createMaskedSea();
         this.ships = new ArrayList<Integer>();
     }
 

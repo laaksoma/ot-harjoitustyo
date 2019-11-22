@@ -4,12 +4,10 @@ public class Sea {
 
     int[][] array;
     String[][] mask;
-    //Player player;
 
     public Sea() {
         this.array = createSea();
         this.mask = createMaskedSea();
-        //this.player = player;
     }
 
     private int[][] createSea() {
