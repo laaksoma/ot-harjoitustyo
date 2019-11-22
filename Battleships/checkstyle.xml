@@ -16,12 +16,14 @@
         <module name='LeftCurly' />
         <module name='NeedBraces' />
         <module name='RightCurly' />
-        <module name='AvoidNestedBlocks' />
+        <module name='AvoidNestedBlocks'>
+            <property name = "allowInSwitchCase" value="true"/>
+        </module>
         <module name="NestedIfDepth">
-          <property name="max" value="2"/>
+            <property name="max" value="2"/>
         </module>
         <module name="NestedForDepth">
-          <property name="max" value="2"/>
+            <property name="max" value="2"/>
         </module>
         <module name="NestedTryDepth"/>
 
@@ -75,7 +77,7 @@
 
         <module name='WhitespaceAround'>
             <property name='allowEmptyConstructors' value='true' />
-            <property name='allowEmptyMethods' value='true' />
+            <property name='allowEmptyMethods' value='false' />
         </module>
     </module>
 
