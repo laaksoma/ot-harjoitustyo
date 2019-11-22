@@ -1,11 +1,12 @@
-# HUOM!
-Testasin pyörittää projektia etänä laitoksen Linuxilla niin ssh.n kuin VMWaren kautta. En saanut itse ohjelmaa enkä testejä toimimaan oikein (ohjelma kyllä pyöri, mutta hyvin kummallisesti) ssh.lla tai VMWaren kautta komentorivillä, mutta etänä Linuxilla NetBeansia käyttäessä kaikki toimi. 
+# Battleships
 
+Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä. Tällä hetkellä tämä onnistuu tekstikäyttöliittymällä yhdessä kaverin kanssa. 
 
-# Ohjelmistotekniikka, harjoitustyö
+### Huomio ohjelman pyörittämisestä!
+Tällä hetkellä ohjelma pyörii VMWaren kautta Linuxilla NetBeansilla, mutta komentorivisuorittamisen kanssa on ongelmia. 
 
 ## Dokumentaatio
-Arkkitehtuuri
+Arkkitehtuurikuvaus
 
 Kayttoohje
 
@@ -22,10 +23,26 @@ Ei vielä saatavilla.
 ## Komentorivitoiminnot
 
 ### Testaus
+Testit suoritetaan komennolla 
+
+> mvn test
+
+Testikattavuusraportti luodaan komennolla 
+
+> mvn jacoco:report
+
+ja sitä voi tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
 ### Suoritettavan jarin generointi
+Ei vielä käytössä.
 
 ### JavaDoc
+Ei vielä käytössä.
 
 ### Checkstyle 
+Tiedostoon [checkstyle.xml](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/checkstyle.xml) määritellyt tarkistukset suoritetaan komennolla 
+
+> mvn jxr:jxr checkstyle:checkstyle
+
+Checkstyle-tarkistusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/checkstyle.html_.
 
