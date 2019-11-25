@@ -18,5 +18,7 @@ ilmentymistä HumanPlayer ja BotPlayer.
 ![Pakkauskaavio](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/kaaviot/sovelluslogiikka_laajempi_ilmandao.png)
 
 ## Tietojen pysyväistallennus
+Ei vielä saatavilla.
 
 ## Ohjelmaan jääneet heikkoudet
+Ei vielä saatavilla.
