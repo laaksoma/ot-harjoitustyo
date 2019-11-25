@@ -12,6 +12,7 @@ public class PlacementInfo {
     }
 
     public PlacementInfo() {
+        this(0, 0, null);
     }
 
     public void setRow(int row) {

@@ -35,30 +35,18 @@ public class PlayerTest {
     }
 
     @Test
-    public void createSeaCreatesArrayCorrectly() {
-
+    public void addShipsForPlayerAddsCorrectShipToCorrectArea() {
+        human.addShipForPlayer(1, 1, 3);
+        
+        assertEquals(3, human.getSea().getSea()[1][1]);
     }
 
-//    @Test
-//    public void getSeaGetsSeaCorrectly() {
-//        Sea sea = new Sea();
-//
-//        assertEquals(sea, human.getSea());
-//    }
+    @Test
+    public void getSeaGetsSeaCorrectly() {
+        Sea sea = new Sea(5);
 
-//    @Test         MOVE THIS TO SEATEST
-//    public void getSeaGetsSeaCorrectly() {
-//        Sea sea = new Sea();
-//
-//        int[][] array = new int[5][5];
-//        for (int i = 0; i < array.length; i++) {
-//            for (int j = 0; j < array[0].length; j++) {
-//                array[i][j] = 0;
-//            }
-//        }
-//
-//        Assert.assertArrayEquals(array, sea.getSea());
-//    }
+        assertTrue(sea.equals(human.getSea()));
+    }
 
     @Test
     public void getNameReturnsNameCorrectly() {

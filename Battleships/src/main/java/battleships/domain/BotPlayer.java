@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BotPlayer extends Player {
 
     final ArrayList<String> listOfDirections;
-    final int listSize;         //DO I NEED THIS?
+    final int listSize;         
     ArrayList<String> listCopy;
 
     public BotPlayer() {
@@ -29,7 +29,6 @@ public class BotPlayer extends Player {
     public String getDirection() {
         String direction;
 
-        //BELOW THIS NEEDS TO BE IN A LOOP?
         int i = ThreadLocalRandom.current().nextInt(1, this.listSize) - 1;
         direction = listCopy.get(i);
 
@@ -53,18 +52,4 @@ public class BotPlayer extends Player {
         return new PlacementInfo(row, column, dir);
     }
 
-    //use isPlacementAllowed from Game
-    //Game.getInstance().isPlacementAllowed(row, column, sea, ship, dir);
-    //getDirection
-    //get's randomly one direction from listOfDirections
-    //remove chosen from the listCopy, so it cannot be chosen again with this iteration
-    //getCoordinates
-    //gives row and column coordinates
-    //get's row and column; both are random's between 1 and 5
-    //if misses, keeps guessing randomly
-    //if hits
-    //tries one below, above or sideways
-    //if hit's again, goes in the same line above/below or sideways
-    //if w/s was correct, change only row
-    //if a/d was correct, change only column
 }

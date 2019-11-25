@@ -11,14 +11,18 @@ public class UserInterface {
 
     public UserInterface(Scanner scanner) throws Exception {
         this.scanner = scanner;
-        
+
         if (instance != null) {
             throw new Exception("Multiple singletons attempted!");
         } else {
             this.instance = this;
         }
     }
-    
+
+    public void setUpScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     public static UserInterface getInstance() {
         return instance;
     }
@@ -134,16 +138,20 @@ public class UserInterface {
         return playerInput;
     }
 
-    public String getDirection() {
+    public String getDirection(int ship) {
         String direction = "not allowed";
 
-        while (directionNotAllowed(direction)) {
-            try {
-                System.out.print("Alignment: ");
-                direction = scanner.nextLine() + "\n";
-            } catch (Exception e) {
-                System.out.println("Please enter either W, A, S or D.");
+        if (ship != 1) {
+            while (directionNotAllowed(direction)) {
+                try {
+                    System.out.print("Alignment: ");
+                    direction = scanner.nextLine();
+                } catch (Exception e) {
+                    System.out.println("Please enter either W, A, S or D.");
+                }
             }
+        } else {
+            direction = "w";
         }
 
         return direction;

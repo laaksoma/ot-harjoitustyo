@@ -8,10 +8,12 @@ import static org.junit.Assert.*;
 public class PlacementInfoTest {
 
     PlacementInfo info;
+    PlacementInfo emptyInfo;
 
     @Before
     public void createPlacementInfo() {
         info = new PlacementInfo(1, 1, "w");
+        emptyInfo = new PlacementInfo();
     }
 
     @Test
@@ -27,6 +29,21 @@ public class PlacementInfoTest {
     @Test
     public void constructorSetsDirectionCorrectly() {
         assertEquals("w", info.getDirection());
+    }
+    
+    @Test
+    public void emptyConstructorSetsRowAsZero() {
+        assertEquals(0, emptyInfo.getRow());
+    }
+    
+    @Test
+    public void emptyConstructorSetsColumnAsZero() {
+        assertEquals(0, emptyInfo.getColumn());
+    }
+    
+    @Test
+    public void emptyConstructorSetsDirectionAsNull() {
+        assertEquals(null, emptyInfo.getDirection());
     }
 
     @Test

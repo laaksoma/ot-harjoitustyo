@@ -8,7 +8,7 @@ public class HumanPlayer extends Player {
         super(playerName);
     }
 
-    @Override                               //0 means no ship to be placed
+    @Override                               
     public PlacementInfo decideCoordinates(int ship, boolean needForDirection) {
         if (ship == 0) {       //during playing the game; turn
             UserInterface.getInstance().printRulesForPlayerTurn(getName());
@@ -22,7 +22,7 @@ public class HumanPlayer extends Player {
         String direction = null;
 
         if (needForDirection) {
-            direction = Game.getInstance().getDirection(ship);
+            direction = UserInterface.getInstance().getDirection(ship);
         }
 
         return new PlacementInfo(row, column, direction);

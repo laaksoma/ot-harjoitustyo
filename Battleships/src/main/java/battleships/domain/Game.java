@@ -37,7 +37,7 @@ public class Game {
 //    public static boolean getIsHit() {
 //        return isHit;
 //    }
-    //MAKE VOID WHEN AI IS AN OPTION!
+
     public void start() {
         userInterface.welcome();
 
@@ -47,17 +47,13 @@ public class Game {
 
     }
 
-    //MAKE VOID WHEN AI IS AN OPTION
     private void addPlayers() {
         if (this.gameMode == 0) {
             listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(1)));
             listOfPlayers.add(new BotPlayer());
-//            System.out.println("Cannot play with an AI player at the given time.");
-//            return false;
         } else {
             listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(1)));
             listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(2)));
-//            return true;
         }
     }
 
@@ -103,13 +99,13 @@ public class Game {
         }
     }
 
-    public String getDirection(int ship) {
-        if (ship != 1) {
-            return userInterface.getDirection().toLowerCase().substring(0, 1);
-        } else {
-            return "w";
-        }
-    }
+//    public String getDirection(int ship) {
+//        if (ship != 1) {
+//            return userInterface.getDirection().toLowerCase().substring(0, 1);
+//        } else {
+//            return "w";
+//        }
+//    }
 
     public void playGame() {
         System.out.println("The game is on!");

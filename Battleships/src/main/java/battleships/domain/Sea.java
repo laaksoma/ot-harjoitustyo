@@ -1,17 +1,21 @@
 package battleships.domain;
 
+import java.util.Arrays;
+
 public class Sea {
 
     int[][] array;
     String[][] mask;
+    int size;
 
-    public Sea() {
-        this.array = createSea();
-        this.mask = createMaskedSea();
+    public Sea(int size) {
+        this.array = createSea(size);
+        this.mask = createMaskedSea(size);
+        this.size = size;
     }
 
-    private int[][] createSea() {
-        int[][] array = new int[5][5];
+    private int[][] createSea(int size) {
+        int[][] array = new int[size][size];
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
                 array[i][j] = 0;
@@ -20,8 +24,8 @@ public class Sea {
         return array;
     }
 
-    private String[][] createMaskedSea() {
-        String[][] array = new String[5][5];
+    private String[][] createMaskedSea(int size) {
+        String[][] array = new String[size][size];
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
                 array[i][j] = " -";
@@ -48,7 +52,7 @@ public class Sea {
     public int[][] getSea() {
         return this.array;
     }
-    
+
     public String[][] getMaskedSea() {
         return this.mask;
     }
@@ -58,7 +62,7 @@ public class Sea {
     }
 
     public void clearTheSea() {
-        this.array= createSea();
+        this.array = createSea(this.size);
     }
 
     public boolean seaIsEmpty() {
@@ -77,7 +81,24 @@ public class Sea {
     }
 
     public int getSeaSize() {
-        return this.array.length;
+        return this.size;
+    }
+
+    @Override
+    public boolean equals(Object compared) {
+        if (compared == this) {
+            return true;
+        }
+
+        if (compared.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Sea compSea = (Sea) compared;
+
+        return Arrays.deepEquals(this.array, compSea.getSea())
+                && Arrays.deepEquals(this.mask, compSea.getMaskedSea())
+                && this.size == compSea.getSeaSize();
     }
 
 }
