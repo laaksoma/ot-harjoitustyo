@@ -34,7 +34,13 @@ Testikattavuusraportti luodaan komennolla
 ja sitä voi tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
 ### Suoritettavan jarin generointi
-Ei vielä käytössä.
+Jar-tiedosto generoidaan hakemistoon _target_ komennolla 
+
+> mvn package
+
+Komentoriviltä tiedoston voi suorittaa tiedostopolulla komennolla 
+
+> $ java -jar Battleships-1.0-SNAPSHOT.jar
 
 ### JavaDoc
 Ei vielä käytössä.
