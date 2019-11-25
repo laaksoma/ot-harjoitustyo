@@ -118,6 +118,18 @@ public class Game {
 
     }
 
+    private boolean areCoordinatesAlreadyUsed(PlacementInfo info, Player otherPlayer) {
+        int row = info.getRow();
+        int column = info.getColumn();
+
+        if (otherPlayer.getSea().getMaskedSea()[row][column].equals(" O")
+                || otherPlayer.getSea().getMaskedSea()[row][column].equals(" X")) {
+            return true;
+        }
+
+        return false;
+    }
+
     //CLEAN THIS UP
     private boolean turn(Player player) {
         int i = getIndexForAnotherPlayer(player);
@@ -127,6 +139,10 @@ public class Game {
             PlacementInfo info = player.decideCoordinates(0, false);
             int row = info.getRow();
             int column = info.getColumn();
+
+            if (areCoordinatesAlreadyUsed(info, this.listOfPlayers.get(i))) {
+                continue;
+            }
 
             if (this.listOfPlayers.get(i).getSea().isAreaEmpty(row, column)) {
                 this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 0);
