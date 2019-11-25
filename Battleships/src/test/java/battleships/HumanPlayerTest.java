@@ -22,8 +22,9 @@ public class HumanPlayerTest {
 
     @BeforeClass
     public static void createUserInterfaceForTests() throws Exception {
-       u = new UserInterface(scanner);
+        u = new UserInterface(scanner);
     }
+
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(contentOutput));
@@ -31,7 +32,7 @@ public class HumanPlayerTest {
         this.scanner = new Scanner(input);
         human = new HumanPlayer("Emma");
     }
-    
+
     //SetUp
     public void setUpScannerForUserInterface(String input) {
         u.setUpScanner(new Scanner(input));
@@ -42,29 +43,16 @@ public class HumanPlayerTest {
         System.out.flush();
         System.setOut(originalOutput);
     }
-
+    
     @Test
-    public void decideCoordinatesPrintsRulesWhenShipIsZero() {
-
+    public void decideCoordinatesDoesNotCrashWhenShipIsZero() {
+        setUpScannerForUserInterface("1\n2\n");
+        
+        assertEquals(0, human.decideCoordinates(0, false).getRow());
     }
 
     @Test
-    public void decideCoordinatesDoesNotPrintRulesWhenShipISZero() {
-
-    }
-
-    @Test
-    public void decideCoordinatesPrintsSeaWhenShipNeedsToBePlaced() {
-
-    }
-
-    @Test
-    public void decideCoordinatedPrintPlacementRulesWhenShipNeedsToBePlaced() {
-
-    }
-
-    @Test
-    public void decideCoordinatesSetsRowCorrectly(){
+    public void decideCoordinatesSetsRowCorrectly() {
         setUpScannerForUserInterface("1\n2\n");
 
         assertEquals(0, this.human.decideCoordinates(2, false).getRow());
@@ -80,12 +68,8 @@ public class HumanPlayerTest {
     @Test
     public void decideCoordinatesGetsDirectionWhenItIsNeeded() {
         setUpScannerForUserInterface("1\n1\nd\n");
-        
+
         assertTrue("d".contains(this.human.decideCoordinates(2, true).getDirection()));
     }
 
-    @Test
-    public void decideCoordinatesSetsDirectionAsNullWhenNotNeeded() {
-
-    }
 }

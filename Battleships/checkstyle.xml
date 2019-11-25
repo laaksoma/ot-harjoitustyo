@@ -82,7 +82,7 @@
     </module>
     
     <module name="SuppressionFilter">
-        <property name="file" value="skipper_files.xml" />
+        <property name="file" value="skipped_files.xml" />
     </module>
     
     <!-- File Length -->

@@ -37,7 +37,6 @@ public class Game {
 //    public static boolean getIsHit() {
 //        return isHit;
 //    }
-
     public void start() {
         userInterface.welcome();
 
@@ -106,10 +105,9 @@ public class Game {
 //            return "w";
 //        }
 //    }
-
     public void playGame() {
         System.out.println("The game is on!");
-        
+
         int i = ThreadLocalRandom.current().nextInt(0, 1);
         boolean isGameGoing = turn(listOfPlayers.get(i));
 
@@ -198,7 +196,6 @@ public class Game {
         }
     }
 
-    //CLEAN THIS UP
     private boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
         int r = row - 1;
 
@@ -213,70 +210,41 @@ public class Game {
                     c++;
                 } catch (ArrayIndexOutOfBoundsException e) {
                     c++;
-                    continue;
                 }
             }
-
             r++;
         }
-
         return true;
     }
 
-    //CLEAN THIS UP
-    private boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
-        switch (dir) {
-            case "w": {
-                int r = row;
-                for (int i = ship; i > 0; i--) {
-                    if (surroundsAreEmpty(r, column, sea, ship)) {
-                        r--;
-                        continue;
-                    }
-                    return false;
-                }
-                break;
-            }
-            case "s": {
-                int r = row;
-                for (int i = ship; i > 0; i--) {
-                    if (surroundsAreEmpty(r, column, sea, ship)) {
-                        r++;
-                        continue;
-                    }
-                    return false;
-                }
-                break;
-            }
-            case "a": {
-                int c = column;
-                for (int i = ship; i > 0; i--) {
-                    if (surroundsAreEmpty(row, c, sea, ship)) {
-                        c--;
-                        continue;
-                    }
+    private boolean eachSurroundingIsEmpty(int row, int column, int[][] sea, int ship, int rowChange, int colChange) {
+        int r = row;
+        int c = column;
 
-                    return false;
-                }
-                break;
+        for (int i = ship; i > 0; i--) {
+            if (surroundsAreEmpty(r, c, sea, ship)) {
+                r = r + rowChange;
+                c = c + colChange;
+                continue;
             }
-            default: {
-                int c = column;
-                for (int i = ship; i > 0; i--) {
-                    if (surroundsAreEmpty(row, c, sea, ship)) {
-                        c++;
-                        continue;
-                    }
-                    return false;
-                }
-                break;
-            }
+            return false;
         }
-
         return true;
     }
 
-    //CLEAN THIS UP
+    private boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
+        if (dir.equals("w")) {
+            return eachSurroundingIsEmpty(row, column, sea, ship, -1, 0);
+        } else if (dir.equals("s")) {
+            return eachSurroundingIsEmpty(row, column, sea, ship, 1, 0);
+        } else if (dir.equals("a")) {
+            return eachSurroundingIsEmpty(row, column, sea, ship, 0, -1);
+        } else {
+            return eachSurroundingIsEmpty(row, column, sea, ship, 0, +1);
+        }
+    }
+
+//CLEAN THIS UP
     public boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
 
         if (ship != 1) {
