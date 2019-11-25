@@ -6,7 +6,7 @@ Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä. Täll�
 Tällä hetkellä ohjelma pyörii VMWaren kautta Linuxilla NetBeansilla, mutta komentorivisuorittamisen kanssa on ongelmia. 
 
 ## Dokumentaatio
-Arkkitehtuurikuvaus
+[Arkkitehtuurikuvaus](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/arkkitehtuuri.md)
 
 Kayttoohje
 
