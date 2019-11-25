@@ -287,5 +287,4 @@ public class Game {
 
         return isDirectionAllowed(row, column, sea, ship, dir);
     }
-
 }
