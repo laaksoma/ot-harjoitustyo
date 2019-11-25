@@ -1,6 +1,6 @@
 # Battleships
 
-Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä. Tällä hetkellä tämä onnistuu tekstikäyttöliittymällä yhdessä kaverin kanssa. 
+Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä. Tällä hetkellä tämä onnistuu tekstikäyttöliittymällä yhdessä kaverin kanssa tai yksin yksinkertaista tekoälyä vastaan.
 
 ### Huomio ohjelman pyörittämisestä!
 Tällä hetkellä ohjelma pyörii VMWaren kautta Linuxilla NetBeansilla, mutta komentorivisuorittamisen kanssa on ongelmia. 
@@ -29,7 +29,7 @@ Testit suoritetaan komennolla
 
 Testikattavuusraportti luodaan komennolla 
 
-> mvn jacoco:report
+> mvn test jacoco:report
 
 ja sitä voi tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
