@@ -11,4 +11,5 @@ Päivä | Aika | Työn sisältö
 20.11. | 5 | Laudan luomisen viimeistely, lisää testejä ja itse pelilogiikan aloittaminen.
 21.11. | 4 | Vuoropohjaisuuden hahmottelua ja luontia.
 22.11. | 11 | Vuoropohjaisuuden viimeistely, luokkien refaktorointia, rajapinnan toteutus pelaajille ja yksinkertaisen tekoälyn luonti.
-Yht. | 39 | 
+25.11. | 9 | Testausta ja jar-luontia.
+Yht. | 48 | 
