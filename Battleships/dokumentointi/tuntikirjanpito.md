@@ -12,4 +12,5 @@ Päivä | Aika | Työn sisältö
 21.11. | 4 | Vuoropohjaisuuden hahmottelua ja luontia.
 22.11. | 11 | Vuoropohjaisuuden viimeistely, luokkien refaktorointia, rajapinnan toteutus pelaajille ja yksinkertaisen tekoälyn luonti.
 25.11. | 9 | Testausta ja jar-luontia.
+26.11. | 4 | Testausta ja private metodien testausongelman selvittelyä. Botti korjattu.
 Yht. | 48 | 
