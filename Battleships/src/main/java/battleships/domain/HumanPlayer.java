@@ -9,7 +9,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override                               
-    public PlacementInfo decideCoordinates(int ship, boolean needForDirection) {
+    public PlacementInfo decideCoordinates(int ship, boolean needForDirection, int gameSize) {
         if (ship == 0) {       //during playing the game; turn
             UserInterface.getInstance().printRulesForPlayerTurn(getName());
         } else {                //when setting up the game
@@ -17,8 +17,8 @@ public class HumanPlayer extends Player {
             UserInterface.getInstance().printForShipPlacement(ship);
         }
 
-        int row = UserInterface.getInstance().getRow(getSea().getSeaSize());
-        int column = UserInterface.getInstance().getColumn(getSea().getSeaSize());
+        int row = UserInterface.getInstance().getRow(gameSize);
+        int column = UserInterface.getInstance().getColumn(gameSize);
         String direction = null;
 
         if (needForDirection) {

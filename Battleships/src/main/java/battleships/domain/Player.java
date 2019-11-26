@@ -35,6 +35,6 @@ public abstract class Player {
         return this.ships;
     }
     
-    public abstract PlacementInfo decideCoordinates(int ship, boolean needForDirection);
+    public abstract PlacementInfo decideCoordinates(int ship, boolean needForDirection, int gameSize);
 
 }

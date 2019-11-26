@@ -17,19 +17,17 @@ public class HumanPlayerTest {
     private PrintStream originalOutput = System.out;
     private String input;
     private HumanPlayer human;
-    private static Scanner scanner;
     private static UserInterface u;
 
     @BeforeClass
     public static void createUserInterfaceForTests() throws Exception {
-        u = new UserInterface(scanner);
+        u = u.getInstance();
     }
 
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(contentOutput));
         this.input = "\n";
-        this.scanner = new Scanner(input);
         human = new HumanPlayer("Emma");
     }
 
@@ -48,28 +46,28 @@ public class HumanPlayerTest {
     public void decideCoordinatesDoesNotCrashWhenShipIsZero() {
         setUpScannerForUserInterface("1\n2\n");
         
-        assertEquals(0, human.decideCoordinates(0, false).getRow());
+        assertEquals(0, this.human.decideCoordinates(0, false, 5).getRow());
     }
 
     @Test
     public void decideCoordinatesSetsRowCorrectly() {
         setUpScannerForUserInterface("1\n2\n");
 
-        assertEquals(0, this.human.decideCoordinates(2, false).getRow());
+        assertEquals(0, this.human.decideCoordinates(2, false, 5).getRow());
     }
 
     @Test
     public void decideCoordinatesSetsColumnCorrectly() throws Exception {
         setUpScannerForUserInterface("1\n2\n");
 
-        assertEquals(1, this.human.decideCoordinates(2, false).getColumn());
+        assertEquals(1, this.human.decideCoordinates(2, false, 5).getColumn());
     }
 
     @Test
     public void decideCoordinatesGetsDirectionWhenItIsNeeded() {
         setUpScannerForUserInterface("1\n1\nd\n");
 
-        assertTrue("d".contains(this.human.decideCoordinates(2, true).getDirection()));
+        assertTrue("d".contains(this.human.decideCoordinates(2, true, 5).getDirection()));
     }
 
 }

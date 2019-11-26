@@ -8,9 +8,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Game {
 
     UserInterface userInterface = new UserInterface(new Scanner(System.in));
-    ArrayList<Player> listOfPlayers;
+    private ArrayList<Player> listOfPlayers;
     private static int gameBoardSize;
-    int gameMode;
+    public int gameMode;
     private static Game instance = null;
     //private static boolean isHit = false;
 
@@ -19,7 +19,7 @@ public class Game {
         this.gameBoardSize = 5;
 
         if (instance != null) {
-            throw new Exception("Multiple singletons attempted!");
+            throw new Exception("Multiple singletons attempted with class Game!");
         } else {
             this.instance = this;
         }
@@ -31,6 +31,10 @@ public class Game {
 
     public static int getGameBoardSize() {
         return gameBoardSize;
+    }
+
+    public ArrayList<Player> getListOfPlayers() {
+        return this.listOfPlayers;
     }
 
     //DO YOU NEED THIS? IF NOT, REMOVE FROM ABOVE
@@ -88,7 +92,7 @@ public class Game {
     }
 
     private boolean askForShips(Player player, int ship) {
-        PlacementInfo info = player.decideCoordinates(ship, true);
+        PlacementInfo info = player.decideCoordinates(ship, true, 5);
 
         if (areCoordinatesAllowed(info.getRow(), info.getColumn(), player, ship, info.getDirection(), "create")) {
             placeShips(info.getRow(), info.getColumn(), player, ship, info.getDirection());
@@ -121,22 +125,18 @@ public class Game {
     private boolean areCoordinatesAlreadyUsed(PlacementInfo info, Player otherPlayer) {
         int row = info.getRow();
         int column = info.getColumn();
-
-        if (otherPlayer.getSea().getMaskedSea()[row][column].equals(" O")
-                || otherPlayer.getSea().getMaskedSea()[row][column].equals(" X")) {
-            return true;
-        }
-
-        return false;
+        String mask = otherPlayer.getSea().getMaskedSea()[row][column];
+        
+        return (mask.equalsIgnoreCase(" O") || mask.equalsIgnoreCase(" X"));
     }
 
     //CLEAN THIS UP
     private boolean turn(Player player) {
         int i = getIndexForAnotherPlayer(player);
-        userInterface.printMaskedSea(this.listOfPlayers.get(i));
+        userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
 
         while (true) { //THE TURN GOES ON WHILE THIS IS TRUE
-            PlacementInfo info = player.decideCoordinates(0, false);
+            PlacementInfo info = player.decideCoordinates(0, false, 5);
             int row = info.getRow();
             int column = info.getColumn();
 
@@ -146,24 +146,20 @@ public class Game {
 
             if (this.listOfPlayers.get(i).getSea().isAreaEmpty(row, column)) {
                 this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 0);
-                userInterface.printMaskedSea(this.listOfPlayers.get(i));
-                System.out.println("It's a miss!");
+                userInterface.printMaskedSea(this.listOfPlayers.get(i), "miss");
                 //this.isHit = false;
                 break;
             } else {
                 this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 1);
-                userInterface.printMaskedSea(this.listOfPlayers.get(i));
+                userInterface.printMaskedSea(this.listOfPlayers.get(i), "hit");
                 //this.isHit = true;
                 if (this.listOfPlayers.get(i).getSea().seaIsEmpty()) {
                     userInterface.gameOver(player.getName());
                     return false;
                 }
-
-                System.out.println("It's a hit!");
-
             }
 
-            userInterface.printMaskedSea(this.listOfPlayers.get(i));
+           userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
 
         }
 

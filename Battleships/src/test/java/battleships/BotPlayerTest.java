@@ -36,14 +36,17 @@ public class BotPlayerTest {
         list.add(1);
         list.add(2);
         list.add(3);
-        
+
         assertTrue(list.contains(bot.getRowOrColumn(1, 3)));
     }
 
-//    @Test
-//    public void decideCoordinatesGetsDirectionIfNeedForDirectionIsTrue() {
-//        String dir = this.bot.decideCoordinates(1, true).getDirection();
-//        
-//        assertTrue(this.directions.contains(this.bot.decideCoordinates(1, true).getDirection()));
-//    }
+    @Test
+    public void decideCoordinatesGetsDirectionIfNeedForDirectionIsTrue() {
+        assertTrue(this.directions.contains(this.bot.decideCoordinates(1, true, 5).getDirection()));
+    }
+
+    @Test
+    public void decideCoordinatesGetsDirectionIfNeedForDirectionIsFalse() {
+        assertEquals(null, this.bot.decideCoordinates(1, false, 5).getDirection());
+    }
 }

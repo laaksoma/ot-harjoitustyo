@@ -13,7 +13,7 @@ public class UserInterface {
         this.scanner = scanner;
 
         if (instance != null) {
-            throw new Exception("Multiple singletons attempted!");
+            throw new Exception("Multiple singletons attempted with class UserInterface!");
         } else {
             this.instance = this;
         }
@@ -92,7 +92,11 @@ public class UserInterface {
         System.out.println();
     }
 
-    public void printMaskedSea(Player player) {
+    public void printMaskedSea(Player player, String missOrHit) {
+        if (missOrHit != null) {
+            System.out.println("It's a " + missOrHit + "!");
+        }
+
         System.out.println("  1  2  3  4  5");
         for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
             System.out.print(i + 1);

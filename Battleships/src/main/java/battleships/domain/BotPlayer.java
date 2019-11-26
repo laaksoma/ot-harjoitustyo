@@ -38,19 +38,20 @@ public class BotPlayer extends Player {
     }
 
     public int getRowOrColumn(int min, int max) {
-        return this.random.nextInt(max) + 1;
+        return this.random.nextInt(max);
     }
-
+    
     @Override
-    public PlacementInfo decideCoordinates(int ship, boolean needForDirection) {
-        int row = getRowOrColumn(1, Game.getGameBoardSize());
-        int column = getRowOrColumn(1, Game.getGameBoardSize());
+    public PlacementInfo decideCoordinates(int ship, boolean needForDirection, int gameSize) {
+        int row = getRowOrColumn(1, gameSize);
+        int column = getRowOrColumn(1, gameSize);
         String dir = null;
         
         if (needForDirection) {
             dir = getDirection();
         }
-
+        //System.out.println("Bot chose row " + (row + 1) + ", column " + (column + 1) + ", and direction was " + dir);
+        
         return new PlacementInfo(row, column, dir);
     }
 

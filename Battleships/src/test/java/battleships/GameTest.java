@@ -1,30 +1,42 @@
 package battleships;
 
+import battleships.domain.BotPlayer;
 import battleships.domain.Game;
+import battleships.domain.HumanPlayer;
 import battleships.ui.UserInterface;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Scanner;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 public class GameTest {
 
-    UserInterface UI;
+    private static UserInterface u;
     private ByteArrayOutputStream contentOutput = new ByteArrayOutputStream();
     private PrintStream originalOutput = System.out;
-    private String input;
-    private Game game;
+    private static Game game;
+
+    @BeforeClass
+    public static void createUserInterfaceAndGameForTests() throws Exception {
+        u = u.getInstance();
+        GameTest.game = new Game();
+    }
 
     @Before
-    public void setUp() throws Exception {
-        UI = new UserInterface(new Scanner(System.in));
+    public void setUp() {
         System.setOut(new PrintStream(contentOutput));
-        game = new Game();
+        System.setOut(new PrintStream(contentOutput));
+    }
+
+    //SetUp
+    public void setUpScannerForUserInterface(String input) {
+        u.setUpScanner(new Scanner(input));
     }
 
     @After
@@ -32,22 +44,52 @@ public class GameTest {
         System.out.flush();
         System.setOut(originalOutput);
     }
-}
 
+    @Test
+    public void constructorCreatesEmptyListOfPlayers() {
+        assertTrue(this.game.getListOfPlayers().isEmpty());
+    }
 
-////
-////    @Test
-////    public void startPrintsCorrectlyWhenPlayingAlone() {
-////        input = "0 \n";
-////        UserInterface UI = new UserInterface(new Scanner(input));
-////        game.start();
-////        
-////        assertTrue(contentOutput.toString().contains("Cannot play with an AI player at the given time."));
-////    }
-////    
-////    @Test
-////    public void startReturnsFalseWhenPlayingAlone() {
-////        //assertFalse();
-////    }
+    @Test
+    public void constructorSetsGameBoardSizeCorrectly() {
+        assertEquals(5, this.game.getGameBoardSize());
+    }
+
+    @Test
+    public void getInstanceReturnsInstanceCorrectly() {
+        assertEquals(GameTest.game.getInstance(), game.getInstance());
+    }
+
+    @Test
+    public void startGetsGameModeCorrectly() {
+        assertEquals(0, GameTest.game.getInstance().gameMode);
+    }
+
+//    @Test
+//    public void addPlayersAddsHumanIfGameModeIsZero() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+//        GameTest.game.getInstance().gameMode = 0;
+//        setUpScannerForUserInterface("Annie\n");
+//        
+//        Method method = Game.class.getDeclaredMethod("addPlayers");
+//        method.setAccessible(true);
+//        method.invoke(this.game);
+//        
+//        assertEquals("Annie", this.game.getListOfPlayers().get(0).getName());
+//    }
 //
-//}
+//    @Test
+//    public void addPlayersAddsBotIfGameModeIsZero() {
+//
+//    }
+//
+//    @Test
+//    public void addPlayersAddsTwoHumanPlayersIfGameModeIsNotZero() {
+//
+//    }
+    
+    @Test
+    public void areCoordinatesAlreadyUsedReturnsFalseWhenYes() {
+        
+    }
+
+}
