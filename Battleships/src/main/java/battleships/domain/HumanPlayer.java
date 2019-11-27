@@ -11,7 +11,7 @@ public class HumanPlayer extends Player {
     @Override                               
     public PlacementInfo decideCoordinates(int ship, boolean needForDirection, int gameSize) {
         if (ship == 0) {       //during playing the game; turn
-            UserInterface.getInstance().printRulesForPlayerTurn(getName());
+            UserInterface.getInstance().printRulesForPlayerTurn(getName());        //move this somewhere so it doesn't print again when guessing same coordinates?
         } else {                //when setting up the game
             UserInterface.getInstance().printSea(getSea());
             UserInterface.getInstance().printForShipPlacement(ship);

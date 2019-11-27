@@ -9,7 +9,7 @@ public class BattleshipsMain {
 
         battleships.start();
         
-        battleships.createBoard();
+        battleships.createBoard(2);
 
         battleships.playGame();
     }

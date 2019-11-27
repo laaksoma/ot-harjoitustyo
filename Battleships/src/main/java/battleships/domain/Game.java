@@ -2,8 +2,8 @@ package battleships.domain;
 
 import battleships.ui.UserInterface;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
@@ -12,6 +12,7 @@ public class Game {
     private static int gameBoardSize;
     public int gameMode;
     private static Game instance = null;
+    private Random random = new Random();
     //private static boolean isHit = false;
 
     public Game() throws Exception {
@@ -60,10 +61,10 @@ public class Game {
         }
     }
 
-    //FOR NOW THE AMOUNT OF SHIPS IS SET
-    public void createBoard() {
+    //FOR NOW THE AMOUNT OF SHIPS IS SET IN MAIN WHEN CALLING THE METHOD
+    public void createBoard(int numberOfShips) {
         for (Player player : this.listOfPlayers) {
-            player.setShips(2);
+            player.setShips(numberOfShips);
             setUpBoard(player);
         }
     }
@@ -102,17 +103,10 @@ public class Game {
         }
     }
 
-//    public String getDirection(int ship) {
-//        if (ship != 1) {
-//            return userInterface.getDirection().toLowerCase().substring(0, 1);
-//        } else {
-//            return "w";
-//        }
-//    }
     public void playGame() {
         System.out.println("The game is on!");
 
-        int i = ThreadLocalRandom.current().nextInt(0, 1);
+        int i = this.random.nextInt(2);
         boolean isGameGoing = turn(listOfPlayers.get(i));
 
         while (isGameGoing) {
@@ -126,7 +120,7 @@ public class Game {
         int row = info.getRow();
         int column = info.getColumn();
         String mask = otherPlayer.getSea().getMaskedSea()[row][column];
-        
+
         return (mask.equalsIgnoreCase(" O") || mask.equalsIgnoreCase(" X"));
     }
 
@@ -135,12 +129,15 @@ public class Game {
         int i = getIndexForAnotherPlayer(player);
         userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
 
-        while (true) { //THE TURN GOES ON WHILE THIS IS TRUE
+        while (true) {                                                          //THE TURN GOES ON WHILE THIS IS TRUE
             PlacementInfo info = player.decideCoordinates(0, false, 5);
             int row = info.getRow();
             int column = info.getColumn();
 
             if (areCoordinatesAlreadyUsed(info, this.listOfPlayers.get(i))) {
+                if (this.listOfPlayers.get(i).getName().equals("Bot")) {
+                    userInterface.printForNoNewCoordinates(row, column);
+                }
                 continue;
             }
 
@@ -158,11 +155,8 @@ public class Game {
                     return false;
                 }
             }
-
-           userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
-
+            userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
         }
-
         return true;
     }
 
@@ -256,47 +250,24 @@ public class Game {
         }
     }
 
-//CLEAN THIS UP
-    public boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
-
+    private boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
         if (ship != 1) {
-            if (row == 0 && dir.equals("w")) {
-                return false;
-            } else if (row == (sea.length - 1) && dir.equals("s")) {
-                return false;
-            } else if (column == 0 && dir.equals("a")) {
-                return false;
-            } else if (column == (sea.length - 1) && dir.equals("d")) {
+            if ((row == 0 && dir.equals("w"))
+                    || (row == (sea.length - 1) && dir.equals("s"))
+                    || (column == 0 && dir.equals("a"))
+                    || (column == (sea.length - 1) && dir.equals("d"))) {
                 return false;
             }
-
             int s = ship - 1;
-            switch (dir) {
-                case "w":
-                    if (row - s < 0) {
-                        return false;
-                    }
-                    break;
-                case "s":
-                    if (row + s > sea.length - 1) {
-                        return false;
-                    }
-                    break;
-                case "a":
-                    if (column - s < 0) {
-                        return false;
-                    }
-                    break;
-                default:
-                    if (column + s > sea.length - 1) {
-                        return false;
-                    }
-                    break;
+            if (dir.equals("w") && (row - s < 0)
+                    || (dir.equals("s") && (row + s > sea.length - 1))
+                    || (dir.equals("a") && (column - s < 0))
+                    || (dir.equals("d")) && (column + s > sea.length - 1)) {
+                return false;
             }
-        } else {
+        } else {                                                                //if ship size is one, only check the surroundings
             return surroundsAreEmpty(row, column, sea, ship);
         }
-
         return isDirectionAllowed(row, column, sea, ship, dir);
     }
 }

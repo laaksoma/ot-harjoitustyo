@@ -31,13 +31,13 @@ public class BotPlayerTest {
     }
 
     @Test
-    public void getRowOrColumnReturnsIntBetweenMinAndMax() {
+    public void getRowOrColumnReturnsIntBetweenZeroAndMax() {
         ArrayList<Integer> list = new ArrayList();
+        list.add(0);
         list.add(1);
         list.add(2);
-        list.add(3);
 
-        assertTrue(list.contains(bot.getRowOrColumn(1, 3)));
+        assertTrue(list.contains(bot.getRowOrColumn(3)));
     }
 
     @Test

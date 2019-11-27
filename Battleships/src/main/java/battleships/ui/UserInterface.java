@@ -75,6 +75,11 @@ public class UserInterface {
         System.out.println("Where would you like to hit?");
     }
 
+    public void printForNoNewCoordinates(int row, int column) {
+        System.out.println("You have already tried row " + (row + 1) + " and column " + (column + 1) + "!");
+        System.out.println("Try some other location.");
+    }
+
     public void printForShipPlacement(int ship) {
         System.out.println("The length of the ship to be placed is " + ship + ".");
         System.out.println("Where would you like to place it?");

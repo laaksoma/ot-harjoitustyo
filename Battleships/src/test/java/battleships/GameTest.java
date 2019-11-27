@@ -64,7 +64,16 @@ public class GameTest {
     public void startGetsGameModeCorrectly() {
         assertEquals(0, GameTest.game.getInstance().gameMode);
     }
-
+    
+//    public void startCallsForAddPlayersCorrectly() {
+//        GameTest.game.getInstance().gameMode = 0;
+//        setUpScannerForUserInterface("Annie\n");
+//        
+//        this.game.start();
+//        
+//        assertEquals("Annie", this.game.getListOfPlayers().get(0).getName());
+//    }
+//
 //    @Test
 //    public void addPlayersAddsHumanIfGameModeIsZero() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        GameTest.game.getInstance().gameMode = 0;
@@ -86,10 +95,10 @@ public class GameTest {
 //    public void addPlayersAddsTwoHumanPlayersIfGameModeIsNotZero() {
 //
 //    }
-    
-    @Test
-    public void areCoordinatesAlreadyUsedReturnsFalseWhenYes() {
-        
-    }
+//    
+//    @Test
+//    public void areCoordinatesAlreadyUsedReturnsFalseWhenYes() {
+//        
+//    }
 
 }

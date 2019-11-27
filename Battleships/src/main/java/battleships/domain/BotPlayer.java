@@ -32,24 +32,26 @@ public class BotPlayer extends Player {
         String direction;
 
         int i = this.random.nextInt(this.listSize);
-        direction = listCopy.get(i);
+        direction = listCopy.get(i);                                            //copy for the better bot, delete if not in use later
 
         return direction;
     }
 
-    public int getRowOrColumn(int min, int max) {
-        return this.random.nextInt(max);
+    public int getRowOrColumn(int max) {
+        int number = this.random.nextInt(max);
+        //System.out.println("Number was: " + number);
+        return number;
     }
     
     @Override
     public PlacementInfo decideCoordinates(int ship, boolean needForDirection, int gameSize) {
-        int row = getRowOrColumn(1, gameSize);
-        int column = getRowOrColumn(1, gameSize);
+        int row = getRowOrColumn(gameSize);
+        int column = getRowOrColumn(gameSize);
         String dir = null;
         
         if (needForDirection) {
             dir = getDirection();
-        }
+        } 
         //System.out.println("Bot chose row " + (row + 1) + ", column " + (column + 1) + ", and direction was " + dir);
         
         return new PlacementInfo(row, column, dir);
