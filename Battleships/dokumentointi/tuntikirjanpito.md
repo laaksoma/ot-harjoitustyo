@@ -13,4 +13,5 @@ Päivä | Aika | Työn sisältö
 22.11. | 11 | Vuoropohjaisuuden viimeistely, luokkien refaktorointia, rajapinnan toteutus pelaajille ja yksinkertaisen tekoälyn luonti.
 25.11. | 9 | Testausta ja jar-luontia.
 26.11. | 4 | Testausta ja private metodien testausongelman selvittelyä. Botti korjattu.
-Yht. | 52 | 
+27.11. | 3 | Luokkien siivousta, testausta ja yksityiskohtien hienosäätöä. Graafisen käyttöliittymän toteutuksen tutkiminen aloitettu.
+Yht. | 55 | 
