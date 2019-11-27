@@ -1,7 +1,7 @@
 # Vaatimuusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä tietokonetta vastaan. 
+Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä joko tietokonetta tai toista pelaajaa vastaan lokaalisti.
 
 ## Käyttöliittymäluonnos
 
@@ -24,9 +24,9 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä tieto
   - Aloittaja arvotaan automaattisesti TEHTY
   - Vuorossa oleva pelaaja yrittää upottaa toisen laivat arvaamalla näiden sijainnin ruutu kerrallaan TEHTY
     - Jos pelaaja osuu laivaan, tämän vuoro jatkuu - jos taas ei, siirtyy vuoro toiselle pelaajalle TEHTY
-    - Pelaaja saa ilmoituksen, mikäli tämä yrittää arvata jo arvattua ruutua
+    - Pelaaja saa ilmoituksen, mikäli tämä yrittää arvata jo arvattua ruutua TEHTY
   - Laivojen jäljellä oleva määrä näkyy pelaajalle
-  - Pelaaja näkee sekä omansa että toisen meren tilanteen
+  - Pelaaja näkee sekä omansa että toisen meren tilanteen TEHTY
     - Jo arvatut ruudut on merkitty TEHTY
   - Pelin voittaja on se, joka ensin upottaa toisen laivat TEHTY
 
@@ -37,7 +37,7 @@ Peliä ja sen toimintaa voisi kehittää esimerkiksi seuraavilla ominaisuuksilla
 * Mahdollisuus avata ohjeet kesken pelin
 * Mahdollisuus aloittaa uusi peli
 * Mahdollisuus aloittaa uusi peli, vaikka vanha olisi vielä kesken
-* Mahdollisuus pelata toista ihmispelaajaa vastaan
+* Mahdollisuus pelata toista ihmispelaajaa vastaan TEHTY
 * Pelin pisteytys ja näiden tietojen mahdollinen tallennus 
 * Graafisen käyttöliittymän hionta
 * Äänitehosteiden lisäys peliin 
