@@ -21,6 +21,10 @@ Testaus
 Ei vielä saatavilla.
 
 ## Komentorivitoiminnot
+### Suorittaminen komentoriviltä 
+Ohjelman suorittaminen komentoriviltä tapahtuu seuraavalla komennolla (mikäli compile on jo tehty, sanan 'compile' voi jättää välistä): 
+
+> mvn compile exec:java -Dexec.mainClass=battleships.ui.BattleshipsMain
 
 ### Testaus
 Testit suoritetaan komennolla 
