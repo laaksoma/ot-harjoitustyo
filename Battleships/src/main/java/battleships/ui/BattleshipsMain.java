@@ -10,7 +10,7 @@ public class BattleshipsMain {
 
         Game battleships = Game.getInstance();
 
-        battleships.start();
+        battleships.beginStartMethod();
         
  //       battleships.createBoard(2);
 

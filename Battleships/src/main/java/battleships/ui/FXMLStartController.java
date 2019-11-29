@@ -24,37 +24,43 @@ public class FXMLStartController implements Initializable {
     private Button playGameButton;
     @FXML
     private HBox hBox1;
-    @FXML 
+    @FXML
     private HBox hBox2;
     @FXML
     private TextField player1Name;
     @FXML
     private TextField player2Name;
-    @FXML
+    
     public int gameModeValue;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-    
+
     @FXML
     public void playGameButtonHandling() {
-        if(btnFriend.isSelected() == btnAlone.isSelected()){
+        if (btnFriend.isSelected() == btnAlone.isSelected()) {
             chooseSomething.setText("You need to choose a mode to play!");
+            return;
         }
-        
+
         Toggle toggle = btnAlone.getToggleGroup().getSelectedToggle();
-        //set buttons disabled
-        
+        disableButtons();
+        playGameButton.setText("Set up game!");
+
         if (toggle == btnAlone) {
-            //System.out.println("Alone!");
             gameModeValue = 0;
-            //bring up text field for PLAYER1
+            hBox1.setDisable(false);
         } else {
-            //System.out.println("You chose something else!");
             gameModeValue = 1;
-            //bring up both text fields
+            hBox1.setDisable(false);
+            hBox2.setDisable(false);
         }
+    }
+
+    private void disableButtons() {
+        btnAlone.setDisable(true);
+        btnFriend.setDisable(true);
     }
 
     public void setWelcome() {

@@ -1,5 +1,6 @@
 package battleships.ui;
 
+import battleships.domain.Game;
 import battleships.domain.Player;
 import battleships.domain.Sea;
 import java.io.IOException;
@@ -15,6 +16,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class GraphicalUserInterface extends Application implements UserInterface {
+
+    static boolean singletonHasBeenCreated = false;
     public FXMLLoader loader;
     public FXMLStartController startController;
     private static UserInterface instance = null;
@@ -27,10 +30,16 @@ public class GraphicalUserInterface extends Application implements UserInterface
     @Override
     public void start(Stage primaryStage) {
         System.out.println("Starting! (in start method)");
-
-        
-        
         String fileName = "/fxml/InstructionsFXML.fxml";
+        
+        System.out.println("Instance is null?" + (instance == null));
+        if(instance != null && (instance != this)){
+            this.loader = ((GraphicalUserInterface)instance).loader;
+            this.startController = ((GraphicalUserInterface)instance).startController;
+            instance = this;
+            System.out.println("Changed GUI singleton instance");
+        }
+        
         try {
             this.loader = new FXMLLoader(GraphicalUserInterface.class.getResource(fileName));
             Parent root = loader.load();
@@ -49,14 +58,13 @@ public class GraphicalUserInterface extends Application implements UserInterface
         System.out.println("Exception occurred already?");
         this.startController.setWelcome();
         System.out.println("At the end of start!");
-
+        Game.getInstance().finishStartMethod();
     }
 
     public static UserInterface getInstance() {
         if (instance == null) {
             GraphicalUserInterface newInterface = new GraphicalUserInterface();
-            System.out.println("ONLY ONCE!");
-            System.out.println("Instance set for GUI.");
+            singletonHasBeenCreated = true;
             instance = newInterface;
         }
         return instance;
@@ -75,12 +83,13 @@ public class GraphicalUserInterface extends Application implements UserInterface
     @Override
     public void welcome() {
         System.out.println("Starting GUI...");                                  //STARTGUI
-        launch(GraphicalUserInterface.class);                                                     //STARTGUI
+        launch(GraphicalUserInterface.class);                                   //STARTGUI
     }
 
     @Override
     public int getGamemode() {
-        return this.startController.gameModeValue;
+        int result = this.startController.gameModeValue;
+        return result;
     }
 
     @Override

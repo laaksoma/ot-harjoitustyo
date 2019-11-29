@@ -78,7 +78,7 @@ public class GameTest {
 //        Game.getInstance().gameMode = 0;
 //        setUpScannerForUserInterface("Annie\n");
 //        
-//        Game.getInstance().start();
+//        Game.getInstance().beginStartMethod();
 //        
 //        assertEquals("Annie", Game.getInstance().getListOfPlayers().get(0).getName());
 //    }

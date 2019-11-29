@@ -8,6 +8,7 @@ public class TextUserInterface implements UserInterface {
 
     private static Scanner scanner;
     private static UserInterface instance;
+    static boolean singletonHasBeenCreated = false;
 
     public TextUserInterface() throws IllegalStateException {
         if (instance != null) {
@@ -25,6 +26,7 @@ public class TextUserInterface implements UserInterface {
     public static UserInterface getInstance() {
         if (instance == null) {
             instance = new TextUserInterface();
+            singletonHasBeenCreated = true;
         }
         return instance;
     }

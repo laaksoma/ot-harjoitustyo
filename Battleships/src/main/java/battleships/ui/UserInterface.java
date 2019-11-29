@@ -9,8 +9,14 @@ public interface UserInterface {
     void setUpScanner(Scanner scanner);
 
     static UserInterface getInstance() {
-        System.out.println("This should not be called ever");
-        return null;
+        if(GraphicalUserInterface.singletonHasBeenCreated){
+            return GraphicalUserInterface.getInstance();
+        } else if(TextUserInterface.singletonHasBeenCreated){
+            return TextUserInterface.getInstance();
+        } else {
+            System.out.println("This should not be called ever");
+            return null;
+        }
     }
 
     void abandonInstance();

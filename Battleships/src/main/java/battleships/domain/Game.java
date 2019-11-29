@@ -50,14 +50,22 @@ public class Game {
 //    public static boolean getIsHit() {
 //        return isHit;
 //    }
-    public void start() {
+    public void beginStartMethod() {
         System.out.println("About to call welcome");
         userInterface.welcome();
         System.out.println("Called welcome");
+    }
 
-        this.gameMode = userInterface.getGamemode();
-
-        //addPlayers();
+    public void finishStartMethod() {
+        refreshUserInterface();
+        System.out.println("Got here!");
+        this.gameMode = userInterface.getGamemode();                            //THIS WAS CHANGED FROM userInterface.getGameMode()
+        System.out.println("Game mode is: " + this.gameMode);
+        addPlayers();
+    }
+    
+    private void refreshUserInterface() {
+        this.userInterface = UserInterface.getInstance();
     }
 
     private void addPlayers() {
