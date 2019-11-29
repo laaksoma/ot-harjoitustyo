@@ -1,4 +1,4 @@
-package battleships;
+package battleships.domain;
 
 import battleships.domain.BotPlayer;
 import battleships.domain.Game;
@@ -25,7 +25,7 @@ public class GameTest {
     @BeforeClass
     public static void createUserInterfaceAndGameForTests() throws Exception {
         GameTest.game = Game.getInstance();
-        u = u.getInstance();
+        u = UserInterface.getInstance();
     }
 
     @Before

@@ -1,6 +1,7 @@
-package battleships;
+package battleships.domain;
 
 import battleships.domain.HumanPlayer;
+import battleships.ui.TextUserInterface;
 import battleships.ui.UserInterface;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -21,7 +22,7 @@ public class HumanPlayerTest {
 
     @BeforeClass
     public static void createUserInterfaceForTests() throws Exception {
-        u = u.getInstance();
+        u = UserInterface.getInstance();
     }
 
     @Before

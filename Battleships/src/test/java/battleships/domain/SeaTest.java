@@ -1,4 +1,4 @@
-package battleships;
+package battleships.domain;
 
 import battleships.domain.Sea;
 import org.junit.Assert;

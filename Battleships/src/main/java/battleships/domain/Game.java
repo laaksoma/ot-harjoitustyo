@@ -1,5 +1,7 @@
 package battleships.domain;
 
+import battleships.ui.GraphicalUserInterface;
+import battleships.ui.TextUserInterface;
 import battleships.ui.UserInterface;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,7 +24,7 @@ public class Game {
 
         listOfPlayers = new ArrayList<Player>();
         this.gameBoardSize = 5;
-        this.userInterface = UserInterface.getInstance();    
+        this.userInterface = GraphicalUserInterface.getInstance();    
     }
 
     public static Game getInstance() {
@@ -49,11 +51,13 @@ public class Game {
 //        return isHit;
 //    }
     public void start() {
+        System.out.println("About to call welcome");
         userInterface.welcome();
+        System.out.println("Called welcome");
 
-        this.gameMode = userInterface.getGamemode();
+       // this.gameMode = userInterface.getGamemode();
 
-        addPlayers();
+        //addPlayers();
 
     }
 
