@@ -24,12 +24,14 @@ public class GameTest {
 
     @BeforeClass
     public static void createUserInterfaceAndGameForTests() throws Exception {
+        GameTest.game = Game.getInstance();
         u = u.getInstance();
-        GameTest.game = new Game();
     }
 
     @Before
     public void setUp() {
+        Game.getInstance().abandonInstance();
+        GameTest.game = new Game();
         System.setOut(new PrintStream(contentOutput));
         System.setOut(new PrintStream(contentOutput));
     }
@@ -47,7 +49,7 @@ public class GameTest {
 
     @Test
     public void constructorCreatesEmptyListOfPlayers() {
-        assertTrue(this.game.getListOfPlayers().isEmpty());
+        assertEquals(true, Game.getInstance().getListOfPlayers().isEmpty());
     }
 
     @Test
@@ -57,48 +59,79 @@ public class GameTest {
 
     @Test
     public void getInstanceReturnsInstanceCorrectly() {
-        assertEquals(GameTest.game.getInstance(), game.getInstance());
+        assertEquals(GameTest.game.getInstance(), Game.getInstance());
     }
 
     @Test
     public void startGetsGameModeCorrectly() {
-        assertEquals(0, GameTest.game.getInstance().gameMode);
+        assertEquals(0, Game.getInstance().gameMode);
     }
-    
+
+//    @Test(expected = IllegalStateException.class)
+//    public void constructorAllowsOnlyOneGameSingleton() {
+//        Game gameTry = new Game();
+//        Game gameTryAgain = new Game();
+//    }
+//    
 //    public void startCallsForAddPlayersCorrectly() {
-//        GameTest.game.getInstance().gameMode = 0;
+//        Game.getInstance().gameMode = 0;
 //        setUpScannerForUserInterface("Annie\n");
 //        
-//        this.game.start();
+//        Game.getInstance().start();
 //        
-//        assertEquals("Annie", this.game.getListOfPlayers().get(0).getName());
+//        assertEquals("Annie", Game.getInstance().getListOfPlayers().get(0).getName());
 //    }
-//
-//    @Test
-//    public void addPlayersAddsHumanIfGameModeIsZero() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-//        GameTest.game.getInstance().gameMode = 0;
-//        setUpScannerForUserInterface("Annie\n");
-//        
-//        Method method = Game.class.getDeclaredMethod("addPlayers");
-//        method.setAccessible(true);
-//        method.invoke(this.game);
-//        
-//        assertEquals("Annie", this.game.getListOfPlayers().get(0).getName());
-//    }
-//
-//    @Test
-//    public void addPlayersAddsBotIfGameModeIsZero() {
-//
-//    }
-//
-//    @Test
-//    public void addPlayersAddsTwoHumanPlayersIfGameModeIsNotZero() {
-//
-//    }
+
+    @Test
+    public void addPlayersAddsHumanIfGameModeIsZero() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Game.getInstance().gameMode = 0;
+        setUpScannerForUserInterface("Annie\n");
+
+        Method method = Game.class.getDeclaredMethod("addPlayers");
+        method.setAccessible(true);
+        method.invoke(Game.getInstance());
+
+        assertEquals("Annie", Game.getInstance().getListOfPlayers().get(0).getName());
+    }
+
+    @Test
+    public void addPlayersAddsBotIfGameModeIsZero() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Game.getInstance().gameMode = 0;
+        setUpScannerForUserInterface("Annie\n");
+
+        Method method = Game.class.getDeclaredMethod("addPlayers");
+        method.setAccessible(true);
+        method.invoke(Game.getInstance());
+
+        assertEquals("Bot /84", Game.getInstance().getListOfPlayers().get(1).getName());
+    }
+
+    @Test
+    public void addPlayersAddsFirstHumanPlayerIfGameModeIsNotZero() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Game.getInstance().gameMode = 1;
+        setUpScannerForUserInterface("Michael\nJenny\n");
+
+        Method method = Game.class.getDeclaredMethod("addPlayers");
+        method.setAccessible(true);
+        method.invoke(Game.getInstance());
+
+        assertEquals("Michael", Game.getInstance().getListOfPlayers().get(0).getName());
+    }
+
+    @Test
+    public void addPlayersAddsSecondHumanPlayerIfGameModeIsNotZero() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Game.getInstance().gameMode = 1;
+        setUpScannerForUserInterface("Michael\nJenny\n");
+
+        Method method = Game.class.getDeclaredMethod("addPlayers");
+        method.setAccessible(true);
+        method.invoke(Game.getInstance());
+
+        assertEquals("Jenny", Game.getInstance().getListOfPlayers().get(1).getName());
+    }
 //    
 //    @Test
 //    public void areCoordinatesAlreadyUsedReturnsFalseWhenYes() {
 //        
 //    }
-
 }

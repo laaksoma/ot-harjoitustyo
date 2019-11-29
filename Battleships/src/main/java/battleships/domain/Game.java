@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Game {
 
-    UserInterface userInterface = new UserInterface(new Scanner(System.in));
+    UserInterface userInterface;
     private ArrayList<Player> listOfPlayers;
     private static int gameBoardSize;
     public int gameMode;
@@ -15,19 +15,25 @@ public class Game {
     private Random random = new Random();
     //private static boolean isHit = false;
 
-    public Game() throws Exception {
+    public Game() throws IllegalStateException {
+        if (instance != null) {
+            throw new IllegalStateException("Multiple singletons attempted with class Game!");
+        }
+
         listOfPlayers = new ArrayList<Player>();
         this.gameBoardSize = 5;
-
-        if (instance != null) {
-            throw new Exception("Multiple singletons attempted with class Game!");
-        } else {
-            this.instance = this;
-        }
+        this.userInterface = UserInterface.getInstance();    
     }
 
     public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
         return instance;
+    }
+
+    public void abandonInstance() {
+        this.instance = null;
     }
 
     public static int getGameBoardSize() {

@@ -6,17 +6,15 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private Scanner scanner;
+    private static Scanner scanner;
     private static UserInterface instance;
 
-    public UserInterface(Scanner scanner) throws Exception {
-        this.scanner = scanner;
-
+    public UserInterface() throws IllegalStateException {
         if (instance != null) {
-            throw new Exception("Multiple singletons attempted with class UserInterface!");
-        } else {
-            this.instance = this;
+            throw new IllegalStateException("Multiple singletons attempted with class UserInterface!");
         }
+        
+        this.scanner = new Scanner(System.in);
     }
 
     public void setUpScanner(Scanner scanner) {
@@ -24,7 +22,14 @@ public class UserInterface {
     }
 
     public static UserInterface getInstance() {
+        if (instance == null) {
+            instance = new UserInterface();
+        }
         return instance;
+    }
+
+    public void abandonInstance() {
+        this.instance = null;
     }
 
     public static void welcome() {

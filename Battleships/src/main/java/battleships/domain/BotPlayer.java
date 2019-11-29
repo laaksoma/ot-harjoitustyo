@@ -11,7 +11,7 @@ public class BotPlayer extends Player {
     Random random;
 
     public BotPlayer() {
-        super("Bot");
+        super("Bot /84");
         this.listOfDirections = createDirections();
         this.listSize = listOfDirections.size();
         this.listCopy = listOfDirections;
