@@ -24,7 +24,7 @@ public class Game {
 
         listOfPlayers = new ArrayList<Player>();
         this.gameBoardSize = 5;
-        this.userInterface = GraphicalUserInterface.getInstance();    
+        this.userInterface = GraphicalUserInterface.getInstance();
     }
 
     public static Game getInstance() {
@@ -55,10 +55,9 @@ public class Game {
         userInterface.welcome();
         System.out.println("Called welcome");
 
-       // this.gameMode = userInterface.getGamemode();
+        this.gameMode = userInterface.getGamemode();
 
         //addPlayers();
-
     }
 
     private void addPlayers() {

@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class GraphicalUserInterface extends Application implements UserInterface {
     public FXMLLoader loader;
-    public FXMLController controller;
+    public FXMLStartController startController;
     private static UserInterface instance = null;
 
     @Override
@@ -28,23 +28,26 @@ public class GraphicalUserInterface extends Application implements UserInterface
     public void start(Stage primaryStage) {
         System.out.println("Starting! (in start method)");
 
+        
+        
         String fileName = "/fxml/InstructionsFXML.fxml";
         try {
-            this.loader = new FXMLLoader(getClass().getResource(fileName));
+            this.loader = new FXMLLoader(GraphicalUserInterface.class.getResource(fileName));
             Parent root = loader.load();
-            controller = this.loader.getController();
+            startController = this.loader.getController();
             System.out.println("Controller created.");
             Scene scene = new Scene(root, 300, 250);
 
-            primaryStage.setTitle("Battleships!!");
+            primaryStage.setTitle("Battleships");
 
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
             System.out.println("Could not find the file " + fileName);
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
-        this.controller.setWelcome();
+        System.out.println("Exception occurred already?");
+        this.startController.setWelcome();
         System.out.println("At the end of start!");
 
     }
@@ -77,7 +80,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public int getGamemode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.startController.gameModeValue;
     }
 
     @Override

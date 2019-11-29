@@ -3,6 +3,7 @@ package battleships.domain;
 import battleships.domain.BotPlayer;
 import battleships.domain.Game;
 import battleships.domain.HumanPlayer;
+import battleships.ui.TextUserInterface;
 import battleships.ui.UserInterface;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -25,7 +26,7 @@ public class GameTest {
     @BeforeClass
     public static void createUserInterfaceAndGameForTests() throws Exception {
         GameTest.game = Game.getInstance();
-        u = UserInterface.getInstance();
+        u = TextUserInterface.getInstance();
     }
 
     @Before

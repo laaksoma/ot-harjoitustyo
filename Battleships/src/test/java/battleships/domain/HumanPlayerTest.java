@@ -22,7 +22,7 @@ public class HumanPlayerTest {
 
     @BeforeClass
     public static void createUserInterfaceForTests() throws Exception {
-        u = UserInterface.getInstance();
+        u = TextUserInterface.getInstance();
     }
 
     @Before

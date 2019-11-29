@@ -6,8 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
-public class FXMLController implements Initializable {
+public class FXMLStartController implements Initializable {
 
     @FXML
     private Label welcome;
@@ -22,6 +23,14 @@ public class FXMLController implements Initializable {
     @FXML
     private Button playGameButton;
     @FXML
+    private HBox hBox1;
+    @FXML 
+    private HBox hBox2;
+    @FXML
+    private TextField player1Name;
+    @FXML
+    private TextField player2Name;
+    @FXML
     public int gameModeValue;
 
     @Override
@@ -35,13 +44,16 @@ public class FXMLController implements Initializable {
         }
         
         Toggle toggle = btnAlone.getToggleGroup().getSelectedToggle();
+        //set buttons disabled
         
         if (toggle == btnAlone) {
             //System.out.println("Alone!");
             gameModeValue = 0;
+            //bring up text field for PLAYER1
         } else {
             //System.out.println("You chose something else!");
             gameModeValue = 1;
+            //bring up both text fields
         }
     }
 
@@ -50,10 +62,6 @@ public class FXMLController implements Initializable {
         welcome.setText("Welcome to play the Battlehsips game!");
         aloneOrFriend.setText("Would you like to play alone or with a friend?");
         System.out.println("Set texts");
-    }
-
-    public void setInstructions() {
-        //instructions.setText();
     }
 
 }
