@@ -54,6 +54,7 @@ public class Game {
         System.out.println("About to call welcome");
         userInterface.welcome();
         System.out.println("Called welcome");
+        //finishStartMethod()   call here for TUI?
     }
 
     public void finishStartMethod() {
