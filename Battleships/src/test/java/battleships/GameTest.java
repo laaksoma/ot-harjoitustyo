@@ -3,6 +3,7 @@ package battleships;
 import battleships.domain.BotPlayer;
 import battleships.domain.Game;
 import battleships.domain.HumanPlayer;
+import battleships.domain.PlacementInfo;
 import battleships.ui.UserInterface;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -31,7 +32,6 @@ public class GameTest {
     @Before
     public void setUp() {
         Game.getInstance().abandonInstance();
-        GameTest.game = new Game();
         System.setOut(new PrintStream(contentOutput));
         System.setOut(new PrintStream(contentOutput));
     }
@@ -39,6 +39,13 @@ public class GameTest {
     //SetUp
     public void setUpScannerForUserInterface(String input) {
         u.setUpScanner(new Scanner(input));
+    }
+
+    //SetUp
+    public Object setAccessible(String methodName) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Method method = Game.class.getDeclaredMethod(methodName);
+        method.setAccessible(true);
+        return method.invoke(Game.getInstance());
     }
 
     @After
@@ -62,11 +69,10 @@ public class GameTest {
         assertEquals(GameTest.game.getInstance(), Game.getInstance());
     }
 
-    @Test
-    public void startGetsGameModeCorrectly() {
-        assertEquals(0, Game.getInstance().gameMode);
-    }
-
+//    @Test
+//    public void startGetsGameModeCorrectly() {
+//        assertEquals(0, Game.getInstance().gameMode);
+//    }
 //    @Test(expected = IllegalStateException.class)
 //    public void constructorAllowsOnlyOneGameSingleton() {
 //        Game gameTry = new Game();
@@ -74,22 +80,19 @@ public class GameTest {
 //    }
 //    
 //    public void startCallsForAddPlayersCorrectly() {
-//        Game.getInstance().gameMode = 0;
-//        setUpScannerForUserInterface("Annie\n");
+//        //Game.getInstance().gameMode = 0;
+//        setUpScannerForUserInterface("0\nAnnie\n");
 //        
 //        Game.getInstance().start();
 //        
 //        assertEquals("Annie", Game.getInstance().getListOfPlayers().get(0).getName());
 //    }
-
     @Test
     public void addPlayersAddsHumanIfGameModeIsZero() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Game.getInstance().gameMode = 0;
         setUpScannerForUserInterface("Annie\n");
 
-        Method method = Game.class.getDeclaredMethod("addPlayers");
-        method.setAccessible(true);
-        method.invoke(Game.getInstance());
+        setAccessible("addPlayers");
 
         assertEquals("Annie", Game.getInstance().getListOfPlayers().get(0).getName());
     }
@@ -99,9 +102,7 @@ public class GameTest {
         Game.getInstance().gameMode = 0;
         setUpScannerForUserInterface("Annie\n");
 
-        Method method = Game.class.getDeclaredMethod("addPlayers");
-        method.setAccessible(true);
-        method.invoke(Game.getInstance());
+        setAccessible("addPlayers");
 
         assertEquals("Bot /84", Game.getInstance().getListOfPlayers().get(1).getName());
     }
@@ -111,9 +112,7 @@ public class GameTest {
         Game.getInstance().gameMode = 1;
         setUpScannerForUserInterface("Michael\nJenny\n");
 
-        Method method = Game.class.getDeclaredMethod("addPlayers");
-        method.setAccessible(true);
-        method.invoke(Game.getInstance());
+        setAccessible("addPlayers");
 
         assertEquals("Michael", Game.getInstance().getListOfPlayers().get(0).getName());
     }
@@ -123,15 +122,40 @@ public class GameTest {
         Game.getInstance().gameMode = 1;
         setUpScannerForUserInterface("Michael\nJenny\n");
 
-        Method method = Game.class.getDeclaredMethod("addPlayers");
-        method.setAccessible(true);
-        method.invoke(Game.getInstance());
+        setAccessible("addPlayers");
 
         assertEquals("Jenny", Game.getInstance().getListOfPlayers().get(1).getName());
     }
-//    
-//    @Test
-//    public void areCoordinatesAlreadyUsedReturnsFalseWhenYes() {
-//        
-//    }
+
+    @Test
+    public void areCoordinatesAlreadyUsedReturnsTrueWhenYes() {
+        //gets PlacementInfo for asked coords and otherPlayer so can check the mask
+        //modifyMaskedSea row column 0/miss 1/hit
+        PlacementInfo info = new PlacementInfo(1, 1, null);
+        HumanPlayer player = new HumanPlayer("Alfred");
+        player.getSea().modifyMaskedSea(1, 1, 0);
+
+        assertTrue(Game.getInstance().areCoordinatesAlreadyUsed(info, player));
+
+    }
+
+    @Test
+    public void areCoordinatesAlreadyUsedReturnsFalseWhenNotUsed() {
+        PlacementInfo info = new PlacementInfo(1, 1, null);
+        HumanPlayer player = new HumanPlayer("Alfred");
+
+        assertFalse(Game.getInstance().areCoordinatesAlreadyUsed(info, player));
+    }
+
+    @Test
+    public void getIndexForAnotherPlayerReturnsOtherPlayersIndex() {
+        HumanPlayer p0 = new HumanPlayer("John");
+        HumanPlayer p1 = new HumanPlayer("Emma");
+        Game.getInstance().getListOfPlayers().add(p0);
+        Game.getInstance().getListOfPlayers().add(p1);
+        
+        assertEquals(0, Game.getInstance().getIndexForAnotherPlayer(p1));
+    }
+    
+    
 }

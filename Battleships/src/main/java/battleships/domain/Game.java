@@ -122,7 +122,7 @@ public class Game {
 
     }
 
-    private boolean areCoordinatesAlreadyUsed(PlacementInfo info, Player otherPlayer) {
+    public boolean areCoordinatesAlreadyUsed(PlacementInfo info, Player otherPlayer) {
         int row = info.getRow();
         int column = info.getColumn();
         String mask = otherPlayer.getSea().getMaskedSea()[row][column];
@@ -166,7 +166,7 @@ public class Game {
         return true;
     }
 
-    private int getIndexForAnotherPlayer(Player playerNotWanted) {
+    public int getIndexForAnotherPlayer(Player playerNotWanted) {
         if (this.listOfPlayers.indexOf(playerNotWanted) == 0) {
             return 1;
         } else {
