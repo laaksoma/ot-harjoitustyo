@@ -42,10 +42,6 @@ Jar-tiedosto generoidaan hakemistoon _target_ komennolla
 
 > mvn package
 
-Komentoriviltä tiedoston voi suorittaa tiedostopolulla komennolla 
-
-> java -jar Battleships-1.0-SNAPSHOT.jar
-
 ### JavaDoc
 Ei vielä käytössä.
 
