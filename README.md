@@ -18,7 +18,7 @@ Testaus
 
 ## Releaset
 
-Ei vielä saatavilla.
+[Viikon 5 release](https://github.com/laaksoma/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Komentorivitoiminnot
 ### Suorittaminen komentoriviltä 
@@ -44,7 +44,7 @@ Jar-tiedosto generoidaan hakemistoon _target_ komennolla
 
 Komentoriviltä tiedoston voi suorittaa tiedostopolulla komennolla 
 
-> $ java -jar Battleships-1.0-SNAPSHOT.jar
+> java -jar Battleships-1.0-SNAPSHOT.jar
 
 ### JavaDoc
 Ei vielä käytössä.
