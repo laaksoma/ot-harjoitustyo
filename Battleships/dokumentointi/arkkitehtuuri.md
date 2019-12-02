@@ -8,7 +8,7 @@ Pakkauksesta _battleships.ui_ löytyvät käyttöliittymäluokat, ja _battleship
 Tietojen tallennus hoidetaan tulevaisuudessa _battleships.dao_-pakkauksen kautta.
 
 ## Käyttöliittymä
-Ei vielä saatavilla.
+Ei vielä saatavilla; toistaiseksi käytössä on vain tekstikäyttöliittymä.
 
 ## Sovelluslogiikka 
 Sovelluksen looginen toimintamalli koostuu luokasta Game, ja tämän kanssa vuorovaikuttavan Player-luokan 
@@ -19,6 +19,9 @@ ilmentymistä HumanPlayer ja BotPlayer.
 
 ## Tietojen pysyväistallennus
 Ei vielä saatavilla.
+
+## Päätoiminnallisuudet
+
 
 ## Ohjelmaan jääneet heikkoudet
 Ei vielä saatavilla.
