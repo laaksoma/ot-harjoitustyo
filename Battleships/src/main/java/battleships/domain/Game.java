@@ -122,9 +122,7 @@ public class Game {
 
     }
 
-    public boolean areCoordinatesAlreadyUsed(PlacementInfo info, Player otherPlayer) {
-        int row = info.getRow();
-        int column = info.getColumn();
+    public boolean areCoordinatesAlreadyUsed(int row, int column, Player otherPlayer) {
         String mask = otherPlayer.getSea().getMaskedSea()[row][column];
 
         return (mask.equalsIgnoreCase(" O") || mask.equalsIgnoreCase(" X"));
@@ -140,7 +138,7 @@ public class Game {
             int row = info.getRow();
             int column = info.getColumn();
 
-            if (areCoordinatesAlreadyUsed(info, this.listOfPlayers.get(i))) {
+            if (areCoordinatesAlreadyUsed(row, column, this.listOfPlayers.get(i))) {
                 if (this.listOfPlayers.get(i).getName().equals("Bot")) {
                     userInterface.printForNoNewCoordinates(row, column);
                 }
@@ -161,6 +159,7 @@ public class Game {
                     return false;
                 }
             }
+            
             userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
         }
         return true;

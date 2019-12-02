@@ -135,7 +135,7 @@ public class GameTest {
         HumanPlayer player = new HumanPlayer("Alfred");
         player.getSea().modifyMaskedSea(1, 1, 0);
 
-        assertTrue(Game.getInstance().areCoordinatesAlreadyUsed(info, player));
+        assertTrue(Game.getInstance().areCoordinatesAlreadyUsed(0, 0, player));
 
     }
 
@@ -144,7 +144,7 @@ public class GameTest {
         PlacementInfo info = new PlacementInfo(1, 1, null);
         HumanPlayer player = new HumanPlayer("Alfred");
 
-        assertFalse(Game.getInstance().areCoordinatesAlreadyUsed(info, player));
+        assertFalse(Game.getInstance().areCoordinatesAlreadyUsed(0, 0, player));
     }
 
     @Test
