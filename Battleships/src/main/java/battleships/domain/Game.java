@@ -63,8 +63,20 @@ public class Game {
         this.gameMode = userInterface.getGamemode();                            //THIS WAS CHANGED FROM userInterface.getGameMode()
         System.out.println("Game mode is: " + this.gameMode);
         addPlayers();
+        System.out.println("Now we have the players: ");
+        listOfPlayers.forEach(player -> {
+            System.out.println("\t" + player.name);
+            
+        });
+        
+        try {
+            Thread.sleep(10000);
+            System.out.println("Here is where we should start the setup.");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-    
+
     private void refreshUserInterface() {
         this.userInterface = UserInterface.getInstance();
     }

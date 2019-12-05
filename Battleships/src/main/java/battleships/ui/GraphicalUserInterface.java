@@ -5,6 +5,9 @@ import battleships.domain.Player;
 import battleships.domain.Sea;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.function.BooleanSupplier;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,22 +27,22 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void init() throws Exception {
-        System.out.println("Initialize called (after launch)!");
+
     }
 
     @Override
     public void start(Stage primaryStage) {
         System.out.println("Starting! (in start method)");
         String fileName = "/fxml/InstructionsFXML.fxml";
-        
+
         System.out.println("Instance is null?" + (instance == null));
-        if(instance != null && (instance != this)){
-            this.loader = ((GraphicalUserInterface)instance).loader;
-            this.startController = ((GraphicalUserInterface)instance).startController;
+        if (instance != null && (instance != this)) {
+            this.loader = ((GraphicalUserInterface) instance).loader;
+            this.startController = ((GraphicalUserInterface) instance).startController;
             instance = this;
-            System.out.println("Changed GUI singleton instance");
+            //System.out.println("Changed GUI singleton instance");
         }
-        
+
         try {
             this.loader = new FXMLLoader(GraphicalUserInterface.class.getResource(fileName));
             Parent root = loader.load();
@@ -55,10 +58,20 @@ public class GraphicalUserInterface extends Application implements UserInterface
             System.out.println("Could not find the file " + fileName);
             e.printStackTrace();
         }
-        System.out.println("Exception occurred already?");
+
         this.startController.setWelcome();
-        System.out.println("At the end of start!");
-        Game.getInstance().finishStartMethod();
+
+        Thread t = new Thread(() -> Game.getInstance().finishStartMethod());
+        t.start();
+        t.setUncaughtExceptionHandler((e, ei) -> {
+            ei.printStackTrace();
+            System.exit(0);
+        });
+    }
+
+    @Override
+    public void stop() throws Exception {
+        System.exit(0);
     }
 
     public static UserInterface getInstance() {
@@ -86,16 +99,74 @@ public class GraphicalUserInterface extends Application implements UserInterface
         launch(GraphicalUserInterface.class);                                   //STARTGUI
     }
 
+    private boolean gameModeChosen = false;
+
     @Override
     public int getGamemode() {
+        while (!this.startController.gameModeValueSet) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         int result = this.startController.gameModeValue;
         return result;
+
+        /*
+            OTHER POSSIBILITY:
+              return getVariableAfterItHasBeenSetInController(() -> startController.gameModeValue,
+                () -> startController.gameModeValueSet);
+         */
     }
 
     @Override
     public String getPlayerName(int number) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        while (!this.startController.namesSet) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (number == 1) {
+            System.out.println("Returning the name " + this.startController.p1Name);
+            return this.startController.p1Name;
+        } else if (number == 2) {
+            System.out.println("Returning the name " + this.startController.p2Name);
+            return this.startController.p2Name;
+        } else {
+            System.out.println("Apparently this can be called with an int other than 1 or 2...");
+            return null;
+        }
+
+        /*
+            String p1Name = getVariableAfterItHasBeenSetInController(() -> startController.p1Name,
+             () -> startController.namesSet);
+            String p2Name = getVariableAfterItHasBeenSetInController(() -> startController.p1Name,
+             () -> startController.namesSet);
+            if(number == 1){
+                return p1Name;
+            } else if(number == 2) {
+                return p2Name;
+            } else {
+                return null;
+            }
+         */
     }
+/*
+    private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
+        while (!condition.getAsBoolean()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return variableSupplier.get();
+    }*/
 
     @Override
     public void printRulesForPlayerSetUp(int numberOfShips, String name) {
