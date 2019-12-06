@@ -1,16 +1,20 @@
 
-#open-sea{
-    -fx-background-color: blue;
-}
-
 .sea{
     -fx-border-color: black;
     -fx-border-width:1;
     -fx-border-style: solid;
-    -fx-background-color: blue;
+    -fx-background-color: #3a72ab;
+}
+
+#open-sea{
+    -fx-background-color: #3a72ab;
 }
 
 #sea-with-ship{
-    -fx-background-color: black;
+    -fx-background-color: #323436;
+}
+
+#sea-under-mist{
+    -fx-background-color: #a9bdc9;
 }
 

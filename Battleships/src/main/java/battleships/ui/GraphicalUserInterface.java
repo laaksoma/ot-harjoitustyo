@@ -251,7 +251,10 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void printMaskedSea(Player player, String missOrHit) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //almost like printSea, except for 
+            //if area is " -", it's sea-under-mist
+            //if area is " O", it's open-sea
+            //if area is " X", it's sea-with-sunken-ship
     }
 
     @Override
