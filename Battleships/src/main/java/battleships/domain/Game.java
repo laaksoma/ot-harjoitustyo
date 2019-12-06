@@ -23,7 +23,7 @@ public class Game {
         }
 
         listOfPlayers = new ArrayList<Player>();
-        this.gameBoardSize = 5;
+        this.gameBoardSize = 10;
         this.userInterface = GraphicalUserInterface.getInstance();
     }
 
@@ -123,7 +123,7 @@ public class Game {
     }
 
     private boolean askForShips(Player player, int ship) {
-        PlacementInfo info = player.decideCoordinates(ship, true, 5);
+        PlacementInfo info = player.decideCoordinates(ship, true, this.gameBoardSize);
 
         if (areCoordinatesAllowed(info.getRow(), info.getColumn(), player, ship, info.getDirection(), "create")) {
             placeShips(info.getRow(), info.getColumn(), player, ship, info.getDirection());
@@ -160,7 +160,7 @@ public class Game {
         userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
 
         while (true) {                                                          //THE TURN GOES ON WHILE THIS IS TRUE
-            PlacementInfo info = player.decideCoordinates(0, false, 5);
+            PlacementInfo info = player.decideCoordinates(0, false, this.gameBoardSize);
             int row = info.getRow();
             int column = info.getColumn();
 

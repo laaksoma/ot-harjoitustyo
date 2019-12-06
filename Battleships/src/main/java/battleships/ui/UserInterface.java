@@ -45,8 +45,6 @@ public interface UserInterface {
 
     int getColumn(int seaSize);
 
-    int getANumber(int min, int max);
-
     String getDirection(int ship);
 
     boolean directionNotAllowed(String direction);

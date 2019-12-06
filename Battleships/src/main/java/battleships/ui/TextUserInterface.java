@@ -150,7 +150,6 @@ public class TextUserInterface implements UserInterface {
         return getANumber(1, seaSize) - 1;
     }
 
-    @Override
     public int getANumber(int min, int max) {
         int playerInput = -1;
 

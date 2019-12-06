@@ -9,7 +9,7 @@ public abstract class Player {
 
     public Player(String playerName) {
         this.name = playerName;
-        this.sea = new Sea(5);
+        this.sea = new Sea(Game.getGameBoardSize());
         this.ships = new ArrayList<Integer>();
     }
 
