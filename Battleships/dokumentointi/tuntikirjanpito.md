@@ -16,4 +16,5 @@ Päivä | Aika | Työn sisältö
 27.11. | 3 | Luokkien siivousta, testausta ja yksityiskohtien hienosäätöä. Graafisen käyttöliittymän toteutuksen tutkiminen aloitettu.
 29.11. | 10 | Testausta ja graafisen käyttöliittymän aloittaminen.
 2.12. | 7 | Testausta ja sekvenssikaavion luontia. Graafiseen käyttöliittymään liittyvien ongelmien ratkontaa.
-Yht. | 72 | 
+6.12. | 13 | Graafisen käyttöliittymän jatkamista; set-up-ikkunan viimeistely.
+Yht. | 85 | 
