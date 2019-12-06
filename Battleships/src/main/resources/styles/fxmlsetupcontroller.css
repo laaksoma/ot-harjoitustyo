@@ -1,7 +1,15 @@
-/*
- * Empty Stylesheet file.
- */
 
-.mainFxmlClass {
-
+#open-sea{
+    -fx-background-color: blue;
 }
+
+.sea{
+    -fx-border-color: black;
+    -fx-border-width:1;
+    -fx-border-style: solid;
+}
+
+#sea-with-ship{
+    -fx-background-color: black;
+}
+

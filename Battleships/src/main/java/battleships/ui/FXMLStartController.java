@@ -39,7 +39,7 @@ public class FXMLStartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         this.GraphUserInterface = (GraphicalUserInterface) GraphicalUserInterface.getInstance();
     }
-
+    
     @FXML
     public void playGameButtonHandling() {
         //TESTING CHECK-UP

@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 
 public class FXMLSetUpController implements Initializable {
 
@@ -27,14 +28,12 @@ public class FXMLSetUpController implements Initializable {
     private Label shipSize;
     @FXML
     private Label errorMessage;
-//    @FXML
-//    private Label rowError;
-//    @FXML
-//    private Label colError;
-//    @FXML
-//    private Label dirError;
     @FXML
     private Button getCoordsButton;
+//    @FXML
+//    private Button nextPlayerButton;
+    @FXML
+    public GridPane seaGridPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -86,6 +85,10 @@ public class FXMLSetUpController implements Initializable {
     public void changeCoordinateButtonEnable() {
         getCoordsButton.setDisable(!getCoordsButton.isVisible());
     }
+    
+//    public void changeNextPlayerButtonVisibility(boolean value) {
+//        nextPlayerButton.setVisible(value);
+//    }
 
     public void changeErrorMessageVisibility(boolean value) {
         errorMessage.setVisible(value);

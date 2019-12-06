@@ -57,6 +57,7 @@ public class Game {
         //finishStartMethod()   call here for TUI?
     }
 
+    //THE NUMBER OF SHIPS IS SET HERE AS 2 FOR NOW
     public void finishStartMethod() {
         refreshUserInterface();
         System.out.println("Got here!");
@@ -70,7 +71,7 @@ public class Game {
         });
 
         //call for controller?
-        createBoard(6);
+        createBoard(2);             
 
     }
 
@@ -117,20 +118,22 @@ public class Game {
     private void setShipsForPlayer(Player player) {
         for (int i = 0; i < player.getShips().size(); i++) {
             int ship = player.getShips().get(i);
+            System.out.println("The ship to be set is: " + ship);
 
             if (!askForShips(player, ship)) {
                 if (player.getClass() == HumanPlayer.class) {
                     this.userInterface.directionNotAllowed("You must choose another placement!");
-                    //Instead of printing the above, call for changeErrorMessageVisibility through GUI
                 }
-
+                
                 i--;
             }
-
         }
+        
+        System.out.println("All ships are set.");
     }
 
     private boolean askForShips(Player player, int ship) {
+        //this.userInterface.printSea(player.getSea());
         PlacementInfo info = player.decideCoordinates(ship, true, this.gameBoardSize);
 
         if (areCoordinatesAllowed(info.getRow(), info.getColumn(), player, ship, info.getDirection(), "create")) {

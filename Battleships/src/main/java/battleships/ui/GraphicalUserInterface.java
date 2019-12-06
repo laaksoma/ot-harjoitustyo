@@ -4,6 +4,8 @@ import battleships.domain.Game;
 import battleships.domain.Player;
 import battleships.domain.Sea;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
@@ -13,9 +15,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -147,12 +151,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
         int result = this.startController.gameModeValue;
         return result;
-
-        /*
-            OTHER POSSIBILITY:
-              return getVariableAfterItHasBeenSetInController(() -> startController.gameModeValue,
-                () -> startController.gameModeValueSet);
-         */
     }
 
     @Override
@@ -175,20 +173,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
             System.out.println("Apparently this can be called with an int other than 1 or 2...");
             return null;
         }
-
-        /*
-            String p1Name = getVariableAfterItHasBeenSetInController(() -> startController.p1Name,
-             () -> startController.namesSet);
-            String p2Name = getVariableAfterItHasBeenSetInController(() -> startController.p1Name,
-             () -> startController.namesSet);
-            if(number == 1){
-                return p1Name;
-            } else if(number == 2) {
-                return p2Name;
-            } else {
-                return null;
-            }
-         */
     }
 
     private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
@@ -226,9 +210,43 @@ public class GraphicalUserInterface extends Application implements UserInterface
         });
     }
 
+    // DO NOT CHANGE PANE ORDER IN GRAPH BUILDER!!!
+    public int getListIndex(int row, int column, int length) {
+        return row * length + column;
+    }
+
     @Override
     public void printSea(Sea sea) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //connect the Sea and the visual "sea"
+        Platform.runLater(() -> {
+            GridPane gridPane = this.setUpController.seaGridPane;
+
+            //Print sea for testing
+            System.out.println("  1 2 3 4 5 6 7 8 9 10");
+            for (int i = 0; i < sea.getSea().length; i++) {
+                System.out.print((i + 1) + " ");
+                for (int j = 0; j < sea.getSea()[0].length; j++) {
+                    System.out.print(sea.getSea()[i][j] + " ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+            //print testing ends
+
+            for (int i = 0; i < sea.getSea().length; i++) {
+                for (int j = 0; j < sea.getSea()[0].length; j++) {
+                    Node child = gridPane.getChildren().get(getListIndex(i + 2, j, 10));
+
+                    if (sea.getSea()[i][j] != 0) {
+                        child.setId("sea-with-ship");
+                    } else {
+                        child.setId("open-sea");
+                    }
+                }
+            }
+            
+            //this.setUpController.changeNextPlayerButtonVisibility(true);
+        });
     }
 
     @Override
@@ -246,14 +264,14 @@ public class GraphicalUserInterface extends Application implements UserInterface
         //first wait till all row,col and dir are set, then return
         String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.rowValue,
                 () -> this.setUpController.areCoordinatesSet);
-        return Integer.parseInt(result);
+        return Integer.parseInt(result) - 1;
     }
 
     @Override
     public int getColumn(int seaSize) {
         String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.colValue,
                 () -> this.setUpController.areCoordinatesSet);
-        return Integer.parseInt(result);
+        return Integer.parseInt(result) - 1;
     }
 
     @Override

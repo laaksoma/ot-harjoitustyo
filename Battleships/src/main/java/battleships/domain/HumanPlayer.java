@@ -13,7 +13,7 @@ public class HumanPlayer extends Player {
         if (ship == 0) {       //during playing the game; turn
             UserInterface.getInstance().printRulesForPlayerTurn(getName());        //move this somewhere so it doesn't print again when guessing same coordinates?
         } else {                //when setting up the game
-            //UserInterface.getInstance().printSea(getSea());
+            UserInterface.getInstance().printSea(getSea());
             UserInterface.getInstance().printForShipPlacement(ship);
         }
         
