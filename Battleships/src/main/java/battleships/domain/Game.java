@@ -69,12 +69,15 @@ public class Game {
             
         });
         
+        //call for controller?
+        
         try {
             Thread.sleep(10000);
-            System.out.println("Here is where we should start the setup.");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        
+        
     }
 
     private void refreshUserInterface() {

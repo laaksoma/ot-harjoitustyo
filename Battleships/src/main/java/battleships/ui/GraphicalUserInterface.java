@@ -21,52 +21,84 @@ import javafx.stage.Stage;
 public class GraphicalUserInterface extends Application implements UserInterface {
 
     static boolean singletonHasBeenCreated = false;
-    public FXMLLoader loader;
+    private Stage stage;
+    public FXMLLoader startLoader;
+    public FXMLLoader setUpLoader;
     public FXMLStartController startController;
+    public FXMLSetUpController setUpController;
+    private Scene gameStartScene;
+    private Scene gameSetUpScene;
     private static UserInterface instance = null;
+    private Parent startRoot;
+    private Parent setUpRoot;
 
     @Override
     public void init() throws Exception {
-
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
         System.out.println("Starting! (in start method)");
-        String fileName = "/fxml/InstructionsFXML.fxml";
-
         System.out.println("Instance is null?" + (instance == null));
+
         if (instance != null && (instance != this)) {
-            this.loader = ((GraphicalUserInterface) instance).loader;
+            this.startLoader = ((GraphicalUserInterface) instance).startLoader;
             this.startController = ((GraphicalUserInterface) instance).startController;
             instance = this;
             //System.out.println("Changed GUI singleton instance");
         }
 
         try {
-            this.loader = new FXMLLoader(GraphicalUserInterface.class.getResource(fileName));
-            Parent root = loader.load();
-            startController = this.loader.getController();
-            System.out.println("Controller created.");
-            Scene scene = new Scene(root, 300, 250);
-
-            primaryStage.setTitle("Battleships");
-
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            this.startLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/InstructionsFXML.fxml"));
+            this.startRoot = startLoader.load();
+            this.startController = this.startLoader.getController();
+            System.out.println("Controller created for start.");
+            this.gameStartScene = new Scene(startRoot, 300, 250);
         } catch (IOException e) {
-            System.out.println("Could not find the file " + fileName);
+            System.out.println("Could not find the file for starting.");
             e.printStackTrace();
         }
 
+        try {
+            this.setUpLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/FXMLSetUpController.fxml"));
+            this.setUpRoot = setUpLoader.load();
+            this.setUpController = this.setUpLoader.getController();
+            System.out.println("Controller created for set up.");
+            this.gameSetUpScene = new Scene(setUpRoot, 490, 550);
+        } catch(IOException e) {
+            System.out.println("Could not find the file for set up.");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        this.stage = primaryStage;
+        stage.setTitle("Battleships");
+
+        setStartScene();
+        stage.show();
+        System.out.println("Did show!");
+
+        //TESTING
+        if (this.setUpController == null) {
+            System.out.println("Controller is null!");
+        }
+
         this.startController.setWelcome();
+        System.out.println("Set welcome!");
 
         Thread t = new Thread(() -> Game.getInstance().finishStartMethod());
         t.start();
+
         t.setUncaughtExceptionHandler((e, ei) -> {
             ei.printStackTrace();
             System.exit(0);
         });
+    }
+
+    public void setStartScene() {
+        this.stage.setScene(this.gameStartScene);
+    }
+
+    public void setSetUpScene() {
+        this.stage.setScene(this.gameSetUpScene);
     }
 
     @Override
@@ -156,7 +188,8 @@ public class GraphicalUserInterface extends Application implements UserInterface
             }
          */
     }
-/*
+
+    /*
     private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
         while (!condition.getAsBoolean()) {
             try {
@@ -167,7 +200,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
         }
         return variableSupplier.get();
     }*/
-
     @Override
     public void printRulesForPlayerSetUp(int numberOfShips, String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

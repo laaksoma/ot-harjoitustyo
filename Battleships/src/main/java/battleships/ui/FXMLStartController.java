@@ -33,9 +33,11 @@ public class FXMLStartController implements Initializable {
 
     public int gameModeValue;
     public boolean gameModeValueSet;
+    private GraphicalUserInterface GraphUserInterface;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.GraphUserInterface = (GraphicalUserInterface) GraphicalUserInterface.getInstance();
     }
 
     @FXML
@@ -57,13 +59,10 @@ public class FXMLStartController implements Initializable {
         if (toggle == btnAlone) {
             gameModeValue = 0;
             hBox1.setVisible(true);
-            //hBox1.setDisable(false);
         } else {
             gameModeValue = 1;
             hBox1.setVisible(true);
             hBox2.setVisible(true);
-           // hBox1.setDisable(false);
-            //hBox2.setDisable(false);
         }
 
         gameModeValueSet = true;
@@ -88,6 +87,8 @@ public class FXMLStartController implements Initializable {
         p1Name = player1Name.getText().trim();
         p2Name = player2Name.getText().trim();
         namesSet = true;
+        
+        this.GraphUserInterface.setSetUpScene();
     }
 
     private void disableButtons() {
