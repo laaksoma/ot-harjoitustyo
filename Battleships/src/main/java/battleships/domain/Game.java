@@ -66,18 +66,12 @@ public class Game {
         System.out.println("Now we have the players: ");
         listOfPlayers.forEach(player -> {
             System.out.println("\t" + player.name);
-            
+
         });
-        
+
         //call for controller?
-        
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        
-        
+        createBoard(6);
+
     }
 
     private void refreshUserInterface() {
@@ -97,9 +91,19 @@ public class Game {
     //FOR NOW THE AMOUNT OF SHIPS IS SET IN MAIN WHEN CALLING THE METHOD
     public void createBoard(int numberOfShips) {
         for (Player player : this.listOfPlayers) {
+            
             player.setShips(numberOfShips);
+
+            // outo säieongelma kun kutsutaan alla olevaan      
             setUpBoard(player);
         }
+        
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void setUpBoard(Player player) {
@@ -116,7 +120,8 @@ public class Game {
 
             if (!askForShips(player, ship)) {
                 if (player.getClass() == HumanPlayer.class) {
-                    System.out.println("You must choose another placement!");
+                    this.userInterface.directionNotAllowed("You must choose another placement!");
+                    //Instead of printing the above, call for changeErrorMessageVisibility through GUI
                 }
 
                 i--;

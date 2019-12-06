@@ -12,7 +12,7 @@ public class BattleshipsMain {
 
         battleships.beginStartMethod();
         
- //       battleships.createBoard(2);
+        //battleships.createBoard(10);
 
  //       battleships.playGame();
     }

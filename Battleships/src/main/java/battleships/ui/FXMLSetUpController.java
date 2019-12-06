@@ -2,11 +2,13 @@ package battleships.ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class FXMLSetUpController implements Initializable {
 
@@ -14,13 +16,13 @@ public class FXMLSetUpController implements Initializable {
     private Label instructions;
     @FXML
     private TextField row;
-    private String rowValue;
+    public String rowValue;
     @FXML
     private TextField column;
-    private String colValue;
+    public String colValue;
     @FXML
     private TextField direction;
-    private String dirValue;
+    public String dirValue;
     @FXML
     private Label shipSize;
     @FXML
@@ -36,12 +38,37 @@ public class FXMLSetUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        row.textProperty().addListener((ob, oldValue, newValue) -> {
+
+            System.out.println("New value: " + newValue);
+            System.out.println("Row is empty: " + newValue.isEmpty());
+            System.out.println("Col is empty: " + column.getText().isEmpty());
+            System.out.println("Dir is empty: " + direction.getText().isEmpty());
+
+            getCoordsButton.setDisable(newValue.isEmpty()
+                    || column.getText().isEmpty()
+                    || direction.getText().isEmpty());
+        });
+
+        column.textProperty().addListener((ob, oldValue, newValue) -> {
+
+            getCoordsButton.setDisable(row.getText().isEmpty()
+                    || newValue.isEmpty()
+                    || direction.getText().isEmpty());
+        });
+
+        direction.textProperty().addListener((ob, oldValue, newValue) -> {
+
+            getCoordsButton.setDisable(row.getText().isEmpty()
+                    || column.getText().isEmpty()
+                    || newValue.isEmpty());
+        });
+
     }
 
-    public void setInstructions() {
-        instructions.setText("Creating the board for " + "INSERT HERE THE PLAYER" + "\n"
-                + "You are given " + "INSERT HERE THE NUMBER OF SHIPS" + " ships. Place them in the sea by giving\n"
+    public void setInstructions(String playerName, int numberOfShips) {
+        instructions.setText("Creating the board for " + playerName + "\n"
+                + "You are given " + numberOfShips + " ships. Place them in the sea by giving\n"
                 + "the starting coordinates and direction (WASD) of where you'd like to place them.\n"
                 + "The placement must follow these rules:\n"
                 + " - all parts of the ship must be placed within the visible area,\n"
@@ -56,31 +83,33 @@ public class FXMLSetUpController implements Initializable {
 //    public void setShipToGridPane() {
 //        
 //    }
-    public void changeCoordinateButtonVisibility() {
-        getCoordsButton.setVisible(!getCoordsButton.isVisible());
+    public void changeCoordinateButtonEnable() {
+        getCoordsButton.setDisable(!getCoordsButton.isVisible());
     }
 
-    public void changeLabelVisibility(Label label) {
-        label.setVisible(!label.isVisible());
+    public void changeErrorMessageVisibility(boolean value) {
+        errorMessage.setVisible(value);
     }
+
+    public boolean areCoordinatesSet;
 
     public void handleCoordinatesButton() {
-        //take field values and save them
+        areCoordinatesSet = false;
         this.rowValue = row.getText();
         this.colValue = column.getText();
         this.dirValue = direction.getText();
 
         if (shouldAskValuesAgain(this.rowValue, this.colValue, this.dirValue)) {
-            //here is what happens if the values are NOT VALID
-            changeCoordinateButtonVisibility();
-            changeLabelVisibility(this.errorMessage);
-            row.clear();
-            column.clear();
-            direction.clear();
+            changeErrorMessageVisibility(true);
         } else {
-            //and here the values are valid
-            //tell GUI to come and fetch the coordinates
+            this.areCoordinatesSet = true;
+            changeErrorMessageVisibility(false);
         }
+        
+        changeCoordinateButtonEnable();
+        row.clear();
+        column.clear();
+        direction.clear();
     }
 
     public boolean shouldAskValuesAgain(String r, String c, String d) {         //If values are incorrect, returns true
@@ -99,9 +128,9 @@ public class FXMLSetUpController implements Initializable {
 
         String dirTrim = d.trim();
 
-        return !(dirTrim.equalsIgnoreCase("w") || 
-                dirTrim.equalsIgnoreCase("a") ||
-                dirTrim.equalsIgnoreCase("s") ||
-                dirTrim.equalsIgnoreCase("d"));
+        return !(dirTrim.equalsIgnoreCase("w")
+                || dirTrim.equalsIgnoreCase("a")
+                || dirTrim.equalsIgnoreCase("s")
+                || dirTrim.equalsIgnoreCase("d"));
     }
 }

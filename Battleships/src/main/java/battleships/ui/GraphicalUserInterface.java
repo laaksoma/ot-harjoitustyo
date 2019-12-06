@@ -9,6 +9,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -60,8 +61,8 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.setUpRoot = setUpLoader.load();
             this.setUpController = this.setUpLoader.getController();
             System.out.println("Controller created for set up.");
-            this.gameSetUpScene = new Scene(setUpRoot, 490, 550);
-        } catch(IOException e) {
+            this.gameSetUpScene = new Scene(setUpRoot, 550, 600);
+        } catch (IOException e) {
             System.out.println("Could not find the file for set up.");
             e.printStackTrace();
         }
@@ -99,6 +100,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     public void setSetUpScene() {
         this.stage.setScene(this.gameSetUpScene);
+        //this.setUpController.setInstructions();
     }
 
     @Override
@@ -189,7 +191,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
          */
     }
 
-    /*
     private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
         while (!condition.getAsBoolean()) {
             try {
@@ -199,10 +200,13 @@ public class GraphicalUserInterface extends Application implements UserInterface
             }
         }
         return variableSupplier.get();
-    }*/
+    }
+
     @Override
     public void printRulesForPlayerSetUp(int numberOfShips, String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Platform.runLater(() -> {
+            this.setUpController.setInstructions(name, numberOfShips);
+        });
     }
 
     @Override
@@ -217,7 +221,9 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void printForShipPlacement(int ship) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Platform.runLater(() -> {
+            this.setUpController.updateShipSize(ship);
+        });
     }
 
     @Override
@@ -237,25 +243,33 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public int getRow(int seaSize) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //first wait till all row,col and dir are set, then return
+        String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.rowValue,
+                () -> this.setUpController.areCoordinatesSet);
+        return Integer.parseInt(result);
     }
 
     @Override
     public int getColumn(int seaSize) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getANumber(int min, int max) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.colValue,
+                () -> this.setUpController.areCoordinatesSet);
+        return Integer.parseInt(result);
     }
 
     @Override
     public String getDirection(int ship) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.dirValue,
+                () -> this.setUpController.areCoordinatesSet);
+        this.setUpController.areCoordinatesSet = false;
+        return result;
     }
 
     @Override
     public boolean directionNotAllowed(String direction) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Platform.runLater(() -> {
+            this.setUpController.changeErrorMessageVisibility(true);
+        });
+        System.out.println(direction);
+        return true;
     }
 }
