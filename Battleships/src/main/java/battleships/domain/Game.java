@@ -70,7 +70,6 @@ public class Game {
 
         });
 
-        //call for controller?
         createBoard(2);             
 
     }
@@ -98,6 +97,9 @@ public class Game {
             // outo säieongelma kun kutsutaan alla olevaan      
             setUpBoard(player);
         }
+        
+        //CALL HERE FOR PLAYGAME();?
+        playGame();
         
         try {
             Thread.sleep(10000);
@@ -145,8 +147,6 @@ public class Game {
     }
 
     public void playGame() {
-        System.out.println("The game is on!");
-
         int i = this.random.nextInt(2);
         boolean isGameGoing = turn(listOfPlayers.get(i));
 
@@ -168,7 +168,7 @@ public class Game {
     //CLEAN THIS UP
     private boolean turn(Player player) {
         int i = getIndexForAnotherPlayer(player);
-        userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
+        userInterface.printMaskedSea(this.listOfPlayers.get(i), null, i);
 
         while (true) {                                                          //THE TURN GOES ON WHILE THIS IS TRUE
             PlacementInfo info = player.decideCoordinates(0, false, this.gameBoardSize);
@@ -176,7 +176,7 @@ public class Game {
             int column = info.getColumn();
 
             if (areCoordinatesAlreadyUsed(info, this.listOfPlayers.get(i))) {
-                if (this.listOfPlayers.get(i).getName().equals("Bot")) {
+                if (this.listOfPlayers.get(i).getName().equals("Bot /84")) {
                     userInterface.printForNoNewCoordinates(row, column);
                 }
                 continue;
@@ -184,19 +184,19 @@ public class Game {
 
             if (this.listOfPlayers.get(i).getSea().isAreaEmpty(row, column)) {
                 this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 0);
-                userInterface.printMaskedSea(this.listOfPlayers.get(i), "miss");
+                userInterface.printMaskedSea(this.listOfPlayers.get(i), "miss", i);
                 //this.isHit = false;
                 break;
             } else {
                 this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 1);
-                userInterface.printMaskedSea(this.listOfPlayers.get(i), "hit");
+                userInterface.printMaskedSea(this.listOfPlayers.get(i), "hit", i);
                 //this.isHit = true;
                 if (this.listOfPlayers.get(i).getSea().seaIsEmpty()) {
                     userInterface.gameOver(player.getName());
                     return false;
                 }
             }
-            userInterface.printMaskedSea(this.listOfPlayers.get(i), null);
+            userInterface.printMaskedSea(this.listOfPlayers.get(i), null, i);
         }
         return true;
     }

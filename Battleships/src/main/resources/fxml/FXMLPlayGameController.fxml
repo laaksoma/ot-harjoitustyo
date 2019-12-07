@@ -3,19 +3,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="707.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="battleships.ui.FXMLPlayGameController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="2.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane>
+      <GridPane prefHeight="125.0" prefWidth="594.0" GridPane.columnSpan="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,19 +29,22 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <Label fx:id="turnForPlayer" alignment="CENTER" prefHeight="40.0" prefWidth="218.0" text="It's turn for PLAYER" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="whereToHitPlayer1" alignment="CENTER" prefHeight="41.0" prefWidth="295.0" text="Where would you like to hit?" visible="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="52.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="whereToHitPlayer2" alignment="CENTER" prefHeight="44.0" prefWidth="287.0" text="Where would you like to hit?" visible="false" />
+               </children>
+            </VBox>
+            <Label fx:id="tryAnotherLocation" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="116.0" text="Whoops" textFill="#db0909" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+         </children>
       </GridPane>
-      <GridPane GridPane.columnIndex="1">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-      <GridPane GridPane.rowIndex="1">
+      <GridPane fx:id="gridPanePlayer1" GridPane.rowIndex="1">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,7 +92,259 @@
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="8" textAlignment="CENTER" GridPane.columnIndex="8" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="9" textAlignment="CENTER" GridPane.columnIndex="9" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="10" textAlignment="CENTER" GridPane.columnIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="10" />
          </children>
       </GridPane>
+      <GridPane fx:id="gridPanePlayer2" layoutX="10.0" layoutY="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="1" textAlignment="CENTER" GridPane.columnIndex="1" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="1" textAlignment="CENTER" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="2" textAlignment="CENTER" GridPane.columnIndex="2" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="2" textAlignment="CENTER" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="3" textAlignment="CENTER" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="4" textAlignment="CENTER" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="5" textAlignment="CENTER" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="6" textAlignment="CENTER" GridPane.rowIndex="6" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="7" textAlignment="CENTER" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="8" textAlignment="CENTER" GridPane.rowIndex="8" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="9" textAlignment="CENTER" GridPane.rowIndex="9" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="10" textAlignment="CENTER" GridPane.rowIndex="10" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="3" textAlignment="CENTER" GridPane.columnIndex="3" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="4" textAlignment="CENTER" GridPane.columnIndex="4" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="5" textAlignment="CENTER" GridPane.columnIndex="5" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="6" textAlignment="CENTER" GridPane.columnIndex="6" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="7" textAlignment="CENTER" GridPane.columnIndex="7" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="8" textAlignment="CENTER" GridPane.columnIndex="8" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="9" textAlignment="CENTER" GridPane.columnIndex="9" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="30.0" text="10" textAlignment="CENTER" GridPane.columnIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="8" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="9" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="sea" stylesheets="@../styles/fxmlsetupcontroller.css" GridPane.columnIndex="10" GridPane.rowIndex="10" />
+         </children>
+      </GridPane>
+      <Label fx:id="seaLabelPlayer1" alignment="CENTER" prefHeight="23.0" prefWidth="291.0" text="Sea for PLAYER1" GridPane.rowIndex="2" />
+      <Label fx:id="seaLabelPlayer2" alignment="CENTER" prefHeight="23.0" prefWidth="291.0" text="Sea for PLAYER2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
 </GridPane>

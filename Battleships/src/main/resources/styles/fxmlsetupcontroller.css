@@ -3,7 +3,7 @@
     -fx-border-color: black;
     -fx-border-width:1;
     -fx-border-style: solid;
-    -fx-background-color: #3a72ab;
+    -fx-background-color: #a9bdc9;
 }
 
 #open-sea{
@@ -16,5 +16,9 @@
 
 #sea-under-mist{
     -fx-background-color: #a9bdc9;
+}
+
+#sea-with-sunken-ship {
+    -fx-background-color: #872626;
 }
 

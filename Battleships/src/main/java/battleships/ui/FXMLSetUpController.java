@@ -79,9 +79,6 @@ public class FXMLSetUpController implements Initializable {
         shipSize.setText("" + sizeOfNewShip);
     }
 
-//    public void setShipToGridPane() {
-//        
-//    }
     public void changeCoordinateButtonEnable() {
         getCoordsButton.setDisable(!getCoordsButton.isVisible());
     }

@@ -37,7 +37,7 @@ public interface UserInterface {
 
     void printSea(Sea sea);
 
-    void printMaskedSea(Player player, String missOrHit);
+    void printMaskedSea(Player player, String missOrHit, int index);
 
     void gameOver(String name);
 

@@ -29,13 +29,17 @@ public class GraphicalUserInterface extends Application implements UserInterface
     private Stage stage;
     public FXMLLoader startLoader;
     public FXMLLoader setUpLoader;
+    public FXMLLoader playGameLoader;
     public FXMLStartController startController;
     public FXMLSetUpController setUpController;
+    public FXMLPlayGameController playGameController;
     private Scene gameStartScene;
     private Scene gameSetUpScene;
+    private Scene playGameScene;
     private static UserInterface instance = null;
     private Parent startRoot;
     private Parent setUpRoot;
+    private Parent playGameRoot;
 
     @Override
     public void init() throws Exception {
@@ -49,6 +53,12 @@ public class GraphicalUserInterface extends Application implements UserInterface
             //System.out.println("Changed GUI singleton instance");
         }
 
+        initializeStartScene();
+        initializeSetUpScene();
+        initializePlayGameScene();
+    }
+
+    private void initializeStartScene() {
         try {
             this.startLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/InstructionsFXML.fxml"));
             this.startRoot = startLoader.load();
@@ -59,7 +69,9 @@ public class GraphicalUserInterface extends Application implements UserInterface
             System.out.println("Could not find the file for starting.");
             e.printStackTrace();
         }
+    }
 
+    private void initializeSetUpScene() {
         try {
             this.setUpLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/FXMLSetUpController.fxml"));
             this.setUpRoot = setUpLoader.load();
@@ -68,6 +80,19 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.gameSetUpScene = new Scene(setUpRoot, 550, 600);
         } catch (IOException e) {
             System.out.println("Could not find the file for set up.");
+            e.printStackTrace();
+        }
+    }
+
+    private void initializePlayGameScene() {
+        try {
+            this.playGameLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/FXMLPlayGameController.fxml"));
+            this.playGameRoot = playGameLoader.load();
+            this.playGameController = playGameLoader.getController();
+            System.out.println("Controller created for playing the game.");
+            this.playGameScene = new Scene(playGameRoot, 750, 600);
+        } catch (IOException e) {
+            System.out.println("Could not find the file for play game.");
             e.printStackTrace();
         }
     }
@@ -104,7 +129,10 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     public void setSetUpScene() {
         this.stage.setScene(this.gameSetUpScene);
-        //this.setUpController.setInstructions();
+    }
+
+    public void setPlayGameScene() {
+        this.stage.setScene(this.playGameScene);
     }
 
     @Override
@@ -128,7 +156,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void abandonInstance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.instance = null;
     }
 
     @Override
@@ -175,17 +203,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
         }
     }
 
-    private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
-        while (!condition.getAsBoolean()) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return variableSupplier.get();
-    }
-
     @Override
     public void printRulesForPlayerSetUp(int numberOfShips, String name) {
         Platform.runLater(() -> {
@@ -193,14 +210,18 @@ public class GraphicalUserInterface extends Application implements UserInterface
         });
     }
 
-    @Override
+    @Override   //change visibilty for whereToHitPlayerX true
     public void printRulesForPlayerTurn(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Platform.runLater(() -> {
+            this.playGameController.updateTurnForPlayerLabel(name);
+        });
     }
 
     @Override
     public void printForNoNewCoordinates(int row, int column) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Platform.runLater(() -> {
+            this.playGameController.updateTryAnotherLocationLabel(row, column);
+        });
     }
 
     @Override
@@ -244,17 +265,71 @@ public class GraphicalUserInterface extends Application implements UserInterface
                     }
                 }
             }
-            
+
             //this.setUpController.changeNextPlayerButtonVisibility(true);
         });
     }
 
-    @Override
-    public void printMaskedSea(Player player, String missOrHit) {
-        //almost like printSea, except for 
-            //if area is " -", it's sea-under-mist
-            //if area is " O", it's open-sea
-            //if area is " X", it's sea-with-sunken-ship
+    private boolean needToSetPlayGameScene = true;
+
+    private void setSceneForPlayingTheGame() {
+        needToSetPlayGameScene = false;
+        setPlayGameScene();
+        String name1 = Game.getInstance().getListOfPlayers().get(0).getName();
+        String name2 = Game.getInstance().getListOfPlayers().get(1).getName();
+        this.playGameController.setSeaLabels(name1, name2);
+    }
+
+    @Override       //CLEAN THIS UP
+    public void printMaskedSea(Player player, String missOrHit, int index) {
+        Platform.runLater(() -> {
+            if (needToSetPlayGameScene) {
+                setSceneForPlayingTheGame();
+            }
+
+            GridPane gridPane;
+
+            if (index == 0) {
+                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer1, false);
+                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer2, true);
+                gridPane = this.playGameController.gridPanePlayer1;
+                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer1, true);
+                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer2, false);
+                System.out.println("Enabled player1 Sea, disabled player2 sea");
+            } else {
+                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer1, true);
+                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer2, false);
+                gridPane = this.playGameController.gridPanePlayer2;
+                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer1, false);
+                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer2, true);
+                System.out.println("Disabled player1 sea, enabled player2 sea");
+            }
+
+            //TESTING THE PRINTING
+            System.out.println("  1  2  3  4  5 6 7 8 9 10");
+            for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
+                System.out.print(i + 1);
+                for (int j = 0; j < player.getSea().getMaskedSea()[0].length; j++) {
+                    System.out.print(player.getSea().getMaskedSea()[i][j] + " ");
+                }
+                System.out.println();
+            }
+            //TESTING ENDS
+
+            for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
+                for (int j = 0; j < player.getSea().getMaskedSea()[0].length; j++) {
+                    Node child = gridPane.getChildren().get(getListIndex(i + 2, j, 10));
+                    //if area is " -", it's sea-under-mist
+                    if (player.getSea().getMaskedSea()[i][j].equals(" -")) {
+                        child.setId("sea-under-mist");
+                    } else if (player.getSea().getMaskedSea()[i][j].equals(" O")) {
+                        child.setId("open-sea");
+                    } else {
+                        child.setId("sea-with-sunken-ship");
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -262,19 +337,44 @@ public class GraphicalUserInterface extends Application implements UserInterface
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
+        while (!condition.getAsBoolean()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return variableSupplier.get();
+    }
+
     @Override
     public int getRow(int seaSize) {
-        //first wait till all row,col and dir are set, then return
-        String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.rowValue,
-                () -> this.setUpController.areCoordinatesSet);
-        return Integer.parseInt(result) - 1;
+        if (needToSetPlayGameScene) {
+            System.out.println("In this branch?");
+            String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.rowValue,
+                    () -> this.setUpController.areCoordinatesSet);
+            return Integer.parseInt(result) - 1;
+        } else {
+            System.out.println("Starting the wait soon...");
+            Integer row = this.getVariableAfterItHasBeenSetInController(() -> this.playGameController.row,
+                    () -> this.playGameController.areCoordinatesSet);
+            System.out.println("Finishing the wait");
+            return row - 1;
+        }
     }
 
     @Override
     public int getColumn(int seaSize) {
-        String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.colValue,
-                () -> this.setUpController.areCoordinatesSet);
-        return Integer.parseInt(result) - 1;
+        if (needToSetPlayGameScene) {
+            String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.colValue,
+                    () -> this.setUpController.areCoordinatesSet);
+            return Integer.parseInt(result) - 1;
+        } else {
+            int column = this.playGameController.column;
+            this.playGameController.areCoordinatesSet = false;
+            return column - 1;
+        }
     }
 
     @Override
