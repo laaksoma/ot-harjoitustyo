@@ -30,8 +30,8 @@ public class TestUserInterface implements UserInterface {
             throw new IllegalStateException("Multiple singletons attempted with class UserInterface!");
         }
         
-        this.input = "";
-        this.scanner = new Scanner(System.in);
+//        this.input = "";
+//        this.scanner = new Scanner(input);
     }
     
     public void setAnnotations() {
@@ -117,10 +117,7 @@ public class TestUserInterface implements UserInterface {
 
     @Override
     public void printRulesForPlayerTurn(String name) {
-//        System.out.println("The game is on!");
-//        System.out.println();
-//        System.out.println("It's turn for " + name + "!");
-//        System.out.println("Where would you like to hit?");
+        this.exceptionCaught = true;
     }
 
     @Override
