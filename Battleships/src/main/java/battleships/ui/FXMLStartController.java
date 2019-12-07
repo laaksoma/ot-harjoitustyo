@@ -34,66 +34,91 @@ public class FXMLStartController implements Initializable {
     public int gameModeValue;
     public boolean gameModeValueSet;
     private GraphicalUserInterface GraphUserInterface;
+    public Boolean namesSet = false;
+    public String p1Name = null;
+    public String p2Name = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.GraphUserInterface = (GraphicalUserInterface) GraphicalUserInterface.getInstance();
     }
-    
-    @FXML
+
+    public void setDefaultValuesForControllerAnnotations() {
+        System.out.println("Starting to reset StartController.");
+        setWelcome();
+        changeRadioButtonEnable(false);
+        this.btnAlone.setSelected(false);
+        this.btnFriend.setSelected(false);
+        changeHBoxEnable(this.hBox1, true, false);
+        changeHBoxEnable(this.hBox2, true, false);
+        setTextForChooseSomething(null);
+        this.gameModeValueSet = false;
+        //reset gameModeValue here
+        this.namesSet = false;
+        this.p1Name = null;
+        this.p2Name = null;
+        this.playGameButton.setText("OK!");
+        this.playGameButton.setDisable(false);
+        System.out.println("StartController reset done!");
+    }
+
     public void playGameButtonHandling() {
-        //TESTING CHECK-UP
         if (gameModeValueSet) {
             return;
         }
 
         if (btnFriend.isSelected() == btnAlone.isSelected()) {
-            chooseSomething.setText("You need to choose a mode to play!");
+            setTextForChooseSomething("You need to choose a mode to play!");
             return;
         }
 
         Toggle toggle = btnAlone.getToggleGroup().getSelectedToggle();
-        disableButtons();
+        changeRadioButtonEnable(true);
         playGameButton.setText("Set up game!");
 
         if (toggle == btnAlone) {
             gameModeValue = 0;
-            hBox1.setVisible(true);
+            changeHBoxEnable(this.hBox1, false, true);
         } else {
             gameModeValue = 1;
-            hBox1.setVisible(true);
-            hBox2.setVisible(true);
+            changeHBoxEnable(this.hBox1, false, true);
+            changeHBoxEnable(this.hBox2, false, true);
         }
 
         gameModeValueSet = true;
-        //call for a method with boolean parameter
         playGameButton.setOnAction((e) -> handlePlayGameButtonPressAfterGameModeSelected());
     }
-
-    public Boolean namesSet = false;
-    public String p1Name = null;
-    public String p2Name = null;
 
     public void handlePlayGameButtonPressAfterGameModeSelected() {
         if (player1Name.getText().trim().isEmpty()) {
             return;
         }
-        
+
         if (gameModeValue == 1 && player2Name.getText().trim().isEmpty()) {
+            setTextForChooseSomething("Not ready yet!");
             return;
         }
-        
+
         playGameButton.setDisable(true);
         p1Name = player1Name.getText().trim();
         p2Name = player2Name.getText().trim();
         namesSet = true;
-        
+
         this.GraphUserInterface.setSetUpScene();
     }
 
-    private void disableButtons() {
-        btnAlone.setDisable(true);
-        btnFriend.setDisable(true);
+    private void changeRadioButtonEnable(boolean value) {
+        btnAlone.setDisable(value);
+        btnFriend.setDisable(value);
+    }
+
+    private void changeHBoxEnable(HBox h, boolean isDisabled, boolean isVisible) {
+        h.setDisable(isDisabled);
+        h.setVisible(isVisible);
+    }
+
+    private void setTextForChooseSomething(String text) {
+        this.chooseSomething.setText(text);
     }
 
     public void setWelcome() {
@@ -102,5 +127,4 @@ public class FXMLStartController implements Initializable {
         aloneOrFriend.setText("Would you like to play alone or with a friend?");
         System.out.println("Set texts");
     }
-
 }

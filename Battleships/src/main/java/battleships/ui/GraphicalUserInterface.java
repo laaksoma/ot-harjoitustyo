@@ -64,7 +64,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.startRoot = startLoader.load();
             this.startController = this.startLoader.getController();
             System.out.println("Controller created for start.");
-            this.gameStartScene = new Scene(startRoot, 300, 250);
+            this.gameStartScene = new Scene(startRoot, 610, 480);
         } catch (IOException e) {
             System.out.println("Could not find the file for starting.");
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.setUpRoot = setUpLoader.load();
             this.setUpController = this.setUpLoader.getController();
             System.out.println("Controller created for set up.");
-            this.gameSetUpScene = new Scene(setUpRoot, 550, 600);
+            this.gameSetUpScene = new Scene(setUpRoot, 610, 480);
         } catch (IOException e) {
             System.out.println("Could not find the file for set up.");
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.playGameRoot = playGameLoader.load();
             this.playGameController = playGameLoader.getController();
             System.out.println("Controller created for playing the game.");
-            this.playGameScene = new Scene(playGameRoot, 750, 600);
+            this.playGameScene = new Scene(playGameRoot, 610, 480);
         } catch (IOException e) {
             System.out.println("Could not find the file for play game.");
             e.printStackTrace();
@@ -135,6 +135,12 @@ public class GraphicalUserInterface extends Application implements UserInterface
         this.stage.setScene(this.playGameScene);
     }
 
+    public void resetGameValues() {
+        this.startController.setDefaultValuesForControllerAnnotations();
+        this.setUpController.setDefaultValuesForControllerAnnotations();
+        this.playGameController.setDefaultValuesForControllerAnnotations();
+    }
+
     @Override
     public void stop() throws Exception {
         System.exit(0);
@@ -151,7 +157,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void setUpScanner(Scanner scanner) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -210,17 +215,18 @@ public class GraphicalUserInterface extends Application implements UserInterface
         });
     }
 
-    @Override   //change visibilty for whereToHitPlayerX true
+    @Override
     public void printRulesForPlayerTurn(String name) {
         Platform.runLater(() -> {
-            this.playGameController.updateTurnForPlayerLabel(name);
+            this.playGameController.updateTurnForPlayerLabel(name, true);
         });
     }
 
     @Override
     public void printForNoNewCoordinates(int row, int column) {
         Platform.runLater(() -> {
-            this.playGameController.updateTryAnotherLocationLabel(row, column);
+            System.out.println("printForNoNewCoordinates called!");
+            this.playGameController.updateTryAnotherLocationLabel(row, column, true);
         });
     }
 
@@ -238,21 +244,8 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void printSea(Sea sea) {
-        //connect the Sea and the visual "sea"
         Platform.runLater(() -> {
             GridPane gridPane = this.setUpController.seaGridPane;
-
-            //Print sea for testing
-            System.out.println("  1 2 3 4 5 6 7 8 9 10");
-            for (int i = 0; i < sea.getSea().length; i++) {
-                System.out.print((i + 1) + " ");
-                for (int j = 0; j < sea.getSea()[0].length; j++) {
-                    System.out.print(sea.getSea()[i][j] + " ");
-                }
-                System.out.println();
-            }
-            System.out.println();
-            //print testing ends
 
             for (int i = 0; i < sea.getSea().length; i++) {
                 for (int j = 0; j < sea.getSea()[0].length; j++) {
@@ -265,9 +258,15 @@ public class GraphicalUserInterface extends Application implements UserInterface
                     }
                 }
             }
-
-            //this.setUpController.changeNextPlayerButtonVisibility(true);
         });
+    }
+
+    private void updateTurnAbilities(boolean v1, boolean v2) {
+        this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer1, v1);
+        this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer2, v2);
+        this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer1, v2);
+        this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer2, v1);
+
     }
 
     private boolean needToSetPlayGameScene = true;
@@ -280,7 +279,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
         this.playGameController.setSeaLabels(name1, name2);
     }
 
-    @Override       //CLEAN THIS UP
+    @Override
     public void printMaskedSea(Player player, String missOrHit, int index) {
         Platform.runLater(() -> {
             if (needToSetPlayGameScene) {
@@ -290,36 +289,17 @@ public class GraphicalUserInterface extends Application implements UserInterface
             GridPane gridPane;
 
             if (index == 0) {
-                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer1, false);
-                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer2, true);
+                updateTurnAbilities(false, true);
                 gridPane = this.playGameController.gridPanePlayer1;
-                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer1, true);
-                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer2, false);
-                System.out.println("Enabled player1 Sea, disabled player2 sea");
             } else {
-                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer1, true);
-                this.playGameController.changeLabelVisibility(this.playGameController.whereToHitPlayer2, false);
+                updateTurnAbilities(true, false);
                 gridPane = this.playGameController.gridPanePlayer2;
-                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer1, false);
-                this.playGameController.changeGridPaneEnable(this.playGameController.gridPanePlayer2, true);
-                System.out.println("Disabled player1 sea, enabled player2 sea");
             }
-
-            //TESTING THE PRINTING
-            System.out.println("  1  2  3  4  5 6 7 8 9 10");
-            for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
-                System.out.print(i + 1);
-                for (int j = 0; j < player.getSea().getMaskedSea()[0].length; j++) {
-                    System.out.print(player.getSea().getMaskedSea()[i][j] + " ");
-                }
-                System.out.println();
-            }
-            //TESTING ENDS
 
             for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
                 for (int j = 0; j < player.getSea().getMaskedSea()[0].length; j++) {
                     Node child = gridPane.getChildren().get(getListIndex(i + 2, j, 10));
-                    //if area is " -", it's sea-under-mist
+
                     if (player.getSea().getMaskedSea()[i][j].equals(" -")) {
                         child.setId("sea-under-mist");
                     } else if (player.getSea().getMaskedSea()[i][j].equals(" O")) {
@@ -334,7 +314,14 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void gameOver(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Platform.runLater(() -> {
+            System.out.println("Game is over.");
+            this.playGameController.updateAbilityValuesForGameOver();
+            this.playGameController.updateTurnForPlayerLabel(name, false);
+            this.playGameController.changeNewGameButtonVisibility(true);
+            System.out.println("Method gameOver at GUI is done.");
+        });
+
     }
 
     private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
@@ -356,10 +343,10 @@ public class GraphicalUserInterface extends Application implements UserInterface
                     () -> this.setUpController.areCoordinatesSet);
             return Integer.parseInt(result) - 1;
         } else {
-            System.out.println("Starting the wait soon...");
+            System.out.println("Starting the wait for row soon...");
             Integer row = this.getVariableAfterItHasBeenSetInController(() -> this.playGameController.row,
                     () -> this.playGameController.areCoordinatesSet);
-            System.out.println("Finishing the wait");
+            System.out.println("Finishing the wait for row");
             return row - 1;
         }
     }

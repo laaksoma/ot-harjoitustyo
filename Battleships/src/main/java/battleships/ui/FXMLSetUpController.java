@@ -64,6 +64,11 @@ public class FXMLSetUpController implements Initializable {
         });
 
     }
+    
+    public void setDefaultValuesForControllerAnnotations() {
+        //nothing to set here?
+        System.out.println("Nothing to reset at SetUpController, I guess?");
+    }
 
     public void setInstructions(String playerName, int numberOfShips) {
         instructions.setText("Creating the board for " + playerName + "\n"

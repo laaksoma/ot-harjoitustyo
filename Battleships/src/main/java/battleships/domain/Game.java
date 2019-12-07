@@ -57,7 +57,7 @@ public class Game {
         //finishStartMethod()   call here for TUI?
     }
 
-    //THE NUMBER OF SHIPS IS SET HERE AS 2 FOR NOW
+    //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
     public void finishStartMethod() {
         refreshUserInterface();
         System.out.println("Got here!");
@@ -70,7 +70,7 @@ public class Game {
 
         });
 
-        createBoard(2);             
+        createBoard(1);             
 
     }
 
@@ -176,7 +176,10 @@ public class Game {
             int column = info.getColumn();
 
             if (areCoordinatesAlreadyUsed(info, this.listOfPlayers.get(i))) {
-                if (this.listOfPlayers.get(i).getName().equals("Bot /84")) {
+                if (player.getClass() == HumanPlayer.class) {
+                    //this.listOfPlayers.get(i).getName().equals("Bot /84")
+                    //set the condition so that this branch happens when
+                    //the player in turn is human
                     userInterface.printForNoNewCoordinates(row, column);
                 }
                 continue;
