@@ -30,6 +30,7 @@ public class HumanPlayerTest {
         System.setOut(new PrintStream(contentOutput));
         this.input = "\n";
         human = new HumanPlayer("Emma");
+        //call setAnnotations here for TestUserInterface!
     }
 
     //SetUp
