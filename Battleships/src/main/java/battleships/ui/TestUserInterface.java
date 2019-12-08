@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 /**
  * A UserInterface Class created for testing the other classes.
- * <p><strong>This is a singleton class.</strong></p>
+ * <p>
+ * <strong>This is a singleton class.</strong></p>
  */
-
 public class TestUserInterface implements UserInterface {
 
     private static Scanner scanner;
@@ -28,15 +28,22 @@ public class TestUserInterface implements UserInterface {
     private String playerName;
     private int gameMode;
 
+    /**
+     * @throws IllegalStateException If the constructor was called with an
+     * already existing instance of TestUserInterface
+     */
     public TestUserInterface() throws IllegalStateException {
         if (instance != null) {
             throw new IllegalStateException("Multiple singletons attempted with class UserInterface!");
         }
-        
+
 //        this.input = "";
 //        this.scanner = new Scanner(input);
     }
-    
+
+    /**
+     * Resets annotation values as the given defaults.
+     */
     public void setAnnotations() {
         this.exceptionCaught = false;
         this.inputNotAllowed = false;
@@ -46,33 +53,60 @@ public class TestUserInterface implements UserInterface {
         this.playerName = "TestName";
         this.gameMode = 3;
     }
-    
+
+    /**
+     * @return Default return value is false, true if variable exceptionCaught
+     * has been set as true
+     */
     public boolean getExceptionCaught() {
         return this.exceptionCaught;
     }
-    
+
+    /**
+     * @return Default return value is false, true if variable inputNotAllowed
+     * has been set as true
+     */
     public boolean getInputNotAllowed() {
         return this.inputNotAllowed;
     }
-    
+
+    /**
+     * @return Default return value is null, true if variable missOrHit has been
+     * set as true, false if it has been set as false
+     */
     public String getMissOrHit() {
         return this.missOrHit;
     }
-    
+
+    /**
+     * @return An ArrayList of Strings
+     */
     public ArrayList<String> getListOfMasked() {
         return this.listOfMasked;
     }
-    
+
+    /**
+     * @return An ArrayList of Integers
+     */
     public ArrayList<Integer> getListOfClearSea() {
         return this.listOfClearSea;
     }
 
+    /**
+     * Overrides the method at {@link UserInterface}.
+     *
+     * @param scanner Scanner object given to the method to be set as scanner
+     */
     @Override
     public void setUpScanner(Scanner scanner) {
         this.scanner = scanner;
         //u.setUpScanner(new Scanner(input));
     }
 
+    /**
+     *
+     * @return Instance belonging to the class object
+     */
     public static UserInterface getInstance() {
         if (instance == null) {
             instance = new TestUserInterface();
@@ -81,6 +115,9 @@ public class TestUserInterface implements UserInterface {
         return instance;
     }
 
+    /**
+     * Sets instance as null.
+     */
     @Override
     public void abandonInstance() {
         this.instance = null;
@@ -91,16 +128,26 @@ public class TestUserInterface implements UserInterface {
 //        System.out.println("Welcome to the Battleships game!");
 //        System.out.println("Would you like to play alone or with a friend?");
     }
-    
+
+    /**
+     * @param mode Game mode of how the {@link Game} is played
+     */
     public void setGameMode(int mode) {
         this.gameMode = mode;
     }
 
+    /**
+     * @return Game mode of how the {@link Game} is played
+     */
     @Override
     public int getGamemode() {
         return this.gameMode;
     }
 
+    /**
+     * @param number Index of the {@link Player}, not needed here
+     * @return The default name for {@link HumanPlayer}
+     */
     @Override
     public String getPlayerName(int number) {
         return this.playerName;
@@ -135,6 +182,12 @@ public class TestUserInterface implements UserInterface {
 //        System.out.println("Where would you like to place it?");
     }
 
+    /**
+     * By using two for-loops the method goes through the given object and adds
+     * each value to the listOfClearSea.
+     *
+     * @param sea {@link Sea} object given to the method to go through
+     */
     @Override
     public void printSea(Sea sea) {
         for (int i = 0; i < sea.getSea().length; i++) {
@@ -144,12 +197,24 @@ public class TestUserInterface implements UserInterface {
         }
     }
 
+    /**
+     * By using two for-loops the method goes through the given object and adds
+     * each value to the listOfMasked.
+     * <p>
+     * If missOrHit is not null, sets class variable missOrHit as it. Can also
+     * be null.</p>
+     *
+     * @param player {@link Player} whose {@link Sea} is fetched
+     * @param missOrHit Was the last try a miss or a hit, can also be null
+     * @param index Binary information of which {@link Sea} to modify, not used
+     * with this implementation
+     */
     @Override
     public void printMaskedSea(Player player, String missOrHit, int index) {
         if (missOrHit != null) {
             this.missOrHit = missOrHit;
         }
-        
+
         for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
             for (int j = 0; j < player.getSea().getMaskedSea()[0].length; j++) {
                 this.listOfMasked.add(player.getSea().getMaskedSea()[i][j] + " ");
@@ -212,7 +277,7 @@ public class TestUserInterface implements UserInterface {
     @Override
     public boolean directionNotAllowed(String direction) {
         direction = direction.trim();
-        
+
         if (direction.equalsIgnoreCase("w")) {
             return false;
         } else if (direction.equalsIgnoreCase("a")) {
