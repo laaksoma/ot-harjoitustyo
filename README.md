@@ -43,7 +43,9 @@ Jar-tiedosto generoidaan hakemistoon _target_ komennolla
 > mvn package
 
 ### JavaDoc
-Ei vielä käytössä.
+JavaDoc generoidaan hakemistoon _target/site/apidocs/_ komennolla
+
+> mvn javadoc:javadoc
 
 ### Checkstyle 
 Tiedostoon [checkstyle.xml](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/checkstyle.xml) määritellyt tarkistukset suoritetaan komennolla 
