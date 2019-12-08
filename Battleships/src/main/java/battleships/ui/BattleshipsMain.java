@@ -2,18 +2,21 @@ package battleships.ui;
 
 import battleships.domain.Game;
 
+/**
+ * The MainClass for Battleships.
+ */
 public class BattleshipsMain {
 
+    /**
+     * Creates the {@link Game} instance and calls for ADD LINK Game
+     * beginStartMethod.
+     * @param args The default parameter for Main
+     * @throws Exception In case of {@link Game} instance Singleton exception.
+     */
+    
     public static void main(String[] args) throws Exception {
-//        GraphicalUserInterface gui = new GraphicalUserInterface();
-//        gui.startGUI();
-
         Game battleships = Game.getInstance();
 
         battleships.beginStartMethod();
-        
-        //battleships.createBoard(10);
-
- //       battleships.playGame();
     }
 }

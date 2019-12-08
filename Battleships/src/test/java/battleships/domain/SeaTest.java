@@ -38,12 +38,12 @@ public class SeaTest {
         Assert.assertArrayEquals(array, this.sea.getMaskedSea());
     }
 
-    @Test
-    public void modifySeaModifiesSeaCorrectly() {
-        this.sea.addShipToTheSea(1, 1, 2);
-
-        assertEquals(-2, this.sea.modifySea(1, 1));
-    }
+//    @Test
+//    public void modifySeaModifiesSeaCorrectly() {
+//        this.sea.addShipToTheSea(1, 1, 2);
+//
+//        assertEquals(-2, this.sea.modifySea(1, 1));
+//    }
 
     @Test
     public void modifyMaskedSeaModifiesCorrectlyWhenValueIsZero() {

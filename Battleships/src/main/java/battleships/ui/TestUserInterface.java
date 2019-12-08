@@ -7,7 +7,10 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//This interface is created for the usage of tests only.
+/**
+ * A UserInterface Class created for testing the other classes.
+ * <p><strong>This is a singleton class.</strong></p>
+ */
 
 public class TestUserInterface implements UserInterface {
 
