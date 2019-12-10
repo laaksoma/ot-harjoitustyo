@@ -22,10 +22,10 @@ public interface UserInterface {
             return GraphicalUserInterface.getInstance();
         } else if(TextUserInterface.singletonHasBeenCreated){
             return TextUserInterface.getInstance();
-        } else if (TestUserInterface.singletonHasBeenCreated) {
+        } else if(TestUserInterface.singletonHasBeenCreated){
             return TestUserInterface.getInstance();
         } else {
-            System.out.println("This should not be called ever");
+            System.out.println("No UserInterface has been initialized.");
             return null;
         }
     }

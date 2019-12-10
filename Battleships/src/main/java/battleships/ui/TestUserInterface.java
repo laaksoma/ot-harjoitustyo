@@ -1,292 +1,92 @@
+
 package battleships.ui;
 
 import battleships.domain.Player;
 import battleships.domain.Sea;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * A UserInterface Class created for testing the other classes.
- * <p>
- * <strong>This is a singleton class.</strong></p>
- */
 public class TestUserInterface implements UserInterface {
 
-    private static Scanner scanner;
-    private static UserInterface instance;
     static boolean singletonHasBeenCreated = false;
-    private ByteArrayOutputStream contentOutput = new ByteArrayOutputStream();
-    private PrintStream originalOutput = System.out;
-    private String input;
-    private boolean exceptionCaught;
-    private boolean inputNotAllowed;
-    private String missOrHit;
-    private ArrayList<String> listOfMasked = new ArrayList<>();
-    private ArrayList<Integer> listOfClearSea = new ArrayList<>();
-    private String playerName;
-    private int gameMode;
-
-    /**
-     * @throws IllegalStateException If the constructor was called with an
-     * already existing instance of TestUserInterface
-     */
-    public TestUserInterface() throws IllegalStateException {
-        if (instance != null) {
-            throw new IllegalStateException("Multiple singletons attempted with class UserInterface!");
-        }
-
-//        this.input = "";
-//        this.scanner = new Scanner(input);
+    
+    public static void setInstance(UserInterface ui){
+        instance = ui;
+        singletonHasBeenCreated = true;
     }
-
-    /**
-     * Resets annotation values as the given defaults.
-     */
-    public void setAnnotations() {
-        this.exceptionCaught = false;
-        this.inputNotAllowed = false;
-        this.missOrHit = null;
-        this.listOfMasked = new ArrayList<>();
-        this.listOfClearSea = new ArrayList<>();
-        this.playerName = "TestName";
-        this.gameMode = 3;
-    }
-
-    /**
-     * @return Default return value is false, true if variable exceptionCaught
-     * has been set as true
-     */
-    public boolean getExceptionCaught() {
-        return this.exceptionCaught;
-    }
-
-    /**
-     * @return Default return value is false, true if variable inputNotAllowed
-     * has been set as true
-     */
-    public boolean getInputNotAllowed() {
-        return this.inputNotAllowed;
-    }
-
-    /**
-     * @return Default return value is null, true if variable missOrHit has been
-     * set as true, false if it has been set as false
-     */
-    public String getMissOrHit() {
-        return this.missOrHit;
-    }
-
-    /**
-     * @return An ArrayList of Strings
-     */
-    public ArrayList<String> getListOfMasked() {
-        return this.listOfMasked;
-    }
-
-    /**
-     * @return An ArrayList of Integers
-     */
-    public ArrayList<Integer> getListOfClearSea() {
-        return this.listOfClearSea;
-    }
-
-    /**
-     * Overrides the method at {@link UserInterface}.
-     *
-     * @param scanner Scanner object given to the method to be set as scanner
-     */
-    @Override
-    public void setUpScanner(Scanner scanner) {
-        this.scanner = scanner;
-        //u.setUpScanner(new Scanner(input));
-    }
-
-    /**
-     *
-     * @return Instance belonging to the class object
-     */
-    public static UserInterface getInstance() {
-        if (instance == null) {
-            instance = new TestUserInterface();
-            singletonHasBeenCreated = true;
+    
+    private static UserInterface instance;
+    
+     static UserInterface getInstance(){
+        if(instance == null){
+            throw new IllegalStateException("For Test UI, you must set instance before getting it.");
         }
         return instance;
+     }
+    
+     
+    // The rest are not needed, since the instance is mocked
+    @Override
+    public void setUpScanner(Scanner scanner) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * Sets instance as null.
-     */
-    @Override
     public void abandonInstance() {
-        this.instance = null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void welcome() {
-//        System.out.println("Welcome to the Battleships game!");
-//        System.out.println("Would you like to play alone or with a friend?");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * @param mode Game mode of how the {@link Game} is played
-     */
-    public void setGameMode(int mode) {
-        this.gameMode = mode;
-    }
-
-    /**
-     * @return Game mode of how the {@link Game} is played
-     */
-    @Override
     public int getGamemode() {
-        return this.gameMode;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * @param number Index of the {@link Player}, not needed here
-     * @return The default name for {@link HumanPlayer}
-     */
-    @Override
     public String getPlayerName(int number) {
-        return this.playerName;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void printRulesForPlayerSetUp(int numberOfShips, String name) {
-//        System.out.println();
-//        System.out.print("Creating board for " + name + "\n");
-//        System.out.println("You are given " + numberOfShips + " ships. Place them in the sea by giving");
-//        System.out.println("the starting coordinates and direction (WASD) of where you'd like to place them.");
-//        System.out.println("The placement must follow these rules:");
-//        System.out.println(" - all parts of the ship must be placed within the visible area,");
-//        System.out.println(" - no ship is allowed to be stationed directly next to another ship, ");
-//        System.out.println(" - and no ship is allowed to be stationed on top of another ship.\n");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void printRulesForPlayerTurn(String name) {
-        this.exceptionCaught = true;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void printForNoNewCoordinates(int row, int column) {
-//        System.out.println("You have already tried row " + (row + 1) + " and column " + (column + 1) + "!");
-//        System.out.println("Try some other location.");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void printForShipPlacement(int ship) {
-//        System.out.println("The length of the ship to be placed is " + ship + ".");
-//        System.out.println("Where would you like to place it?");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * By using two for-loops the method goes through the given object and adds
-     * each value to the listOfClearSea.
-     *
-     * @param sea {@link Sea} object given to the method to go through
-     */
-    @Override
     public void printSea(Sea sea) {
-        for (int i = 0; i < sea.getSea().length; i++) {
-            for (int j = 0; j < sea.getSea()[0].length; j++) {
-                this.listOfClearSea.add(sea.getSea()[i][j]);
-            }
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * By using two for-loops the method goes through the given object and adds
-     * each value to the listOfMasked.
-     * <p>
-     * If missOrHit is not null, sets class variable missOrHit as it. Can also
-     * be null.</p>
-     *
-     * @param player {@link Player} whose {@link Sea} is fetched
-     * @param missOrHit Was the last try a miss or a hit, can also be null
-     * @param index Binary information of which {@link Sea} to modify, not used
-     * with this implementation
-     */
-    @Override
     public void printMaskedSea(Player player, String missOrHit, int index) {
-        if (missOrHit != null) {
-            this.missOrHit = missOrHit;
-        }
-
-        for (int i = 0; i < player.getSea().getMaskedSea().length; i++) {
-            for (int j = 0; j < player.getSea().getMaskedSea()[0].length; j++) {
-                this.listOfMasked.add(player.getSea().getMaskedSea()[i][j] + " ");
-            }
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void gameOver(String name) {
-        System.out.print("Congratulations " + name + ", you won!");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public int getRow(int seaSize) {
-        return getANumber(1, seaSize) - 1;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public int getColumn(int seaSize) {
-        return getANumber(1, seaSize) - 1;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public int getANumber(int min, int max) {
-        int playerInput = -1;
-
-        while (playerInput < min || playerInput > max) {
-            try {
-                playerInput = Integer.parseInt(scanner.nextLine());
-
-                if (playerInput < min || playerInput > max) {
-                    this.inputNotAllowed = true;
-                }
-            } catch (Exception e) {
-                this.exceptionCaught = true;
-            }
-        }
-
-        return playerInput;
-    }
-
-    @Override
     public String getDirection(int ship) {
-        String direction = "not allowed";
-
-        if (ship != 1) {
-            while (directionNotAllowed(direction)) {
-                try {
-                    direction = scanner.nextLine();
-                } catch (Exception e) {
-                    this.exceptionCaught = true;
-                }
-            }
-        } else {
-            direction = "w";
-        }
-
-        return direction;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public boolean directionNotAllowed(String direction) {
-        direction = direction.trim();
-
-        if (direction.equalsIgnoreCase("w")) {
-            return false;
-        } else if (direction.equalsIgnoreCase("a")) {
-            return false;
-        } else if (direction.equalsIgnoreCase("s")) {
-            return false;
-        } else if (direction.equalsIgnoreCase("d")) {
-            return false;
-        }
-        return true;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
