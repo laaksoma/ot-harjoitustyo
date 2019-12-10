@@ -295,7 +295,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
         Platform.runLater(() -> {
             this.playGameController.updateAbilityValuesForGameOver();
             this.playGameController.updateTurnForPlayerLabel(name, false);
-            this.playGameController.changeNewGameButtonVisibility(true);
+            //this.playGameController.changeNewGameButtonVisibility(true);
         });
 
     }

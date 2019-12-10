@@ -190,5 +190,4 @@ public class Sea {
         
         return Arrays.deepEquals(this.array, compSea.getSea());
     }
-
 }

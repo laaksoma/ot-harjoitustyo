@@ -181,7 +181,7 @@
          <children>
             <HBox prefHeight="34.0" prefWidth="152.0">
                <children>
-                  <Label prefHeight="39.0" prefWidth="151.0" text="Insert coordinates:" />
+                  <Label prefHeight="39.0" prefWidth="151.0" text="Insert starting coordinates:" />
                </children>
                <opaqueInsets>
                   <Insets />

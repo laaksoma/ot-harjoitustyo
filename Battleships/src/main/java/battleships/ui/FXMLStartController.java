@@ -44,7 +44,6 @@ public class FXMLStartController implements Initializable {
     }
 
     public void setDefaultValuesForController() {
-        System.out.println("Starting to reset StartController.");
         setWelcome();
         changeRadioButtonEnable(false);
         this.btnAlone.setSelected(false);
@@ -57,9 +56,7 @@ public class FXMLStartController implements Initializable {
         this.namesSet = false;
         this.p1Name = null;
         this.p2Name = null;
-        this.playGameButton.setText("OK!");
         this.playGameButton.setDisable(false);
-        System.out.println("StartController reset done!");
     }
 
     public void playGameButtonHandling() {
@@ -98,6 +95,11 @@ public class FXMLStartController implements Initializable {
             setTextForChooseSomething("Not ready yet!");
             return;
         }
+        
+        if (player1Name.getText().trim().equalsIgnoreCase(player2Name.getText().trim())) {
+            setTextForChooseSomething("You need to choose another name for either player!");
+            return;
+        }
 
         playGameButton.setDisable(true);
         p1Name = player1Name.getText().trim();
@@ -122,9 +124,7 @@ public class FXMLStartController implements Initializable {
     }
 
     public void setWelcome() {
-        System.out.println("About to set texts");
         welcome.setText("Welcome to play the Battlehsips game!");
         aloneOrFriend.setText("Would you like to play alone or with a friend?");
-        System.out.println("Set texts");
     }
 }
