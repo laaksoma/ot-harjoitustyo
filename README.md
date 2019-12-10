@@ -1,9 +1,6 @@
 # Battleships
 
-Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä. Tällä hetkellä tämä onnistuu tekstikäyttöliittymällä yhdessä kaverin kanssa tai yksin yksinkertaista tekoälyä vastaan.
-
-### Huomio ohjelman pyörittämisestä!
-Tällä hetkellä ohjelma pyörii VMWaren kautta Linuxilla NetBeansilla, mutta komentorivisuorittamisen kanssa on ongelmia. 
+Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä joko yksin yksinkertaista tekoälyä vastaan, tai yhdessä kaverin kanssa.
 
 ## Dokumentaatio
 [Arkkitehtuurikuvaus](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/arkkitehtuuri.md)
