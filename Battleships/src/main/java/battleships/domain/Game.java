@@ -37,6 +37,7 @@ public class Game {
      * @throws IllegalStateException If Game instance is not null when calling
      * the class constructor
      */
+    
     public Game() throws IllegalStateException {
         if (instance != null) {
             throw new IllegalStateException("Multiple singletons attempted with class Game!");

@@ -15,6 +15,7 @@ public class BattleshipsMain {
      */
     
     public static void main(String[] args) throws Exception {
+        UserInterface gameUserInterface = new GraphicalUserInterface().getInstance();
         Game battleships = Game.getInstance();
 
         battleships.beginStartMethod();
