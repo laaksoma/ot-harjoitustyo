@@ -35,9 +35,9 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä joko 
 Peliä ja sen toimintaa voisi kehittää esimerkiksi seuraavilla ominaisuuksilla: 
 
 * Mahdollisuus avata ohjeet kesken pelin
-* Mahdollisuus aloittaa uusi peli
+* Mahdollisuus aloittaa uusi peli KESKEN
 * Mahdollisuus aloittaa uusi peli, vaikka vanha olisi vielä kesken
 * Mahdollisuus pelata toista ihmispelaajaa vastaan TEHTY
 * Pelin pisteytys ja näiden tietojen mahdollinen tallennus 
-* Graafisen käyttöliittymän hionta
+* Graafisen käyttöliittymän hionta KESKEN
 * Äänitehosteiden lisäys peliin 
