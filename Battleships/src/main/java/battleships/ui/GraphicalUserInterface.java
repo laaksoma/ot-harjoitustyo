@@ -4,23 +4,16 @@ import battleships.domain.Game;
 import battleships.domain.Player;
 import battleships.domain.Sea;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class GraphicalUserInterface extends Application implements UserInterface {
@@ -43,14 +36,10 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void init() throws Exception {
-        System.out.println("Starting! (in start method)");
-        System.out.println("Instance is null?" + (instance == null));
-
         if (instance != null && (instance != this)) {
             this.startLoader = ((GraphicalUserInterface) instance).startLoader;
             this.startController = ((GraphicalUserInterface) instance).startController;
             instance = this;
-            //System.out.println("Changed GUI singleton instance");
         }
 
         initializeStartScene();
@@ -63,7 +52,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.startLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/InstructionsFXML.fxml"));
             this.startRoot = startLoader.load();
             this.startController = this.startLoader.getController();
-            System.out.println("Controller created for start.");
             this.gameStartScene = new Scene(startRoot, 610, 480);
         } catch (IOException e) {
             System.out.println("Could not find the file for starting.");
@@ -76,7 +64,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.setUpLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/FXMLSetUpController.fxml"));
             this.setUpRoot = setUpLoader.load();
             this.setUpController = this.setUpLoader.getController();
-            System.out.println("Controller created for set up.");
             this.gameSetUpScene = new Scene(setUpRoot, 610, 480);
         } catch (IOException e) {
             System.out.println("Could not find the file for set up.");
@@ -89,7 +76,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.playGameLoader = new FXMLLoader(GraphicalUserInterface.class.getResource("/fxml/FXMLPlayGameController.fxml"));
             this.playGameRoot = playGameLoader.load();
             this.playGameController = playGameLoader.getController();
-            System.out.println("Controller created for playing the game.");
             this.playGameScene = new Scene(playGameRoot, 610, 480);
         } catch (IOException e) {
             System.out.println("Could not find the file for play game.");
@@ -104,7 +90,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
         setStartScene();
         stage.show();
-        System.out.println("Did show!");
 
         //TESTING
         if (this.setUpController == null) {
@@ -112,7 +97,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
         }
 
         this.startController.setWelcome();
-        System.out.println("Set welcome!");
 
         Thread t = new Thread(() -> Game.getInstance().finishStartMethod());
         t.start();
@@ -135,10 +119,11 @@ public class GraphicalUserInterface extends Application implements UserInterface
         this.stage.setScene(this.playGameScene);
     }
 
+    //USE WHEN STARTING A NEW GAME?
     public void resetGameValues() {
-        this.startController.setDefaultValuesForControllerAnnotations();
-        this.setUpController.setDefaultValuesForControllerAnnotations();
-        this.playGameController.setDefaultValuesForControllerAnnotations();
+        this.startController.setDefaultValuesForController();
+        this.setUpController.setDefaultValuesForController();
+        this.playGameController.setDefaultValuesForController();
     }
 
     @Override
@@ -166,7 +151,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void welcome() {
-        System.out.println("Starting GUI...");                                  //STARTGUI
         launch(GraphicalUserInterface.class);                                   //STARTGUI
     }
 
@@ -197,14 +181,9 @@ public class GraphicalUserInterface extends Application implements UserInterface
         }
 
         if (number == 1) {
-            System.out.println("Returning the name " + this.startController.p1Name);
             return this.startController.p1Name;
-        } else if (number == 2) {
-            System.out.println("Returning the name " + this.startController.p2Name);
-            return this.startController.p2Name;
         } else {
-            System.out.println("Apparently this can be called with an int other than 1 or 2...");
-            return null;
+            return this.startController.p2Name;
         }
     }
 
@@ -225,7 +204,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
     @Override
     public void printForNoNewCoordinates(int row, int column) {
         Platform.runLater(() -> {
-            System.out.println("printForNoNewCoordinates called!");
             this.playGameController.updateTryAnotherLocationLabel(row, column, true);
         });
     }
@@ -237,7 +215,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
         });
     }
 
-    // DO NOT CHANGE PANE ORDER IN GRAPH BUILDER!!!
+    // DO NOT CHANGE PANE ORDER IN GRAPH BUILDER
     public int getListIndex(int row, int column, int length) {
         return row * length + column;
     }
@@ -315,11 +293,9 @@ public class GraphicalUserInterface extends Application implements UserInterface
     @Override
     public void gameOver(String name) {
         Platform.runLater(() -> {
-            System.out.println("Game is over.");
             this.playGameController.updateAbilityValuesForGameOver();
             this.playGameController.updateTurnForPlayerLabel(name, false);
             this.playGameController.changeNewGameButtonVisibility(true);
-            System.out.println("Method gameOver at GUI is done.");
         });
 
     }
@@ -338,15 +314,12 @@ public class GraphicalUserInterface extends Application implements UserInterface
     @Override
     public int getRow(int seaSize) {
         if (needToSetPlayGameScene) {
-            System.out.println("In this branch?");
             String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.rowValue,
                     () -> this.setUpController.areCoordinatesSet);
             return Integer.parseInt(result) - 1;
         } else {
-            System.out.println("Starting the wait for row soon...");
             Integer row = this.getVariableAfterItHasBeenSetInController(() -> this.playGameController.row,
                     () -> this.playGameController.areCoordinatesSet);
-            System.out.println("Finishing the wait for row");
             return row - 1;
         }
     }

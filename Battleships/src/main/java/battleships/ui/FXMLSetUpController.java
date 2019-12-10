@@ -2,13 +2,11 @@ package battleships.ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 public class FXMLSetUpController implements Initializable {
@@ -30,19 +28,12 @@ public class FXMLSetUpController implements Initializable {
     private Label errorMessage;
     @FXML
     private Button getCoordsButton;
-//    @FXML
-//    private Button nextPlayerButton;
     @FXML
     public GridPane seaGridPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         row.textProperty().addListener((ob, oldValue, newValue) -> {
-
-            System.out.println("New value: " + newValue);
-            System.out.println("Row is empty: " + newValue.isEmpty());
-            System.out.println("Col is empty: " + column.getText().isEmpty());
-            System.out.println("Dir is empty: " + direction.getText().isEmpty());
 
             getCoordsButton.setDisable(newValue.isEmpty()
                     || column.getText().isEmpty()
@@ -65,9 +56,7 @@ public class FXMLSetUpController implements Initializable {
 
     }
     
-    public void setDefaultValuesForControllerAnnotations() {
-        //nothing to set here?
-        System.out.println("Nothing to reset at SetUpController, I guess?");
+    public void setDefaultValuesForController() {
     }
 
     public void setInstructions(String playerName, int numberOfShips) {

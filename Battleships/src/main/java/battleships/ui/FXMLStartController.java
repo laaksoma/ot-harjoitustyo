@@ -43,7 +43,7 @@ public class FXMLStartController implements Initializable {
         this.GraphUserInterface = (GraphicalUserInterface) GraphicalUserInterface.getInstance();
     }
 
-    public void setDefaultValuesForControllerAnnotations() {
+    public void setDefaultValuesForController() {
         System.out.println("Starting to reset StartController.");
         setWelcome();
         changeRadioButtonEnable(false);

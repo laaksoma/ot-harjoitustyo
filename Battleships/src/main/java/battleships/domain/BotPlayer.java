@@ -86,7 +86,6 @@ public class BotPlayer extends Player {
         if (needForDirection) {
             dir = getDirection();
         }
-        System.out.println("Bot chose row " + (row + 1) + ", column " + (column + 1) + ", and direction was " + dir);
 
         return new PlacementInfo(row, column, dir);
     }

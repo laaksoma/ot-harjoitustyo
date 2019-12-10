@@ -84,9 +84,9 @@ public class Game {
      * Calls (ADD LINK TO UI.welcome() HERE).
      */
     public void beginStartMethod() {
-        System.out.println("About to call welcome");
+        //System.out.println("About to call welcome");
         userInterface.welcome();
-        System.out.println("Called welcome");
+        //System.out.println("Called welcome");
     }
 
     /**
@@ -97,15 +97,9 @@ public class Game {
     //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
     public void finishStartMethod() {
         refreshUserInterface();
-        System.out.println("Got here!");
-        this.gameMode = userInterface.getGamemode();                            //THIS WAS CHANGED FROM userInterface.getGameMode()
-        System.out.println("Game mode is: " + this.gameMode);
+        this.gameMode = userInterface.getGamemode();           
         addPlayers();
-        System.out.println("Now we have the players: ");
-        listOfPlayers.forEach(player -> {
-            System.out.println("\t" + player.name);
 
-        });
 
         createBoard(1);
 
@@ -115,7 +109,6 @@ public class Game {
         this.userInterface = UserInterface.getInstance();
     }
 
-    //NOT NEEDED FOR PRIVATE METHODS
 //    /**
 //     * Adds two {@link Player}s for the game. 
 //     * <p>If gameMode is set as zero, the method adds first a {@link HumanPlayer} and then a {@link BotPlayer}.<br>
@@ -148,8 +141,7 @@ public class Game {
         for (Player player : this.listOfPlayers) {
 
             player.setShips(numberOfShips);
-
-            // weird thread-problem when calling the below     
+   
             setUpBoard(player);
         }
 
@@ -174,7 +166,6 @@ public class Game {
     private void setShipsForPlayer(Player player) {
         for (int i = 0; i < player.getShips().size(); i++) {
             int ship = player.getShips().get(i);
-            System.out.println("The ship to be set is: " + ship);
 
             if (!askForShips(player, ship)) {
                 if (player.getClass() == HumanPlayer.class) {
@@ -184,12 +175,9 @@ public class Game {
                 i--;
             }
         }
-
-        System.out.println("All ships are set.");
     }
 
     private boolean askForShips(Player player, int ship) {
-        //this.userInterface.printSea(player.getSea());
         PlacementInfo info = player.decideCoordinates(ship, true, this.gameBoardSize);
 
         if (areCoordinatesAllowed(info.getRow(), info.getColumn(), player, ship, info.getDirection(), "create")) {

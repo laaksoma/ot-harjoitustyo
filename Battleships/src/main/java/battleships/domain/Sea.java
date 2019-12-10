@@ -72,22 +72,6 @@ public class Sea {
         return array;
     }
     
-    
-    //THE BELOW IS NEVER USED? CLEAN THIS UP
-//    /**
-//     * Takes the index for row and column at the int array matrix 
-//     * and passes them forward to {@link #addShipToTheSea} with an additional 
-//     * numeric complement of the value at the index.
-//     * @param row Index for the row at the array
-//     * @param column Index for the column at the array
-//     * @return The new value at the index
-//     */
-//
-//    public int modifySea(int row, int column) {
-//        addShipToTheSea(row, column, -this.array[row][column]);
-//        return this.array[row][column];
-//    }
-    
     /**
      * Modifies the String array matrix at the index
      * by binary information value.

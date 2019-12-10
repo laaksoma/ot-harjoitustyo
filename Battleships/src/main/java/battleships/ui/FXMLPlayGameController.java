@@ -38,7 +38,6 @@ public class FXMLPlayGameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         for (Node node : this.gridPanePlayer1.getChildren()) {
             if (node.getClass() == Pane.class) {
-                System.out.println("Node was pane");
                 node.setOnMouseClicked((e) -> {
                     handlePaneClicked(node);
                 });
@@ -56,12 +55,10 @@ public class FXMLPlayGameController implements Initializable {
         this.newGameButton.setOnAction((e) -> handleNewGameButtonPress());
     }
 
-    public void setDefaultValuesForControllerAnnotations() {
-        System.out.println("Starting to reset PlayGameController");
+    public void setDefaultValuesForController() {
         this.tryAnotherLocation.setVisible(false);
         this.areCoordinatesSet = false;
         changeNewGameButtonVisibility(false);
-        System.out.println("PlayGameController reset done");
     }
 
     private void handlePaneClicked(Node node) {
@@ -69,7 +66,6 @@ public class FXMLPlayGameController implements Initializable {
         this.column = GridPane.getColumnIndex(node);
         this.areCoordinatesSet = true;
         this.tryAnotherLocation.setVisible(false);
-        System.out.println("Pane at (" + this.row + ", " + this.column + ") was clicked!");
     }
 
     private void handleNewGameButtonPress() {
