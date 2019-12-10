@@ -1,4 +1,4 @@
-package battleships;
+package battleships.domain;
 
 import battleships.domain.BotPlayer;
 import battleships.domain.HumanPlayer;
@@ -22,9 +22,9 @@ public class PlayerTest {
 
     @Before
     public void setUpTests() {
-        human = new HumanPlayer("Matt");
+        human = new HumanPlayer("TestName");
         bot = new BotPlayer();
-        System.setOut(new PrintStream(contentOutput));
+        //System.setOut(new PrintStream(contentOutput));
     }
 
     @After
@@ -42,14 +42,14 @@ public class PlayerTest {
 
     @Test
     public void getSeaGetsSeaCorrectly() {
-        Sea sea = new Sea(5);
+        Sea sea = human.getSea();
 
         assertTrue(sea.equals(human.getSea()));
     }
 
     @Test
     public void getNameReturnsNameCorrectly() {
-        assertEquals("Matt", this.human.getName());
+        assertEquals("TestName", this.human.getName());
     }
 
     @Test

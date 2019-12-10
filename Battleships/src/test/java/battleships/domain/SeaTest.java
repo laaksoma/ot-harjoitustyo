@@ -1,6 +1,5 @@
-package battleships;
+package battleships.domain;
 
-import battleships.domain.Sea;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,12 +38,12 @@ public class SeaTest {
         Assert.assertArrayEquals(array, this.sea.getMaskedSea());
     }
 
-    @Test
-    public void modifySeaModifiesSeaCorrectly() {
-        this.sea.addShipToTheSea(1, 1, 2);
-
-        assertEquals(-2, this.sea.modifySea(1, 1));
-    }
+//    @Test
+//    public void modifySeaModifiesSeaCorrectly() {
+//        this.sea.addShipToTheSea(1, 1, 2);
+//
+//        assertEquals(-2, this.sea.modifySea(1, 1));
+//    }
 
     @Test
     public void modifyMaskedSeaModifiesCorrectlyWhenValueIsZero() {
@@ -153,13 +152,6 @@ public class SeaTest {
         compared.addShipToTheSea(1, 1, 1);
         assertFalse(this.sea.equals(compared));
     }
-    
-    @Test
-    public void equalsReturnsFalseWhenMaskIsDifferent() {
-        Sea compared = new Sea(5);
-        compared.modifyMaskedSea(1, 1, 1);
-        assertFalse(this.sea.equals(compared));
-    }
 
     @Test
     public void equalsReturnsFalseWhenSizeDoesNotMatch() {
@@ -170,7 +162,19 @@ public class SeaTest {
     @Test
     public void equalsReturnsTrueWhenArrayMaskAndSizeMatch() {
         Sea copy = this.sea;
-        
+
         assertTrue(this.sea.equals(copy));
     }
+
+//    @Test
+//    public void equalsReturnsFalseWhenArraysMatchButMasksDiffer() {
+//        //to make this.array==array, and this.mask!=mask
+//        //one needs to modify mask with number other than 0, 
+//        //then modify array back
+//
+//        Sea copy = this.sea;
+//        copy.modifyMaskedSea(1, 1, 1);
+//        copy.modifySea(1, 1);
+//        assertEquals(false, this.sea.equals(copy));
+//    }
 }

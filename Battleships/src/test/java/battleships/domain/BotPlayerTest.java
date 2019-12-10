@@ -1,4 +1,4 @@
-package battleships;
+package battleships.domain;
 
 import battleships.domain.BotPlayer;
 import battleships.domain.Game;
@@ -11,12 +11,10 @@ public class BotPlayerTest {
 
     private BotPlayer bot;
     private ArrayList<String> directions;
-    Game game;
 
     @Before
     public void createBot() {
         this.bot = new BotPlayer();
-        this.game = Game.getInstance();
         this.directions = new ArrayList();
 
         this.directions.add("w");

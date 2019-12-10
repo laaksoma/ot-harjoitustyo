@@ -7,4 +7,10 @@
 <suppressions>
     <suppress files="battleships.ui.BattleshipsMain.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="battleships.ui.UserInterface.java" checks="[a-zA-Z0-9]*"/>
+	<suppress files="battleships.ui.FXMLPlayGameController.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="battleships.ui.FXMLSetUpController.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="battleships.ui.FXMLStartController.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="battleships.ui.GraphicalUserInterface.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="battleships.ui.TestUserInterface.java" checks="[a-zA-Z0-9]*"/>
+	<suppress files="battleships.ui.TextUserInterface.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

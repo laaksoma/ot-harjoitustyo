@@ -1,6 +1,5 @@
-package battleships;
+package battleships.domain;
 
-import battleships.domain.PlacementInfo;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
