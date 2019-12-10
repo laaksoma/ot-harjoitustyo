@@ -14,5 +14,6 @@ Päivä | Aika | Työn sisältö
 25.11. | 9 | Testausta ja jar-luontia.
 26.11. | 4 | Testausta ja private metodien testausongelman selvittelyä. Botti korjattu.
 27.11. | 3 | Luokkien siivousta, testausta ja yksityiskohtien hienosäätöä. Graafisen käyttöliittymän toteutuksen tutkiminen aloitettu.
-29.11. | 10 | Testausta ja graafisen käyttöliittymän aloittaminen. 
-Yht. | 65 | 
+29.11. | 10 | Testausta ja graafisen käyttöliittymän aloittaminen.
+2.12. | 7 | Testausta ja sekvenssikaavion luontia. Graafiseen käyttöliittymään liittyvien ongelmien ratkontaa.
+Yht. | 72 | 
