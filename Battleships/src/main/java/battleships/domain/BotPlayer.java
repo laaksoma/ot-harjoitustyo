@@ -21,9 +21,9 @@ public class BotPlayer extends Player {
     /**
      * Creates a new instance of {@link BotPlayer}.
      * <p>
-     * Calls ADD LINK TO PLAYER CONSTRUCTOR? with default name "Bot /84", 
+     * Calls {@link Player#Player(String) }with default name "Bot /84", 
      * sets the listOfDirections, listSize as size of the previous ArrayList, and 
-     * creates a new Random for annotation random.</p>
+     * creates a new Random for class variable random.</p>
      */
     
     public BotPlayer() {

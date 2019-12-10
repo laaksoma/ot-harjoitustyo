@@ -46,25 +46,12 @@ public class GameTest {
     public void getGameBoardSizeReturnsCorrectly() {
         assertEquals(10, game.getGameBoardSize());
     }
-    
+
     @Test
     public void beginStartMethodCallsForWelcome() {
         game.beginStartMethod();
         verify(mockUser).welcome();
     }
-    
-    //DOES NOT WORK WHEN CREATE BOARD IS NOT COMMENTED
-//    @Test
-//    public void finishStartMethodGetsGameModeCorrectly() {
-//        when(mockUser.getGamemode()).thenReturn(0);
-//        game.finishStartMethod();
-//        assertEquals(0, game.gameMode);
-//    }
-
-//    @Test
-//    public void startGetsGameModeCorrectly() {
-//        assertEquals(0, game.gameMode);
-//    }
 
     @Test(expected = IllegalStateException.class)
     public void constructorAllowsOnlyOneGameSingleton() {
@@ -137,4 +124,123 @@ public class GameTest {
 
         assertFalse(game.areCoordinatesAlreadyUsed(testInfo, testPlayer));
     }
+
+    @Test
+    public void getIndexForAnotherPlayerReturnsOneWhenGivenPlayerAtZero() {
+        game.gameMode = 0;
+        when(mockUser.getPlayerName(anyInt())).thenReturn("Annie");
+
+        game.addPlayers();
+
+        assertEquals(1, game.getIndexForAnotherPlayer(game.getListOfPlayers().get(0)));
+    }
+
+    @Test
+    public void getIndexForAnotherPlayerReturnsZeroWhenGivenPlayerAtOne() {
+        game.gameMode = 0;
+        when(mockUser.getPlayerName(anyInt())).thenReturn("Jack");
+
+        game.addPlayers();
+
+        assertEquals(0, game.getIndexForAnotherPlayer(game.getListOfPlayers().get(1)));
+    }
+
+    @Test
+    public void placeShipsPlacesTheWholeShipWhenDirectionIsUp() {
+        game.gameMode = 0;
+        when(mockUser.getPlayerName(anyInt())).thenReturn("Jenny");
+        game.addPlayers();
+        game.placeShips(8, 8, game.getListOfPlayers().get(0), 2, "w");
+        int sum = game.getListOfPlayers().get(0).getSea().getSea()[8][8]
+                + game.getListOfPlayers().get(0).getSea().getSea()[7][8];
+
+        assertEquals(4, sum);
+    }
+
+    @Test
+    public void placeShipsPlacesTheWholeShipWhenDirectionIsRight() {
+        game.gameMode = 0;
+        when(mockUser.getPlayerName(anyInt())).thenReturn("Anne");
+        game.addPlayers();
+        game.placeShips(1, 1, game.getListOfPlayers().get(0), 3, "d");
+        int sum = game.getListOfPlayers().get(0).getSea().getSea()[1][1]
+                + game.getListOfPlayers().get(0).getSea().getSea()[1][2]
+                + game.getListOfPlayers().get(0).getSea().getSea()[1][3];
+
+        assertEquals(9, sum);
+    }
+
+    @Test
+    public void placeShipsPlacesTheWholeShipWhenDirectionIsDown() {
+        game.gameMode = 0;
+        when(mockUser.getPlayerName(anyInt())).thenReturn("Jane");
+        game.addPlayers();
+        game.placeShips(3, 4, game.getListOfPlayers().get(0), 2, "s");
+        int sum = game.getListOfPlayers().get(0).getSea().getSea()[3][4]
+                + game.getListOfPlayers().get(0).getSea().getSea()[4][4];
+
+        assertEquals(4, sum);
+    }
+
+    @Test
+    public void placeShipsPlacesTheWholeShipWhenDirectionIsLeft() {
+        game.gameMode = 0;
+        when(mockUser.getPlayerName(anyInt())).thenReturn("Jane");
+        game.addPlayers();
+        game.placeShips(1, 9, game.getListOfPlayers().get(0), 2, "a");
+        int sum = game.getListOfPlayers().get(0).getSea().getSea()[1][9]
+                + game.getListOfPlayers().get(0).getSea().getSea()[1][8];
+
+        assertEquals(4, sum);
+    }
+
+    @Test
+    public void areCoordinatesAllowedReturnsFalseWhenRowIsTooSmall() {
+        assertFalse(game.areCoordinatesAllowed(-1, 2, new BotPlayer(), 2, "s", null));
+    }
+
+    @Test
+    public void areCoordinatesAllowedReturnsFalseWhenRowIsTooBig() {
+        assertFalse(game.areCoordinatesAllowed(15, 2, new BotPlayer(), 2, "s", null));
+    }
+
+    @Test
+    public void areCoordinatesAllowedReturnsFalseWhenColumnIsTooSmall() {
+        assertFalse(game.areCoordinatesAllowed(2, -1, new BotPlayer(), 2, "s", null));
+    }
+
+    @Test
+    public void areCoordinatesAllowedReturnsFalseWhenColumnIsTooBig() {
+        assertFalse(game.areCoordinatesAllowed(2, 150, new BotPlayer(), 2, "s", null));
+    }
+
+    @Test
+    public void areCoordinatesAllowedReturnsFalseWhenPlacementIsAlreadyUsed() {
+        BotPlayer testBot = new BotPlayer();
+        testBot.getSea().addShipToTheSea(1, 1, 3);
+        assertFalse(game.areCoordinatesAllowed(1, 1, testBot, 3, "s", null));
+    }
+
+    @Test
+    public void areCoordinatesAllowedReturnsFalseWhenModeIsCreateAndPlacementIsNotAllowed() {
+        assertFalse(game.areCoordinatesAllowed(1, 1, new BotPlayer(), 6, "w", "create"));
+    }
+
+    @Test
+    public void areCoordinatesAllowedReturnsTrueWhenModeIsCreateAndPlacementIsAllowed() {
+        assertTrue(game.areCoordinatesAllowed(1, 1, new BotPlayer(), 6, "s", "create"));
+    }
+    
+    @Test
+    public void areCoordinatesAllowedReturnsTrueWhenYes() {
+        assertTrue(game.areCoordinatesAllowed(2, 2, new BotPlayer(), 2, "s", "no"));
+    }
+
+//DOES NOT WORK WHEN CREATE BOARD IS NOT COMMENTED
+//    @Test
+//    public void finishStartMethodGetsGameModeCorrectly() {
+//        when(mockUser.getGamemode()).thenReturn(0);
+//        game.finishStartMethod();
+//        assertEquals(0, game.gameMode);
+//    }
 }

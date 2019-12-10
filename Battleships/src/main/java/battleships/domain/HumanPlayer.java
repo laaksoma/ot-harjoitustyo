@@ -11,9 +11,8 @@ public class HumanPlayer extends Player {
     /**
      * Creates a new instance of {@link HumanPlayer}.
      * <p>
-     * Calls ADD LINK TO PLAYER CONSTRUCTOR? with the given parameter
+     * Calls {@link Player#Player(String)} with the given parameter
      * playerName.</p>
-     *
      * @param playerName Name of the player
      */
     public HumanPlayer(String playerName) {

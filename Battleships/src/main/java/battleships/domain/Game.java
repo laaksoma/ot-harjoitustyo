@@ -60,7 +60,7 @@ public class Game {
     /**
      * Sets current instance as null.
      */
-    //THIS METHOD IS NOT USED?
+    //THIS METHOD IS NOT USED? IF NOT, REMOVE
     public void abandonInstance() {
         this.instance = null;
     }
@@ -80,7 +80,7 @@ public class Game {
     }
 
     /**
-     * Calls (ADD LINK TO UI.welcome() HERE).
+     * Calls {@link UserInterface#welcome()}.
      */
     public void beginStartMethod() {
         //System.out.println("About to call welcome");
@@ -90,8 +90,8 @@ public class Game {
 
     /**
      * Checks that the current {@link UserInterface} and the corresponding
-     * gameMode are set, calls for LINK ADDPLAYERS? and forwards the game by
-     * calling {@link #createBoard}.
+     * gameMode are set, calls for {@link #addPlayers()} and forwards the game
+     * by calling {@link #createBoard}.
      */
     //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
     public void finishStartMethod() {
@@ -126,8 +126,8 @@ public class Game {
     /**
      * Creates boards for both {@link Player}s.
      * <p>
-     * Uses a for-loop to iterate through listOfPlayers and calls ADD LINK TO
-     * PLAYER.SETSHIPS and ADD LINK TO SETUPBOARD.</p>
+     * Uses a for-loop to iterate through listOfPlayers and calls
+     * {@link Player#setShips(int)} and {@link #setUpBoard(Player)}.</p>
      * <p>
      * After the method is done with both {@link Player}s, calling for
      * {@link #playGame()}.</p>
@@ -190,11 +190,11 @@ public class Game {
      * Handles the turn order and keeps the turns changing.
      * <p>
      * Draws the {@link Player} for the first turn and sets isGameGoing as
-     * boolean value returned from ADD LINK TO TURN?.<br>
+     * boolean value returned from {@link #turn(Player)}.<br>
      * Handles the turn order with a while-loop with isGameGoing as its
      * condition.<br>
      * The loop changes the {@link Player} in turn by always calling the other
-     * index from listOfPlayers, and calling ADD LINK TO TURN? with the given
+     * index from listOfPlayers, and calling {@link #turn(Player) with the given
      * {@link Player}.
      * </p>
      */
@@ -262,6 +262,11 @@ public class Game {
         return true;
     }
 
+    /**
+     * @param playerNotWanted The player whose index we do not want
+     * @return The other player's index at the listOfPlayers
+     */
+    
     int getIndexForAnotherPlayer(Player playerNotWanted) {
         if (this.listOfPlayers.indexOf(playerNotWanted) == 0) {
             return 1;
@@ -270,6 +275,14 @@ public class Game {
         }
     }
 
+    /**
+     * @param row Index for row
+     * @param column Index for column
+     * @param player Player whose ship the method will set
+     * @param ship The ship and its lenght
+     * @param dir Direction for the ship
+     */
+    
     void placeShips(int row, int column, Player player, int ship, String dir) {
         int r = row;
         int c = column;
@@ -289,6 +302,16 @@ public class Game {
         }
     }
 
+    /**
+     * @param row Index for row
+     * @param column Index for column
+     * @param player Player on turn
+     * @param ship Ship to be set
+     * @param dir Direction for the ship
+     * @param mode Mode of whether game is going through set-up phase or already playing
+     * @return False if no, true if yes
+     */
+    
     boolean areCoordinatesAllowed(int row, int column, Player player, int ship, String dir, String mode) {
 
         if (row < 0 || row > (this.gameBoardSize - 1)) {
@@ -304,7 +327,8 @@ public class Game {
         }
     }
 
-    boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
+    
+    private boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
         int r = row - 1;
 
         while (r <= (row + 1)) {
@@ -325,7 +349,7 @@ public class Game {
         return true;
     }
 
-    boolean eachSurroundingIsEmpty(int row, int column, int[][] sea, int ship, int rowChange, int colChange) {
+    private boolean eachSurroundingIsEmpty(int row, int column, int[][] sea, int ship, int rowChange, int colChange) {
         int r = row;
         int c = column;
 
@@ -340,7 +364,7 @@ public class Game {
         return true;
     }
 
-    boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
+    private boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
         if (dir.equals("w")) {
             return eachSurroundingIsEmpty(row, column, sea, ship, -1, 0);
         } else if (dir.equals("s")) {
@@ -352,7 +376,7 @@ public class Game {
         }
     }
 
-    boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
+    private boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
         if (ship != 1) {
             if ((row == 0 && dir.equals("w"))
                     || (row == (sea.length - 1) && dir.equals("s"))
