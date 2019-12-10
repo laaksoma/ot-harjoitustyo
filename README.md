@@ -16,6 +16,7 @@ Testaus
 ## Releaset
 
 [Viikon 5 release](https://github.com/laaksoma/ot-harjoitustyo/releases/tag/viikko5)
+[Viikon 6 release](https://github.com/laaksoma/ot-harjoitustyo/releases/tag/Viikko6)
 
 ## Komentorivitoiminnot
 ### Suorittaminen komentoriviltä 
