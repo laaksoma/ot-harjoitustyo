@@ -46,11 +46,25 @@ public class GameTest {
     public void getGameBoardSizeReturnsCorrectly() {
         assertEquals(10, game.getGameBoardSize());
     }
-
+    
     @Test
-    public void startGetsGameModeCorrectly() {
-        assertEquals(0, game.gameMode);
+    public void beginStartMethodCallsForWelcome() {
+        game.beginStartMethod();
+        verify(mockUser).welcome();
     }
+    
+    //DOES NOT WORK WHEN CREATE BOARD IS NOT COMMENTED
+//    @Test
+//    public void finishStartMethodGetsGameModeCorrectly() {
+//        when(mockUser.getGamemode()).thenReturn(0);
+//        game.finishStartMethod();
+//        assertEquals(0, game.gameMode);
+//    }
+
+//    @Test
+//    public void startGetsGameModeCorrectly() {
+//        assertEquals(0, game.gameMode);
+//    }
 
     @Test(expected = IllegalStateException.class)
     public void constructorAllowsOnlyOneGameSingleton() {

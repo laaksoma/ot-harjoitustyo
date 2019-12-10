@@ -34,7 +34,6 @@ public class Game {
      * @throws IllegalStateException If Game instance is not null when calling
      * the class constructor
      */
-    
     public Game() throws IllegalStateException {
         if (instance != null) {
             throw new IllegalStateException("Multiple singletons attempted with class Game!");
@@ -97,9 +96,8 @@ public class Game {
     //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
     public void finishStartMethod() {
         refreshUserInterface();
-        this.gameMode = userInterface.getGamemode();           
+        this.gameMode = userInterface.getGamemode();
         addPlayers();
-
 
         createBoard(1);
 
@@ -141,7 +139,7 @@ public class Game {
         for (Player player : this.listOfPlayers) {
 
             player.setShips(numberOfShips);
-   
+
             setUpBoard(player);
         }
 

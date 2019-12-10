@@ -25,11 +25,11 @@ public class HumanPlayer extends Player {
      * <p>
      * The method gets information of game phase through parameter ship; if the
      * ship is 0, there is no need to set it in the {@link Sea}, and the method
-     * calls for ADD LINK TO UI.RULESFORTURN.<br>
+     * calls for {@link UserInterface#printRulesForPlayerTurn(String)}.<br>
      * If the ship is set as not zero, then calls for printing the {@link Sea}
      * and rules for placing the ship are excecuted. </p>
      *<p>Asks both row and column through {@link UserInterface}.</p>
-     * <p>If needForDirection is true, calls for ADD LINK TO UI.GETDIRECTION, if
+     * <p>If needForDirection is true, calls for {@link UserInterface#getDirection(int)}, if
      * false, sets dir as null.</p>
      * @param ship The ship that the coordinates are fetched for
      * @param needForDirection True when setting up the game, false when playing
