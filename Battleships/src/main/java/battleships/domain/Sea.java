@@ -204,8 +204,7 @@ public class Sea {
             return false;
         }
         
-        return Arrays.deepEquals(this.array, compSea.getSea())
-                && Arrays.deepEquals(this.mask, compSea.getMaskedSea());
+        return Arrays.deepEquals(this.array, compSea.getSea());
     }
 
 }

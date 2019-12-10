@@ -1,11 +1,8 @@
 package battleships.domain;
 
-import battleships.ui.GraphicalUserInterface;
-import battleships.ui.TextUserInterface;
 import battleships.ui.UserInterface;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * The functioning logic is implemented within this class.

@@ -3,8 +3,6 @@ package battleships.domain;
 import battleships.ui.TestUserInterface;
 import static org.mockito.Mockito.*;
 import battleships.ui.UserInterface;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -101,10 +99,19 @@ public class GameTest {
     }
 
     @Test
-    public void areCoordinatesAlreadyUsedReturnsTrueWhenYes() {
+    public void areCoordinatesAlreadyUsedReturnsTrueWhenYesWhenSeaHasBeenMissed() {
         HumanPlayer testPlayer = new HumanPlayer("testPlayer");
         PlacementInfo testInfo = new PlacementInfo(1, 1, null);
         testPlayer.getSea().modifyMaskedSea(1, 1, 0);
+
+        assertTrue(game.areCoordinatesAlreadyUsed(testInfo, testPlayer));
+    }
+
+    @Test
+    public void areCoordinatesAlreadyUsedReturnsTrueWhenYesWhenSeaHasBeenHit() {
+        HumanPlayer testPlayer = new HumanPlayer("testPlayer");
+        PlacementInfo testInfo = new PlacementInfo(1, 1, null);
+        testPlayer.getSea().modifyMaskedSea(1, 1, 1);
 
         assertTrue(game.areCoordinatesAlreadyUsed(testInfo, testPlayer));
     }

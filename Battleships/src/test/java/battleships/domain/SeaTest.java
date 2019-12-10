@@ -154,13 +154,6 @@ public class SeaTest {
     }
 
     @Test
-    public void equalsReturnsFalseWhenMaskIsDifferent() {
-        Sea compared = new Sea(5);
-        compared.modifyMaskedSea(1, 1, 1);
-        assertFalse(this.sea.equals(compared));
-    }
-
-    @Test
     public void equalsReturnsFalseWhenSizeDoesNotMatch() {
         Sea compared = new Sea(2);
         assertFalse(this.sea.equals(compared));
