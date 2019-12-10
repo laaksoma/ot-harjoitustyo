@@ -18,5 +18,6 @@ Päivä | Aika | Työn sisältö
 2.12. | 7 | Testausta ja sekvenssikaavion luontia. Graafiseen käyttöliittymään liittyvien ongelmien ratkontaa.
 6.12. | 13 | Graafisen käyttöliittymän jatkamista; set-up-ikkunan viimeistely.
 7.12. | 10 | Graafisen käyttöliittymän viimeistely pisteeseen, että peli toimii alusta loppuun. Uuden pelin aloitus ei vielä toimi.
-8.12. | 3 | JavaDocin luonti kaikille julkisille metodeille pakkauksessa battleships.ui.
-Yht. | 88 | 
+8.12. | 3 | JavaDocin luonti kaikille julkisille metodeille pakkauksessa battleships.domain.
+10.12. | 7 | GUI käyttöön. Testejä ja graafisen käyttöliittymän toiminnan hiontaa. Viikkodediksen vaatimusten kohtaamisen tarkastus.
+Yht. | 95 | 
