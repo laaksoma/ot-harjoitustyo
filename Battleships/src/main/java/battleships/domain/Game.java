@@ -83,9 +83,7 @@ public class Game {
      * Calls {@link UserInterface#welcome()}.
      */
     public void beginStartMethod() {
-        //System.out.println("About to call welcome");
         userInterface.welcome();
-        //System.out.println("Called welcome");
     }
 
     /**
@@ -99,7 +97,7 @@ public class Game {
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 
-        createBoard(1);
+        createBoard(5);
 
     }
 
@@ -107,12 +105,12 @@ public class Game {
         this.userInterface = UserInterface.getInstance();
     }
 
-//    /**
-//     * Adds two {@link Player}s for the game. 
-//     * <p>If gameMode is set as zero, the method adds first a {@link HumanPlayer} and then a {@link BotPlayer}.<br>
-//     * If gameMode is set as something else(1), the method adds two {@link HumanPlayer}s.<br>
-//     * In both cases the name to be given to create a {@link HumanPlayer} is asked from the {@link UserInterface}.</p>
-//     */
+    /**
+     * Adds two {@link Player}s for the game. 
+     * <p>If gameMode is set as zero, the method adds first a {@link HumanPlayer} and then a {@link BotPlayer}.<br>
+     * If gameMode is set as something else(1), the method adds two {@link HumanPlayer}s.<br>
+     * In both cases the name to be given to create a {@link HumanPlayer} is asked from the {@link UserInterface}.</p>
+     */
     void addPlayers() {
         if (this.gameMode == 0) {
             listOfPlayers.add(new HumanPlayer(userInterface.getPlayerName(1)));
