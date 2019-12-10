@@ -10,8 +10,8 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä joko 
 ## Perusversion tarjoama toiminnallisuus
 
 * Ohjenäkymä
-  - Pelaajalle tarjotaan lyhyet ja ytimekkäät ohjeet pelin toiminnasta ALOITETTU (branch: GUI)
-  - Nappi, jota painamalla pelaaja pääsee asetusnäkymään ALOITETTU (branch: GUI)
+  - Pelaajalle tarjotaan lyhyet ja ytimekkäät ohjeet pelin toiminnasta TEHTY
+  - Nappi, jota painamalla pelaaja pääsee asetusnäkymään TEHTY
   
 * Laivojen asettelun näkymä
   - Pelaajalle tarjotaan ohjeet ja ruudukko laivojen asettamista varten TEHTY
