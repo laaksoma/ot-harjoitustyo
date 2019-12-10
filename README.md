@@ -8,7 +8,7 @@ Tällä hetkellä ohjelma pyörii VMWaren kautta Linuxilla NetBeansilla, mutta k
 ## Dokumentaatio
 [Arkkitehtuurikuvaus](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/arkkitehtuuri.md)
 
-Kayttoohje
+[Kayttoohje](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kayttoohje.md)
 
 Testaus
 
