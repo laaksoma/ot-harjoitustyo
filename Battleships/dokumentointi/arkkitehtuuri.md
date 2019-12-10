@@ -8,19 +8,30 @@ Pakkauksesta _battleships.ui_ löytyvät käyttöliittymäluokat, ja _battleship
 Tietojen tallennus hoidetaan tulevaisuudessa _battleships.dao_-pakkauksen kautta.
 
 ## Käyttöliittymä
-Ei vielä saatavilla; toistaiseksi käytössä on vain tekstikäyttöliittymä.
+Graafinen käyttöliittymä sisältää kolme näkymää:
+ - pelin aloitusnäkymä
+ - laudan luomisen näkymä pelaajakohtaisesti
+ - pelinäkymä, 
+ 
+joista jokainen on toteutettu omana Scene-olionaan. Näkymät ovat yksi kerrallaan näkyvillä, ja näitä päivitetään asettamalla GraphicalUserInterface-luokassa aina haluttu Scene sopivan set-muotoisen metodin avulla sovelluksen Stagelle. 
 
 ## Sovelluslogiikka 
 Sovelluksen looginen toimintamalli koostuu luokasta Game, ja tämän kanssa vuorovaikuttavan Player-luokan 
 ilmentymistä HumanPlayer ja BotPlayer. 
-(lisää tähän luokkakaavio)
 
 ![Pakkauskaavio](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/kaaviot/sovelluslogiikka_laajempi_ilmandao.png)
+
+Käytettävissä on kolme erilaista käyttöliittymää: TestUserInterface, TextUserInterface ja GraphicalUserInterface. Luokka TestUserInterface on vain testien käytettävissä. GraphicalUserInterface on tällä hetkellä asetettu sovelluksessa oletukseksi, ja tulevaisuudessa tulee graafinen käyttöliittymä olemaankin ensisijainen tapa pelata, mutta toistaiseksi voi myös tekstikäyttöliittymää käyttää asettamalla tämän Mainissa (joskin tämä ei ole suotavaa). 
+
+GraphicalUserInterface vuorovaikuttaa battleships.ui-packagen sisällä kolmen FXML-controllerin kanssa: FXMLStartController, FXMLSetUpController ja FXMLPlayGameController.
 
 ## Tietojen pysyväistallennus
 Ei vielä saatavilla.
 
 ## Päätoiminnallisuudet
+### Pelin aloittaminen
+Ei vielä saatavilla.
+
 ### Laudan luonti
 Ei vielä saatavilla.
 
