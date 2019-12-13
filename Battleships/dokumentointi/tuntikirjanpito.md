@@ -20,4 +20,5 @@ Päivä | Aika | Työn sisältö
 7.12. | 10 | Graafisen käyttöliittymän viimeistely pisteeseen, että peli toimii alusta loppuun. Uuden pelin aloitus ei vielä toimi.
 8.12. | 3 | JavaDocin luonti kaikille julkisille metodeille pakkauksessa battleships.domain.
 10.12. | 7 | GUI käyttöön. Testejä ja graafisen käyttöliittymän toiminnan hiontaa. Viikkodediksen vaatimusten kohtaamisen tarkastus.
-Yht. | 95 | 
+13.12. | 3 | Pisteytyksen toteutus toiminnallisesti; itse pisteytyksen funktionaalisuus on vielä hakusessa.
+Yht. | 98 | 
