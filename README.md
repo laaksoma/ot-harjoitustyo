@@ -2,9 +2,6 @@
 
 Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä joko yksin yksinkertaista tekoälyä vastaan, tai yhdessä kaverin kanssa.
 
-# HUOM!
-Joku outo ongelma jdk:n kanssa, jos vain mahdollista niin suorittakaa Oraclen jdk
-
 ## Dokumentaatio
 [Arkkitehtuurikuvaus](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/arkkitehtuuri.md)
 
