@@ -30,6 +30,11 @@ public class FXMLPlayGameController implements Initializable {
     private Label seaLabelPlayer2;
     @FXML
     private Button newGameButton;       //default: not visible
+    @FXML
+    public Label pointsForPlayer1;
+    @FXML
+    public Label pointsForPlayer2;
+
     public int row;
     public int column;
     public boolean areCoordinatesSet;
@@ -59,6 +64,12 @@ public class FXMLPlayGameController implements Initializable {
         this.tryAnotherLocation.setVisible(false);
         this.areCoordinatesSet = false;
         changeNewGameButtonVisibility(false);
+        setPointsForPlayers(0, 0);
+    }
+
+    public void setPointsForPlayers(int pointsForPlayerOne, int pointsForPlayerTwo) {
+        pointsForPlayer1.setText(pointsForPlayerOne + "");
+        pointsForPlayer2.setText(pointsForPlayerTwo + "");
     }
 
     private void handlePaneClicked(Node node) {
@@ -101,7 +112,7 @@ public class FXMLPlayGameController implements Initializable {
                 + "Won't you try another location?");
     }
 
-    public void updateTurnForPlayerLabel(String name, boolean isGameGoing) {
+    public void updateTurnForPlayerLabel(String name, boolean isGameGoing, int points) {
         if (isGameGoing) {
             this.turnForPlayer.setText("It's turn for " + name + "!");
         } else {

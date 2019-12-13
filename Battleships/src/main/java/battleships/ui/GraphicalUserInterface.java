@@ -197,7 +197,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
     @Override
     public void printRulesForPlayerTurn(String name) {
         Platform.runLater(() -> {
-            this.playGameController.updateTurnForPlayerLabel(name, true);
+            this.playGameController.updateTurnForPlayerLabel(name, true, 0);
         });
     }
 
@@ -291,11 +291,19 @@ public class GraphicalUserInterface extends Application implements UserInterface
     }
 
     @Override
-    public void gameOver(String name) {
+    public void printPoints(Player playerInTurn, Player playerNotInTurn) {
+        Platform.runLater(() -> {
+
+            this.playGameController.setPointsForPlayers(playerInTurn.getPointsAsInt(), playerInTurn.getPointsAsInt());
+        });
+    }
+
+    @Override
+    public void gameOver(Player player) {
         Platform.runLater(() -> {
             this.playGameController.updateAbilityValuesForGameOver();
-            this.playGameController.updateTurnForPlayerLabel(name, false);
-            //this.playGameController.changeNewGameButtonVisibility(true);
+            this.playGameController.updateTurnForPlayerLabel(player.getName(), false, player.getPointsAsInt());
+//this.playGameController.changeNewGameButtonVisibility(true);
         });
 
     }

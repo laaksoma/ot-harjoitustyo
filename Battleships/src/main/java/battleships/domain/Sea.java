@@ -20,6 +20,8 @@ public class Sea {
     int[][] array;
     String[][] mask;
     int size;
+    int pointValue;
+    private int open = 0;
     
     /**
      * Creates a new Sea with the given size as dimension.
@@ -86,9 +88,16 @@ public class Sea {
             this.mask[row][column] = " O"; 
         } else {
             this.mask[row][column] = " X";
+            updateSeaPointValue(row, column);
             this.array[row][column] = 0;
         }
+        
+        this.open++;
         return this.mask[row][column];
+    }
+    
+    private void updateSeaPointValue(int row, int column) {
+        this.pointValue = this.pointValue - this.array[row][column];
     }
     
     /**
@@ -105,6 +114,14 @@ public class Sea {
 
     public String[][] getMaskedSea() {
         return this.mask;
+    }
+    
+    /**
+     * @return The int keeping count of opened areas
+     */
+    
+    public int getOpenedArea() {
+        return this.open;
     }
 
     /**
@@ -144,7 +161,7 @@ public class Sea {
     }
     
     /**
-     * Adds the given value to the array at the specified index.
+     * Adds the given value to the array at the specified index and updates the pointValue.
      * @param row Index for row
      * @param column Index for column
      * @param ship Numerical value of the ship
@@ -152,6 +169,7 @@ public class Sea {
 
     public void addShipToTheSea(int row, int column, int ship) {
         this.array[row][column] = ship;
+        this.pointValue = this.pointValue + ship;
     }
     
     /**

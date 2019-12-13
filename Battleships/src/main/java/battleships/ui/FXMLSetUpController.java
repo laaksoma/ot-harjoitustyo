@@ -55,10 +55,10 @@ public class FXMLSetUpController implements Initializable {
         });
 
     }
-    
+
     public void setDefaultValuesForController() {
     }
-
+   
     public void setInstructions(String playerName, int numberOfShips) {
         instructions.setText("Creating the board for " + playerName + "\n"
                 + "You are given " + numberOfShips + " ships. Place them in the sea by giving\n"
@@ -76,11 +76,10 @@ public class FXMLSetUpController implements Initializable {
     public void changeCoordinateButtonEnable() {
         getCoordsButton.setDisable(!getCoordsButton.isVisible());
     }
-    
+
 //    public void changeNextPlayerButtonVisibility(boolean value) {
 //        nextPlayerButton.setVisible(value);
 //    }
-
     public void changeErrorMessageVisibility(boolean value) {
         errorMessage.setVisible(value);
     }
@@ -99,7 +98,7 @@ public class FXMLSetUpController implements Initializable {
             this.areCoordinatesSet = true;
             changeErrorMessageVisibility(false);
         }
-        
+
         changeCoordinateButtonEnable();
         row.clear();
         column.clear();

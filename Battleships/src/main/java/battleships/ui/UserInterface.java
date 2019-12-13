@@ -49,8 +49,10 @@ public interface UserInterface {
     void printSea(Sea sea);
 
     void printMaskedSea(Player player, String missOrHit, int index);
+    
+    void printPoints(Player playerInTurn, Player playerNotInTurn);
 
-    void gameOver(String name);
+    void gameOver(Player player);
 
     int getRow(int seaSize);
 

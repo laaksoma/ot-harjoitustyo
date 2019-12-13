@@ -24,7 +24,7 @@ public class HumanPlayer extends Player {
      * <p>
      * The method gets information of game phase through parameter ship; if the
      * ship is 0, there is no need to set it in the {@link Sea}, and the method
-     * calls for {@link UserInterface#printRulesForPlayerTurn(String)}.<br>
+     * calls for {@link UserInterface#printRulesForPlayerTurn(String, int, int)}.<br>
      * If the ship is set as not zero, then calls for printing the {@link Sea}
      * and rules for placing the ship are excecuted. </p>
      *<p>Asks both row and column through {@link UserInterface}.</p>
@@ -49,6 +49,7 @@ public class HumanPlayer extends Player {
         int row = UserInterface.getInstance().getRow(gameSize);
         int column = UserInterface.getInstance().getColumn(gameSize);
         String direction = null;
+        System.out.println("Row " + row + " and column " + column + " were chosen!");
 
         if (needForDirection) {
             direction = UserInterface.getInstance().getDirection(ship);

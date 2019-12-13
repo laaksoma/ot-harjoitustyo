@@ -14,7 +14,7 @@ public class TextUserInterface implements UserInterface {
         if (instance != null) {
             throw new IllegalStateException("Multiple singletons attempted with class UserInterface!");
         }
-        
+
         this.scanner = new Scanner(System.in);
     }
 
@@ -133,8 +133,14 @@ public class TextUserInterface implements UserInterface {
     }
 
     @Override
-    public void gameOver(String name) {
-        System.out.print("Congratulations " + name + ", you won!");
+    public void printPoints(Player playerInTurn, Player playerNotInTurn) {
+        System.out.println("You have " + playerInTurn.getPointsAsInt() + "points.");
+    }
+
+    @Override
+    public void gameOver(Player player) {
+        System.out.print("Congratulations " + player.getName() + ", you won!");
+        System.out.println("You got " + player.getPointsAsInt() + " points!");
     }
 
     @Override

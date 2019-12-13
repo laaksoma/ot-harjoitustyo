@@ -10,6 +10,7 @@ public abstract class Player {
     String name;
     Sea sea;
     ArrayList<Integer> ships;
+    float points;
 
     /**
      * Creates a new instance of Player that represents a player of the game.
@@ -26,6 +27,41 @@ public abstract class Player {
         this.name = playerName;
         this.sea = new Sea(Game.getGameBoardSize());
         this.ships = new ArrayList<Integer>();
+    }
+    
+    /**
+     * Updates the state of player's points.
+     * @param byHowMuch By how much the points will be updated
+     */
+    
+    public void updatePoints(float byHowMuch) {
+        this.points = this.points + byHowMuch;
+    }
+    
+    /**
+     * Adds all player's points to one number.
+     * <p>Player's points consist of the following:<br>
+     * how many areas did the player reveal from the other, the lesser the better,<br>
+     * how quickly did the player find the other player's ships (added during the game turns),<br>
+     * how great is the value of ships still hidden for the player, and<br>
+     * how many areas did the other player reveal, once again less is better.</p>
+     * @param openedForOther How many areas are revealed of other player's {@link Sea}
+     * @param openedArea How many areas are open at one's own {@link Sea}
+     * @return points rounded to int
+     */
+    
+    public int setFinalPoints(int openedForOther, int openedArea) {
+        this.points = this.points + openedForOther + this.sea.pointValue + openedArea;
+
+        return Math.round(this.points);
+    }
+    
+    /**
+     * @return Amount of player points as int
+     */
+    
+    public int getPointsAsInt() {
+        return Math.round(this.points);
     }
 
     /**

@@ -22,7 +22,8 @@ public class Game {
     public int gameMode;
     private static Game instance = null;
     private Random random = new Random();
-    //private static boolean isHit = false;
+    private boolean isHit = false;
+    private float hitPointModifier = 1;
 
     /**
      * Creates a new instance of Game.
@@ -91,13 +92,13 @@ public class Game {
      * gameMode are set, calls for {@link #addPlayers()} and forwards the game
      * by calling {@link #createBoard}.
      */
-    //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
+    //THE NUMBER OF SHIPS IS SET HERE AS 5 FOR NOW
     public void finishStartMethod() {
         refreshUserInterface();
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 
-        createBoard(5);
+        createBoard(2);
 
     }
 
@@ -106,10 +107,14 @@ public class Game {
     }
 
     /**
-     * Adds two {@link Player}s for the game. 
-     * <p>If gameMode is set as zero, the method adds first a {@link HumanPlayer} and then a {@link BotPlayer}.<br>
-     * If gameMode is set as something else(1), the method adds two {@link HumanPlayer}s.<br>
-     * In both cases the name to be given to create a {@link HumanPlayer} is asked from the {@link UserInterface}.</p>
+     * Adds two {@link Player}s for the game.
+     * <p>
+     * If gameMode is set as zero, the method adds first a {@link HumanPlayer}
+     * and then a {@link BotPlayer}.<br>
+     * If gameMode is set as something else(1), the method adds two
+     * {@link HumanPlayer}s.<br>
+     * In both cases the name to be given to create a {@link HumanPlayer} is
+     * asked from the {@link UserInterface}.</p>
      */
     void addPlayers() {
         if (this.gameMode == 0) {
@@ -227,44 +232,64 @@ public class Game {
     //CLEAN THIS UP
     private boolean turn(Player player) {
         int i = getIndexForAnotherPlayer(player);
-        userInterface.printMaskedSea(this.listOfPlayers.get(i), null, i);
+        Player notInTurn = this.listOfPlayers.get(i);
+        userInterface.printMaskedSea(notInTurn, null, i);
 
         while (true) {                                                          //THE TURN GOES ON WHILE THIS IS TRUE
             PlacementInfo info = player.decideCoordinates(0, false, this.gameBoardSize);
             int row = info.getRow();
             int column = info.getColumn();
+            int shipValue = 0;
+            userInterface.printPoints(player, notInTurn);
 
-            if (areCoordinatesAlreadyUsed(info, this.listOfPlayers.get(i))) {
+            if (areCoordinatesAlreadyUsed(info, notInTurn)) {
                 if (player.getClass() == HumanPlayer.class) {
                     userInterface.printForNoNewCoordinates(row, column);
                 }
                 continue;
             }
 
-            if (this.listOfPlayers.get(i).getSea().isAreaEmpty(row, column)) {
-                this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 0);
-                userInterface.printMaskedSea(this.listOfPlayers.get(i), "miss", i);
-                //this.isHit = false;
+            shipValue = notInTurn.getSea().getSea()[row][column];
+
+            if (notInTurn.getSea().isAreaEmpty(row, column)) {
+                notInTurn.getSea().modifyMaskedSea(row, column, 0);
+                userInterface.printMaskedSea(notInTurn, "miss", i);
+                this.isHit = false;
                 break;
             } else {
-                this.listOfPlayers.get(i).getSea().modifyMaskedSea(row, column, 1);
-                userInterface.printMaskedSea(this.listOfPlayers.get(i), "hit", i);
-                //this.isHit = true;
-                if (this.listOfPlayers.get(i).getSea().seaIsEmpty()) {
-                    userInterface.gameOver(player.getName());
-                    return false;
-                }
+                notInTurn.getSea().modifyMaskedSea(row, column, 1);
+                userInterface.printMaskedSea(notInTurn, "hit", i);
+                this.isHit = true;
             }
-            userInterface.printMaskedSea(this.listOfPlayers.get(i), null, i);
+
+            updatePlayerPoints(shipValue, player, notInTurn);
+
+            if (notInTurn.getSea().seaIsEmpty()) {
+                player.setFinalPoints(notInTurn.getSea().getOpenedArea(), player.getSea().getOpenedArea());
+                userInterface.gameOver(player);
+                return false;
+            }
+
+            userInterface.printMaskedSea(notInTurn, null, i);
         }
         return true;
     }
 
+    private void updatePlayerPoints(int ship, Player player, Player notInTurn) {
+        if (this.isHit) {
+            this.hitPointModifier = (float) (this.hitPointModifier * 1.2);
+        } else {
+            this.hitPointModifier = 1;
+        }
+
+        player.updatePoints(this.hitPointModifier * ship);
+        userInterface.printPoints(player, notInTurn);
+    }
+
     /**
      * @param playerNotWanted The player whose index we do not want
-     * @return The other player's index at the listOfPlayers
+     * @return The other player's index at the listOfPlayers, 1 or 0
      */
-    
     int getIndexForAnotherPlayer(Player playerNotWanted) {
         if (this.listOfPlayers.indexOf(playerNotWanted) == 0) {
             return 1;
@@ -280,7 +305,6 @@ public class Game {
      * @param ship The ship and its lenght
      * @param dir Direction for the ship
      */
-    
     void placeShips(int row, int column, Player player, int ship, String dir) {
         int r = row;
         int c = column;
@@ -306,10 +330,10 @@ public class Game {
      * @param player Player on turn
      * @param ship Ship to be set
      * @param dir Direction for the ship
-     * @param mode Mode of whether game is going through set-up phase or already playing
+     * @param mode Mode of whether game is going through set-up phase or already
+     * playing
      * @return False if no, true if yes
      */
-    
     boolean areCoordinatesAllowed(int row, int column, Player player, int ship, String dir, String mode) {
 
         if (row < 0 || row > (this.gameBoardSize - 1)) {
@@ -325,7 +349,6 @@ public class Game {
         }
     }
 
-    
     private boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
         int r = row - 1;
 

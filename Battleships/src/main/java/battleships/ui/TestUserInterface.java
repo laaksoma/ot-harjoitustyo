@@ -1,4 +1,3 @@
-
 package battleships.ui;
 
 import battleships.domain.Player;
@@ -8,22 +7,21 @@ import java.util.Scanner;
 public class TestUserInterface implements UserInterface {
 
     static boolean singletonHasBeenCreated = false;
-    
-    public static void setInstance(UserInterface ui){
+
+    public static void setInstance(UserInterface ui) {
         instance = ui;
         singletonHasBeenCreated = true;
     }
-    
+
     private static UserInterface instance;
-    
-     static UserInterface getInstance(){
-        if(instance == null){
+
+    static UserInterface getInstance() {
+        if (instance == null) {
             throw new IllegalStateException("For Test UI, you must set instance before getting it.");
         }
         return instance;
-     }
-    
-     
+    }
+
     // The rest are not needed, since the instance is mocked
     @Override
     public void setUpScanner(Scanner scanner) {
@@ -70,7 +68,11 @@ public class TestUserInterface implements UserInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void gameOver(String name) {
+    public void printPoints(Player playerInTurn, Player playerNotInTurn) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void gameOver(Player player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
