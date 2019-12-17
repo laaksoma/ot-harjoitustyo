@@ -21,4 +21,5 @@ Päivä | Aika | Työn sisältö
 8.12. | 3 | JavaDocin luonti kaikille julkisille metodeille pakkauksessa battleships.domain.
 10.12. | 7 | GUI käyttöön. Testejä ja graafisen käyttöliittymän toiminnan hiontaa. Viikkodediksen vaatimusten kohtaamisen tarkastus.
 13.12. | 3 | Pisteytyksen toteutus toiminnallisesti; itse pisteytyksen funktionaalisuus on vielä hakusessa.
-Yht. | 98 | 
+17.12. | 10 | Tietokantatoteutus, DAO ja high score -taulukko toimivat.
+Yht. | 108 | 
