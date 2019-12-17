@@ -265,7 +265,7 @@ public class Game {
             updatePlayerPoints(shipValue, player, notInTurn);
 
             if (notInTurn.getSea().seaIsEmpty()) {
-                player.setFinalPoints(notInTurn.getSea().getOpenedArea(), player.getSea().getOpenedArea());
+                player.setFinalPoints(notInTurn.getSea().getOpenedArea());
                 userInterface.gameOver(player);
                 return false;
             }

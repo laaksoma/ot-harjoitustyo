@@ -61,6 +61,13 @@ public class SeaTest {
 
         assertEquals(0, this.sea.getSea()[1][1]);
     }
+    
+    @Test
+    public void modifyMaskedSeaAddsCorrectlyToOpenArea() {
+        this.sea.modifyMaskedSea(1, 1, 1);
+        this.sea.modifyMaskedSea(3, 4, 0);
+        assertEquals(2, this.sea.getOpenedArea());
+    }
 
     @Test
     public void getSeaGetsArrayCorrectly() {

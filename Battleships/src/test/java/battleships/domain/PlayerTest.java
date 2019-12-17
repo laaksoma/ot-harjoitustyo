@@ -39,6 +39,20 @@ public class PlayerTest {
         
         assertEquals(3, human.getSea().getSea()[1][1]);
     }
+    
+    @Test
+    public void updatePointsUpdatesCorrectly() {
+        human.updatePoints(2);
+        assertEquals(2, human.getPointsAsInt());
+    }
+    
+    @Test
+    public void setFinalPointsSetsCorrectly() {
+        human.getSea().modifyMaskedSea(1, 1, 1);
+        human.setFinalPoints(3); 
+        
+        assertEquals(196, human.getPointsAsInt());
+    }
 
     @Test
     public void getSeaGetsSeaCorrectly() {

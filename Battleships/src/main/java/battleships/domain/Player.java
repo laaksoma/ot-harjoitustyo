@@ -46,12 +46,11 @@ public abstract class Player {
      * how great is the value of ships still hidden for the player, and<br>
      * how many areas did the other player reveal, once again less is better.</p>
      * @param openedForOther How many areas are revealed of other player's {@link Sea}
-     * @param openedArea How many areas are open at one's own {@link Sea}
      * @return points rounded to int
      */
     
-    public int setFinalPoints(int openedForOther, int openedArea) {
-        this.points = this.points + openedForOther + this.sea.pointValue + openedArea;
+    public int setFinalPoints(int openedForOther) {
+        this.points = this.points + (100 - openedForOther) + this.sea.pointValue + (100 - getSea().getOpenedArea());
 
         return Math.round(this.points);
     }
