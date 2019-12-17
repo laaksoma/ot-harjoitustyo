@@ -138,25 +138,21 @@ public class FXMLStartController implements Initializable {
     public void setHighScores(ArrayList<Score> highScores) {
         this.highScoreTable.setVisible(true);
         List<Node> children = highScoreTable.getChildren();
-        //if less than 11, then
-        //skip 0, 11
-        //go through with two loops? first from 0 to 10, NAMES
-        //second from 11 to 22? POINTS
 
-        int howMany = highScores.size(); //size is 1 atm
+        int howMany = highScores.size();
+        int index = 0;
 
-        for (int i = 2; i < 21; i++) {
-            //even is name, uneven is number
+        for (int i = 1; i < 21; i++) {
             Label label = (Label) children.get(i);
 
             if (howMany > 0) {
-                if (i % 2 == 0) {
-                    label.setText(highScores.get(i - 1).getName());
+                if (i % 2 != 0) {
+                    label.setText(highScores.get(index).getName()); 
                 } else {
-                    label.setText(highScores.get(i).getPoints() + "");
+                    label.setText(highScores.get(index).getPoints() + "");
+                    index++;
+                    howMany--;
                 }
-
-                howMany--;
             } else {
                 label.setText("  ---  ");
             }
