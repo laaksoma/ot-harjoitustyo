@@ -23,6 +23,11 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>3.12.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -33,6 +38,7 @@
                 <configuration>
                     <excludes>
                         <exclude>battleships/ui/*</exclude>
+                        <exclude>battleships/dao/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

@@ -92,13 +92,13 @@ public class Game {
      * gameMode are set, calls for {@link #addPlayers()} and forwards the game
      * by calling {@link #createBoard}.
      */
-    //THE NUMBER OF SHIPS IS SET HERE AS 5 FOR NOW
+    //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
     public void finishStartMethod() {
         refreshUserInterface();
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 
-        createBoard(2);
+        createBoard(1);
 
     }
 
@@ -172,7 +172,7 @@ public class Game {
                 if (player.getClass() == HumanPlayer.class) {
                     this.userInterface.directionNotAllowed("You must choose another placement!");
                 }
-
+                
                 i--;
             }
         }
@@ -349,7 +349,7 @@ public class Game {
         }
     }
 
-    private boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
+    boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
         int r = row - 1;
 
         while (r <= (row + 1)) {
@@ -370,7 +370,7 @@ public class Game {
         return true;
     }
 
-    private boolean eachSurroundingIsEmpty(int row, int column, int[][] sea, int ship, int rowChange, int colChange) {
+    boolean eachSurroundingIsEmpty(int row, int column, int[][] sea, int ship, int rowChange, int colChange) {
         int r = row;
         int c = column;
 
@@ -385,7 +385,7 @@ public class Game {
         return true;
     }
 
-    private boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
+    boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
         if (dir.equals("w")) {
             return eachSurroundingIsEmpty(row, column, sea, ship, -1, 0);
         } else if (dir.equals("s")) {
@@ -397,7 +397,7 @@ public class Game {
         }
     }
 
-    private boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
+    boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
         if (ship != 1) {
             if ((row == 0 && dir.equals("w"))
                     || (row == (sea.length - 1) && dir.equals("s"))

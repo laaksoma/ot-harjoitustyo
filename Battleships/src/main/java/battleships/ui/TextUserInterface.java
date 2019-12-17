@@ -1,5 +1,6 @@
 package battleships.ui;
 
+import battleships.domain.Game;
 import battleships.domain.Player;
 import battleships.domain.Sea;
 import java.util.Scanner;
@@ -40,6 +41,8 @@ public class TextUserInterface implements UserInterface {
     public void welcome() {
         System.out.println("Welcome to the Battleships game!");
         System.out.println("Would you like to play alone or with a friend?");
+        
+        Game.getInstance().finishStartMethod();
     }
 
     @Override
