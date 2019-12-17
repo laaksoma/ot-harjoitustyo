@@ -40,6 +40,6 @@ Peliä ja sen toimintaa voisi kehittää esimerkiksi seuraavilla ominaisuuksilla
 * Mahdollisuus avata ohjeet kesken pelin
 * Mahdollisuus aloittaa uusi peli
 * Mahdollisuus aloittaa uusi peli, vaikka vanha olisi vielä kesken
-* Pelin pisteytys ja näiden tietojen mahdollinen tallennus KESKEN
+* Parhaiden pisteiden suodattaminen viikon, kuukauden tai vuoden perusteella
 * Graafisen käyttöliittymän hionta
 * Äänitehosteiden lisäys peliin 
