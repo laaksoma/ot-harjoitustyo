@@ -2,7 +2,9 @@ package battleships.ui;
 
 import battleships.domain.Game;
 import battleships.domain.Player;
+import battleships.domain.Score;
 import battleships.domain.Sea;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUserInterface implements UserInterface {
@@ -43,6 +45,23 @@ public class TextUserInterface implements UserInterface {
         System.out.println("Would you like to play alone or with a friend?");
         
         Game.getInstance().finishStartMethod();
+    }
+    
+    @Override
+    public void printHighScores(ArrayList<Score> highScores) {
+        System.out.println("Name     Scores");
+        int i = 1;
+        
+        for (Score score : highScores) {
+            System.out.println(score.getName() + "  " + score.getPoints());
+            i++;
+        }
+        
+        if (i < 10) {
+            while (i <= 10) {
+                System.out.println(" ---    ---");
+            }
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Sorts;
 import java.util.ArrayList;
 import org.bson.Document;
 
@@ -17,6 +18,9 @@ public class ScoreDao {
     private MongoClient client;
     private MongoDatabase database;
 
+    /**
+     * @param address IP address for the MongoClient
+     */
     public ScoreDao(String address) {
         try {
             client = MongoClients.create(address);
@@ -24,14 +28,11 @@ public class ScoreDao {
             System.out.println("Creating ScoreDao did not succeed.");
             e.printStackTrace();
         }
-
-//        MongoCollection<Document> collection = database.getCollection("test");
-//        
-//        Document doc = new Document("name", "MongoDB").append("type", "database");
-//        collection.insertOne(doc);
-//        System.out.println(collection.countDocuments());
     }
 
+    /**
+     * @return A new collection for Battleships highScores
+     */
     public MongoCollection<Document> getCollection() {
         database = client.getDatabase("Studies-db");
         MongoCollection<Document> collection = database.getCollection("BattleshipHighScores");
@@ -53,16 +54,12 @@ public class ScoreDao {
     }
 
     /**
+     * Gets all high scores and sorts through them by adding the highest ten to a list.
      * @return List of ten highest scores
      */
     public ArrayList<Score> getHighScores() {
-        
-        return getAll();
-    }
-
-    private ArrayList<Score> getAll() {
         ArrayList<Score> highScores = new ArrayList<>();
-        MongoCursor<Document> cursor = getCollection().find().iterator();
+        MongoCursor<Document> cursor = getCollection().find().sort(Sorts.descending("points")).limit(10).iterator();
 
         try {
             while (cursor.hasNext()) {
@@ -75,8 +72,7 @@ public class ScoreDao {
         } finally {
             cursor.close();
         }
-        
+
         return highScores;
     }
-
 }

@@ -42,7 +42,7 @@ public class Game {
             throw new IllegalStateException("Multiple singletons attempted with class Game!");
         }
 
-        this.dao = new ScoreDao("insert magic string here");
+        this.dao = new ScoreDao("mongodb+srv://battleships_user:Lc8UDi0R1auovSIx@studies-db-zjjj3.gcp.mongodb.net/test?retryWrites=true&w=majority");
         listOfPlayers = new ArrayList<Player>();
         this.gameBoardSize = 10;
         this.userInterface = UserInterface.getInstance();
@@ -98,6 +98,7 @@ public class Game {
     //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
     public void finishStartMethod() {
         refreshUserInterface();
+        userInterface.printHighScores(dao.getHighScores());
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 

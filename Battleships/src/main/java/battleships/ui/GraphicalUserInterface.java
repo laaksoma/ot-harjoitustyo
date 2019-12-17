@@ -2,8 +2,10 @@ package battleships.ui;
 
 import battleships.domain.Game;
 import battleships.domain.Player;
+import battleships.domain.Score;
 import battleships.domain.Sea;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
@@ -154,6 +156,13 @@ public class GraphicalUserInterface extends Application implements UserInterface
         launch(GraphicalUserInterface.class);                                   //STARTGUI
     }
 
+    @Override
+    public void printHighScores(ArrayList<Score> highScores) {
+        Platform.runLater(() -> {
+            this.startController.setHighScores(highScores);
+        });
+    }
+
     private boolean gameModeChosen = false;
 
     @Override
@@ -302,9 +311,8 @@ public class GraphicalUserInterface extends Application implements UserInterface
         Platform.runLater(() -> {
             this.playGameController.updateAbilityValuesForGameOver();
             this.playGameController.updateTurnForPlayerLabel(player.getName(), false, player.getPointsAsInt());
-//this.playGameController.changeNewGameButtonVisibility(true);
+            //this.playGameController.changeNewGameButtonVisibility(true);
         });
-
     }
 
     private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {
