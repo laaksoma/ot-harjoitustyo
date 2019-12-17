@@ -34,6 +34,10 @@ public class FXMLPlayGameController implements Initializable {
     public Label pointsForPlayer1;
     @FXML
     public Label pointsForPlayer2;
+    @FXML
+    public Label pointsNamePlayer1;
+    @FXML
+    public Label pointsNamePlayer2;
 
     public int row;
     public int column;
@@ -116,12 +120,16 @@ public class FXMLPlayGameController implements Initializable {
         if (isGameGoing) {
             this.turnForPlayer.setText("It's turn for " + name + "!");
         } else {
-            this.turnForPlayer.setText("Congratulation's " + name + ", you won!\n");
+            changeLabelVisibility(pointsForPlayer1, true);
+            changeLabelVisibility(pointsForPlayer2, true);
+            this.turnForPlayer.setText("Congratulation's " + name + ", you won! You got " + points + " points!\n");
         }
     }
 
-    public void setSeaLabels(String name1, String name2) {
+    public void setPlayerLabels(String name1, String name2) {
         seaLabelPlayer1.setText(name1 + "'s sea");
         seaLabelPlayer2.setText(name2 + "'s sea");
+        pointsNamePlayer1.setText(name1 + " points: ");
+        pointsNamePlayer2.setText(name2 + " points: ");
     }
 }

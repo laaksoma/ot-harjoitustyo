@@ -43,14 +43,21 @@
                <children>
                   <VBox prefHeight="48.0" prefWidth="265.0">
                      <children>
-                        <Label fx:id="whereToHitPlayer1" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="254.0" text="Where would you like to hit? " visible="false" />
+                        <Label fx:id="whereToHitPlayer1" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="254.0" text="Where would you like to hit? " />
                      </children>
                   </VBox>
                   <Button fx:id="newGameButton" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="New game" visible="false" />
                </children>
             </HBox>
-            <Label fx:id="pointsForPlayer1" alignment="CENTER" prefHeight="48.0" prefWidth="134.0" text="0" GridPane.rowIndex="1" />
-            <Label fx:id="pointsForPlayer2" alignment="CENTER" prefHeight="48.0" prefWidth="134.0" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label fx:id="pointsForPlayer1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="110.0" text="0" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <Label fx:id="pointsNamePlayer1" prefHeight="17.0" prefWidth="80.0" text="points1" />
+               </graphic>
+            </Label>
+            <Label fx:id="pointsForPlayer2" alignment="CENTER" prefHeight="25.0" prefWidth="110.0" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <Label fx:id="pointsNamePlayer2" prefHeight="17.0" prefWidth="80.0" text="points2" />
+               </graphic></Label>
          </children>
       </GridPane>
       <GridPane fx:id="gridPanePlayer1" GridPane.rowIndex="1">

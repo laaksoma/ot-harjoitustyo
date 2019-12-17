@@ -254,7 +254,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
         setPlayGameScene();
         String name1 = Game.getInstance().getListOfPlayers().get(0).getName();
         String name2 = Game.getInstance().getListOfPlayers().get(1).getName();
-        this.playGameController.setSeaLabels(name1, name2);
+        this.playGameController.setPlayerLabels(name1, name2);
     }
 
     @Override

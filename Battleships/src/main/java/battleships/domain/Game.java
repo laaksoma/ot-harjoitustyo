@@ -283,7 +283,7 @@ public class Game {
         }
 
         player.updatePoints(this.hitPointModifier * ship);
-        userInterface.printPoints(player, notInTurn);
+        //userInterface.printPoints(player, notInTurn);
     }
 
     /**
