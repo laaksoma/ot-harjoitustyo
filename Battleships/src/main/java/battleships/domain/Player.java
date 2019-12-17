@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public abstract class Player {
 
-    String name;
-    Sea sea;
-    ArrayList<Integer> ships;
+    private String name;
+    private Sea sea;
+    private ArrayList<Integer> ships;
     float points;
 
     /**

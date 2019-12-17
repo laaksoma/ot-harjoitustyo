@@ -21,13 +21,8 @@ public class BattleshipsMain {
      * @throws Exception In case of {@link Game} instance Singleton exception.
      */
     public static void main(String[] args) throws Exception {
-        createDatabase();
-//        UserInterface gameUserInterface = new GraphicalUserInterface().getInstance();
-        //        Game battleships = Game.getInstance();
-        // battleships.beginStartMethod();
-    }
-
-    private static void createDatabase() {
-
+        UserInterface gameUserInterface = new GraphicalUserInterface().getInstance();
+        Game battleships = Game.getInstance();
+        battleships.beginStartMethod();
     }
 }

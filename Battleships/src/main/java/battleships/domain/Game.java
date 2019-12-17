@@ -1,5 +1,6 @@
 package battleships.domain;
 
+import battleships.dao.ScoreDao;
 import battleships.ui.UserInterface;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,6 +22,7 @@ public class Game {
      */
     public int gameMode;
     private static Game instance = null;
+    private ScoreDao dao;
     private Random random = new Random();
     private boolean isHit = false;
     private float hitPointModifier = 1;
@@ -40,6 +42,7 @@ public class Game {
             throw new IllegalStateException("Multiple singletons attempted with class Game!");
         }
 
+        this.dao = new ScoreDao("insert magic string here");
         listOfPlayers = new ArrayList<Player>();
         this.gameBoardSize = 10;
         this.userInterface = UserInterface.getInstance();
@@ -172,7 +175,7 @@ public class Game {
                 if (player.getClass() == HumanPlayer.class) {
                     this.userInterface.directionNotAllowed("You must choose another placement!");
                 }
-                
+
                 i--;
             }
         }
@@ -265,14 +268,19 @@ public class Game {
             updatePlayerPoints(shipValue, player, notInTurn);
 
             if (notInTurn.getSea().seaIsEmpty()) {
-                player.setFinalPoints(notInTurn.getSea().getOpenedArea());
-                userInterface.gameOver(player);
+                gameOver(player, notInTurn);
                 return false;
             }
 
             userInterface.printMaskedSea(notInTurn, null, i);
         }
         return true;
+    }
+
+    void gameOver(Player inTurn, Player notInTurn) {
+        inTurn.setFinalPoints(notInTurn.getSea().getOpenedArea());
+        this.dao.addWinner(new Score(inTurn.getName(), inTurn.getPointsAsInt()));
+        userInterface.gameOver(inTurn);
     }
 
     private void updatePlayerPoints(int ship, Player player, Player notInTurn) {
