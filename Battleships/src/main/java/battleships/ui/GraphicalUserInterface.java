@@ -93,11 +93,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
         setStartScene();
         stage.show();
 
-        //TESTING
-        if (this.setUpController == null) {
-            System.out.println("Controller is null!");
-        }
-
         this.startController.setWelcome();
 
         Thread t = new Thread(() -> Game.getInstance().finishStartMethod());
@@ -311,7 +306,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
         Platform.runLater(() -> {
             this.playGameController.updateAbilityValuesForGameOver();
             this.playGameController.updateTurnForPlayerLabel(player.getName(), false, player.getPointsAsInt());
-            //this.playGameController.changeNewGameButtonVisibility(true);
+            this.playGameController.changeNewGameButtonVisibility(true);
         });
     }
 

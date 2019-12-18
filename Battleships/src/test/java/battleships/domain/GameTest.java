@@ -251,11 +251,124 @@ public class GameTest {
         assertTrue(game.surroundsAreEmpty(0, 0, testBot.getSea().array, 1));
     }
 
-//DOES NOT WORK WHEN CREATE BOARD IS NOT COMMENTED
-//    @Test
-//    public void finishStartMethodGetsGameModeCorrectly() {
-//        when(mockUser.getGamemode()).thenReturn(0);
-//        game.finishStartMethod();
-//        assertEquals(0, game.gameMode);
-//    }
+    @Test
+    public void eachSurroundingIsEmptyReturnsFalseWhenNo() {
+        BotPlayer testBot = new BotPlayer();
+        testBot.getSea().addShipToTheSea(3, 3, 2);
+
+        assertFalse(game.eachSurroundingIsEmpty(3, 4, testBot.getSea().array, 3, 0, -1));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsTrueWithUpWhenYes() {
+        BotPlayer testBot = new BotPlayer();
+
+        assertTrue(game.isDirectionAllowed(3, 3, testBot.getSea().array, 2, "w"));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsFalseWithUpWhenNo() {
+        BotPlayer testBot = new BotPlayer();
+        testBot.getSea().addShipToTheSea(2, 1, 1);
+
+        assertFalse(game.isDirectionAllowed(2, 2, testBot.getSea().array, 3, "w"));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsTrueWithLeftWhenYes() {
+        BotPlayer testBot = new BotPlayer();
+
+        assertTrue(game.isDirectionAllowed(2, 4, testBot.getSea().array, 3, "a"));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsFalseWithLeftWhenNo() {
+        BotPlayer testBot = new BotPlayer();
+        testBot.getSea().addShipToTheSea(2, 1, 1);
+
+        assertFalse(game.isDirectionAllowed(2, 2, testBot.getSea().array, 3, "a"));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsTrueWithDownWhenYes() {
+        BotPlayer testBot = new BotPlayer();
+
+        assertTrue(game.isDirectionAllowed(1, 1, testBot.getSea().array, 3, "s"));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsFalseWithDownWhenNo() {
+        BotPlayer testBot = new BotPlayer();
+        testBot.getSea().addShipToTheSea(1, 1, 2);
+
+        assertFalse(game.isDirectionAllowed(1, 2, testBot.getSea().array, 3, "s"));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsTrueWithRightWhenYes() {
+        BotPlayer testBot = new BotPlayer();
+
+        assertTrue(game.isDirectionAllowed(2, 1, testBot.getSea().array, 3, "d"));
+    }
+
+    @Test
+    public void isDirectionAllowedReturnsFalseWithRightWhenNo() {
+        BotPlayer testBot = new BotPlayer();
+        testBot.getSea().addShipToTheSea(1, 1, 2);
+
+        assertFalse(game.isDirectionAllowed(1, 2, testBot.getSea().array, 3, "d"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsTrueWhenShipIsOneAndIsAllowed() {
+        assertTrue(game.isPlacementAllowed(1, 1, new int[5][5], 1, "s"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenShipIsOneAndIsNotAllowed() {
+        int[][] testSea = new int[5][5];
+        testSea[1][1] = 2;
+
+        assertFalse(game.isPlacementAllowed(1, 0, testSea, 1, "w"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenShipHasNoSpaceAndGoesUp() {
+        assertFalse(game.isPlacementAllowed(0, 0, new int[5][5], 2, "w"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenShipHasNoSpaceAndGoesLeft() {
+        assertFalse(game.isPlacementAllowed(2, 0, new int[5][5], 2, "a"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenShipHasNoSpaceAndGoesDown() {
+        assertFalse(game.isPlacementAllowed(4, 4, new int[5][5], 2, "s"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenShipHasNoSpaceAndGoesRight() {
+        assertFalse(game.isPlacementAllowed(3, 4, new int[5][5], 2, "d"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenRowIsZeroAndGoesUp() {
+        assertFalse(game.isPlacementAllowed(0, 3, new int[5][5], 3, "w"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenColumnIsZeroAndGoesLeft() {
+        assertFalse(game.isPlacementAllowed(3, 0, new int[5][5], 3, "a"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenRowIsMaxAndGoesDown() {
+        assertFalse(game.isPlacementAllowed(4, 2, new int[5][5], 3, "s"));
+    }
+
+    @Test
+    public void isPlacementAllowedReturnsFalseWhenColumnIsMaxAndGoesRight() {
+        assertFalse(game.isPlacementAllowed(1, 4, new int[5][5], 3, "d"));
+    }
 }

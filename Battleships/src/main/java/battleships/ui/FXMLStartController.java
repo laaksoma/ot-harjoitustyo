@@ -93,7 +93,7 @@ public class FXMLStartController implements Initializable {
         playGameButton.setOnAction((e) -> handlePlayGameButtonPressAfterGameModeSelected());
     }
 
-    public void handlePlayGameButtonPressAfterGameModeSelected() {
+public void handlePlayGameButtonPressAfterGameModeSelected() {
         if (player1Name.getText().trim().isEmpty()) {
             return;
         }
@@ -113,6 +113,7 @@ public class FXMLStartController implements Initializable {
         p2Name = player2Name.getText().trim();
         namesSet = true;
 
+        playGameButton.setOnAction((e) -> playGameButtonHandling());
         this.GraphUserInterface.setSetUpScene();
     }
 
