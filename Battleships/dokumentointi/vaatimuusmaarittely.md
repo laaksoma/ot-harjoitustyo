@@ -22,7 +22,6 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä joko 
     tai pelilaudan ulkopuolelle), peli herjaa asiasta 
    - Kun kaikki laivat on asetettu paikoilleen, siirrytään automaattisesti pelinäkymään 
        - Mikäli pelataan kaverin kanssa, siirrytään ensin automaattisesti asettamaan toisenkin pelaajan laivat, ja vasta sitten pelinäkymään
-
  
 * Pelinäkymä
   - Aloittaja arvotaan automaattisesti 
@@ -37,6 +36,7 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä joko 
 
 Peliä ja sen toimintaa voisi kehittää esimerkiksi seuraavilla ominaisuuksilla: 
 
+* Mahdollisuus muokata pelilaudan kokoa tai laivojen määrää peliasetuksista
 * Mahdollisuus avata ohjeet kesken pelin
 * Mahdollisuus aloittaa uusi peli
 * Mahdollisuus aloittaa uusi peli, vaikka vanha olisi vielä kesken
