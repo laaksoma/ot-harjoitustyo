@@ -102,7 +102,7 @@ public class Game {
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 
-        createBoard(1);
+        createBoard(2);
 
     }
 

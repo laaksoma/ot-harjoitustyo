@@ -49,14 +49,14 @@
                   <Button fx:id="newGameButton" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="New game" visible="false" />
                </children>
             </HBox>
-            <Label fx:id="pointsForPlayer1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="110.0" text="0" GridPane.valignment="BOTTOM">
+            <Label fx:id="pointsForPlayer1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="145.0" text="0" GridPane.valignment="BOTTOM">
                <graphic>
-                  <Label fx:id="pointsNamePlayer1" prefHeight="17.0" prefWidth="80.0" text="points1" />
+                  <Label fx:id="pointsNamePlayer1" prefHeight="17.0" prefWidth="110.0" text="points1" />
                </graphic>
             </Label>
-            <Label fx:id="pointsForPlayer2" alignment="CENTER" prefHeight="25.0" prefWidth="110.0" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+            <Label fx:id="pointsForPlayer2" alignment="CENTER" prefHeight="25.0" prefWidth="130.0" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                <graphic>
-                  <Label fx:id="pointsNamePlayer2" prefHeight="17.0" prefWidth="80.0" text="points2" />
+                  <Label fx:id="pointsNamePlayer2" prefHeight="17.0" prefWidth="92.0" text="points2" />
                </graphic></Label>
          </children>
       </GridPane>
