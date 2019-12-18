@@ -64,6 +64,8 @@ public class FXMLStartController implements Initializable {
         this.p1Name = null;
         this.p2Name = null;
         this.playGameButton.setDisable(false);
+        this.player1Name.clear();
+        this.player2Name.clear();
     }
 
     public void playGameButtonHandling() {

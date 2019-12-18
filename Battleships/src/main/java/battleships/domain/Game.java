@@ -42,7 +42,7 @@ public class Game {
             throw new IllegalStateException("Multiple singletons attempted with class Game!");
         }
 
-        listOfPlayers = new ArrayList<Player>();
+        this.listOfPlayers = new ArrayList<Player>();
         this.gameBoardSize = 10;
         this.userInterface = UserInterface.getInstance();
     }
@@ -193,8 +193,8 @@ public class Game {
      * Handles the turn order with a while-loop with isGameGoing as its
      * condition.<br>
      * The loop changes the {@link Player} in turn by always calling the other
-     * index from listOfPlayers, and calling {@link #turn(Player)} with the given
-     * {@link Player}.
+     * index from listOfPlayers, and calling {@link #turn(Player)} with the
+     * given {@link Player}.
      * </p>
      */
     public void playGame() {
@@ -286,6 +286,7 @@ public class Game {
             this.dao.addWinner(new Score(inTurn.getName(), inTurn.getPointsAsInt()));
         }
 
+        this.listOfPlayers.clear();
         userInterface.gameOver(inTurn);
     }
 

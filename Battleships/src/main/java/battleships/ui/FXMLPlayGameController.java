@@ -67,7 +67,7 @@ public class FXMLPlayGameController implements Initializable {
     public void setDefaultValuesForController() {
         this.tryAnotherLocation.setVisible(false);
         this.areCoordinatesSet = false;
-        changeNewGameButtonVisibility(false);
+        //changeNewGameButtonVisibility(false);
         setPointsForPlayers(0, 0);
     }
 

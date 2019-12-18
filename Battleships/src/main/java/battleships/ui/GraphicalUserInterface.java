@@ -307,6 +307,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.playGameController.updateAbilityValuesForGameOver();
             this.playGameController.updateTurnForPlayerLabel(player.getName(), false, player.getPointsAsInt());
             this.playGameController.changeNewGameButtonVisibility(true);
+            resetGameValues();
         });
     }
 
