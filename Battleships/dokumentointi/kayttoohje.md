@@ -5,7 +5,11 @@
 Ei vielä saatavilla. 
 
 ### Ohjelman käynnistäminen
-Ohjelma käynnistetään komennolla 
+Ohjelman voi suorittaa joko tekstikäyttöliittymällä 
+
+> java -jar Battleships-1.0-SNAPSHOT.jar --text
+
+tai graafisella käyttöliittymällä korvaamalla parametrin jollakin muulla tai jättämällä sen pois
 
 > java -jar Battleships-1.0-SNAPSHOT.jar
 
