@@ -22,4 +22,5 @@ Päivä | Aika | Työn sisältö
 10.12. | 7 | GUI käyttöön. Testejä ja graafisen käyttöliittymän toiminnan hiontaa. Viikkodediksen vaatimusten kohtaamisen tarkastus.
 13.12. | 3 | Pisteytyksen toteutus toiminnallisesti; itse pisteytyksen funktionaalisuus on vielä hakusessa.
 17.12. | 10 | Tietokantatoteutus, DAO ja high score -taulukko toimivat.
+18.12. | 5 | Uuden pelin aloittamisen hiontaa, JavaDocin viimeistely, testausta ja vaatimusmäärittelyn uudelleen rakentaminen.
 Yht. | 108 | 
