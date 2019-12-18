@@ -1,5 +1,6 @@
 package battleships.domain;
 
+import battleships.dao.ScoreDao;
 import battleships.ui.UserInterface;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,6 +22,7 @@ public class Game {
      */
     public int gameMode;
     private static Game instance = null;
+    private ScoreDao dao;
     private Random random = new Random();
     private boolean isHit = false;
     private float hitPointModifier = 1;
@@ -60,8 +62,9 @@ public class Game {
 
     /**
      * Sets current instance as null.
+     * <p>
+     * This method is primarly used with tests.</p>
      */
-    //THIS METHOD IS NOT USED? IF NOT, REMOVE
     public void abandonInstance() {
         this.instance = null;
     }
@@ -84,6 +87,7 @@ public class Game {
      * Calls {@link UserInterface#welcome()}.
      */
     public void beginStartMethod() {
+        this.dao = new ScoreDao("mongodb+srv://battleships_user:Lc8UDi0R1auovSIx@studies-db-zjjj3.gcp.mongodb.net/test?retryWrites=true&w=majority");
         userInterface.welcome();
     }
 
@@ -92,13 +96,13 @@ public class Game {
      * gameMode are set, calls for {@link #addPlayers()} and forwards the game
      * by calling {@link #createBoard}.
      */
-    //THE NUMBER OF SHIPS IS SET HERE AS 5 FOR NOW
-    public void finishStartMethod() {
+    public void finishStartMethod() {    //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
         refreshUserInterface();
+        userInterface.printHighScores(dao.getHighScores());
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 
-        createBoard(2);
+        createBoard(1);
 
     }
 
@@ -137,7 +141,6 @@ public class Game {
      *
      * @param numberOfShips How many ships per {@link Player}
      */
-    //FOR NOW THE AMOUNT OF SHIPS IS SET IN FINISHSTARTMETHOD
     public void createBoard(int numberOfShips) {
         for (Player player : this.listOfPlayers) {
 
@@ -265,14 +268,32 @@ public class Game {
             updatePlayerPoints(shipValue, player, notInTurn);
 
             if (notInTurn.getSea().seaIsEmpty()) {
-                player.setFinalPoints(notInTurn.getSea().getOpenedArea());
-                userInterface.gameOver(player);
+                gameOver(player, notInTurn);
                 return false;
             }
 
             userInterface.printMaskedSea(notInTurn, null, i);
         }
         return true;
+    }
+
+    /**
+     * Handles the situation when game is over. Calls for
+     * {@link Player#setFinalPoints(int)} and adds a winner to the database via
+     * {@link ScoreDao}, and calls for
+     * {@link UserInterface#gameOver(battleships.domain.Player)}.
+     *
+     * @param inTurn Player who won
+     * @param notInTurn Player who lost
+     */
+    void gameOver(Player inTurn, Player notInTurn) {
+        inTurn.setFinalPoints(notInTurn.getSea().getOpenedArea());
+
+        if (inTurn.getClass() != BotPlayer.class) {
+            this.dao.addWinner(new Score(inTurn.getName(), inTurn.getPointsAsInt()));
+        }
+
+        userInterface.gameOver(inTurn);
     }
 
     private void updatePlayerPoints(int ship, Player player, Player notInTurn) {
@@ -283,7 +304,6 @@ public class Game {
         }
 
         player.updatePoints(this.hitPointModifier * ship);
-        //userInterface.printPoints(player, notInTurn);
     }
 
     /**
@@ -349,7 +369,18 @@ public class Game {
         }
     }
 
-    private boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
+    /**
+     * Takes the coordinates and goes through the surrounding coordinates.
+     *
+     * @param row Index of the row
+     * @param column Index of the column
+     * @param sea {@link Sea} which is under inspection
+     * @param ship Value of the ship; this value is allowed in the surrounding
+     * areas
+     * @return True if no ship is next to the given coordinates, false if
+     * another ship with a different value is stationed next to the coordinates
+     */
+    boolean surroundsAreEmpty(int row, int column, int[][] sea, int ship) {
         int r = row - 1;
 
         while (r <= (row + 1)) {
@@ -370,7 +401,21 @@ public class Game {
         return true;
     }
 
-    private boolean eachSurroundingIsEmpty(int row, int column, int[][] sea, int ship, int rowChange, int colChange) {
+    /**
+     * Checks that each surrounding is empty for the whole length of the ship by
+     * calling {@link #surroundsAreEmpty(int, int, int[][], int)} for each.
+     *
+     * @param row Index of the row
+     * @param column Index of column
+     * @param sea {@link Sea} under inspection
+     * @param ship Value of the ship that is allowed
+     * @param rowChange How much the row value is changed depending on the
+     * direction given to the ship
+     * @param colChange How much the column value is changed depending on the
+     * direction given to the ship
+     * @return True if no other ship value was found, false if was found
+     */
+    boolean eachSurroundingIsEmpty(int row, int column, int[][] sea, int ship, int rowChange, int colChange) {
         int r = row;
         int c = column;
 
@@ -385,7 +430,20 @@ public class Game {
         return true;
     }
 
-    private boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
+    /**
+     * Checks is the direction allowed by checking
+     * {@link #eachSurroundingIsEmpty(int, int, int[][], int, int, int)} for the
+     * ship.
+     *
+     * @param row Index of the row
+     * @param column Index of the column
+     * @param sea {@link Sea} under inspection
+     * @param ship Value and length of the ship
+     * @param dir Direction given to the ship
+     * @return True if no ship interrupts the ship in the given direction, false
+     * if a ship was found
+     */
+    boolean isDirectionAllowed(int row, int column, int[][] sea, int ship, String dir) {
         if (dir.equals("w")) {
             return eachSurroundingIsEmpty(row, column, sea, ship, -1, 0);
         } else if (dir.equals("s")) {
@@ -397,7 +455,21 @@ public class Game {
         }
     }
 
-    private boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
+    /**
+     * Checks if the given coordinate placement is allowed.
+     * <p>
+     * By comparing the direction of the ship and its length, the method checks
+     * is there enough space for the ship with the given length.</p>
+     *
+     * @param row Index of the row
+     * @param column Index of the column
+     * @param sea {@link Sea} under inspection
+     * @param ship Value and length of the ship
+     * @param dir Given direction for the ship
+     * @return True if the ship can be placed in the given manner at the given
+     * coordinates, false if not
+     */
+    boolean isPlacementAllowed(int row, int column, int[][] sea, int ship, String dir) {
         if (ship != 1) {
             if ((row == 0 && dir.equals("w"))
                     || (row == (sea.length - 1) && dir.equals("s"))

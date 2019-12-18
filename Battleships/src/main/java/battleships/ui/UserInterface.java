@@ -1,7 +1,9 @@
 package battleships.ui;
 
 import battleships.domain.Player;
+import battleships.domain.Score;
 import battleships.domain.Sea;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -33,6 +35,8 @@ public interface UserInterface {
     void abandonInstance();
 
     void welcome();
+    
+    void printHighScores(ArrayList<Score> highScores);
 
     int getGamemode();
 

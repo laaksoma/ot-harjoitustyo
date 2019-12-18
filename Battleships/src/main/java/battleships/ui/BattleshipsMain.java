@@ -8,16 +8,20 @@ import battleships.domain.Game;
 public class BattleshipsMain {
 
     /**
-     * Creates the {@link Game} instance and calls for ADD LINK Game
-     * beginStartMethod.
-     * @param args The default parameter for Main
+     * Connects to database, creates the {@link Game} instance and calls for
+     * {@link Game#beginStartMethod()}.
+     *
+     * @param args Array including the given parameters
      * @throws Exception In case of {@link Game} instance Singleton exception.
      */
-    
     public static void main(String[] args) throws Exception {
-        UserInterface gameUserInterface = new GraphicalUserInterface().getInstance();
+        if(args.length > 0 && args[0].equals("--text")){
+            UserInterface gameUserInterface = new GraphicalUserInterface().getInstance();
+        } else {
+            UserInterface gameUserInterface = new TextUserInterface().getInstance();
+        }      
+        
         Game battleships = Game.getInstance();
-
         battleships.beginStartMethod();
     }
 }

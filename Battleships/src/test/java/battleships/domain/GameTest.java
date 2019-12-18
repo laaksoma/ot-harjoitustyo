@@ -230,10 +230,25 @@ public class GameTest {
     public void areCoordinatesAllowedReturnsTrueWhenModeIsCreateAndPlacementIsAllowed() {
         assertTrue(game.areCoordinatesAllowed(1, 1, new BotPlayer(), 6, "s", "create"));
     }
-    
+
     @Test
     public void areCoordinatesAllowedReturnsTrueWhenYes() {
         assertTrue(game.areCoordinatesAllowed(2, 2, new BotPlayer(), 2, "s", "no"));
+    }
+
+    @Test
+    public void surroundsAreEmptyReturnsFalseWhenNo() {
+        BotPlayer testBot = new BotPlayer();
+        testBot.getSea().addShipToTheSea(1, 1, 1);
+
+        assertFalse(game.surroundsAreEmpty(0, 0, testBot.getSea().array, 2));
+    }
+
+    @Test
+    public void surroundsAreEmptyDoesNotCrashWhenShipIsOnTheEdge() {
+        BotPlayer testBot = new BotPlayer();
+
+        assertTrue(game.surroundsAreEmpty(0, 0, testBot.getSea().array, 1));
     }
 
 //DOES NOT WORK WHEN CREATE BOARD IS NOT COMMENTED

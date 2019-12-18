@@ -1,8 +1,15 @@
 package battleships.ui;
 
 import battleships.domain.Player;
+import battleships.domain.Score;
 import battleships.domain.Sea;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+/**
+ * A class made for mocking the {@link UserInterface}.
+ * Only methods concerning the instance are needed, the others are mocked.
+ */
 
 public class TestUserInterface implements UserInterface {
 
@@ -33,6 +40,10 @@ public class TestUserInterface implements UserInterface {
     }
 
     public void welcome() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void printHighScores(ArrayList<Score> highScores) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
