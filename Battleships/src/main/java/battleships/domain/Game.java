@@ -200,7 +200,7 @@ public class Game {
      * Handles the turn order with a while-loop with isGameGoing as its
      * condition.<br>
      * The loop changes the {@link Player} in turn by always calling the other
-     * index from listOfPlayers, and calling {@link #turn(Player) with the given
+     * index from listOfPlayers, and calling {@link #turn(Player)} with the given
      * {@link Player}.
      * </p>
      */
