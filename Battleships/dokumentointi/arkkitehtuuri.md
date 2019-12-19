@@ -2,7 +2,7 @@
 ## Rakenne
 Ohjelma noudattaa kolmitasoista kerrosarkkitehtuuria seuraavanlaisella rakenteella: 
 
-![Kerrosarkkitehtuuri](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/kaaviot/pakkauskaavio.png)
+![Kerrosarkkitehtuuri](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/pakkauskaavio.png)
 
 Pakkauksesta _battleships.ui_ löytyvät käyttöliittymäluokat, ja _battleships.domain_ sisältää sovelluslogiikan luokat. 
 Tietojen pysyväistallennus hoidetaan _battleships.dao_-pakkauksen kautta.
