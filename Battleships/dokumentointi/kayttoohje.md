@@ -1,5 +1,5 @@
 # Käyttöohje
-JAR
+Lataa tiedosto [battleships.jar](https://github.com/laaksoma/ot-harjoitustyo/releases/tag/Loppupalautus).
 
 ### Ohjelman käynnistäminen ja konfigurointi
 Ohjelman voi suorittaa joko tekstikäyttöliittymällä 
