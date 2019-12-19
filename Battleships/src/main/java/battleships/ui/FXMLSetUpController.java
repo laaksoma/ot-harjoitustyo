@@ -55,9 +55,6 @@ public class FXMLSetUpController implements Initializable {
         });
 
     }
-
-    public void setDefaultValuesForController() {
-    }
    
     public void setInstructions(String playerName, int numberOfShips) {
         instructions.setText("Creating the board for " + playerName + "\n"
@@ -77,9 +74,6 @@ public class FXMLSetUpController implements Initializable {
         getCoordsButton.setDisable(!getCoordsButton.isVisible());
     }
 
-//    public void changeNextPlayerButtonVisibility(boolean value) {
-//        nextPlayerButton.setVisible(value);
-//    }
     public void changeErrorMessageVisibility(boolean value) {
         errorMessage.setVisible(value);
     }

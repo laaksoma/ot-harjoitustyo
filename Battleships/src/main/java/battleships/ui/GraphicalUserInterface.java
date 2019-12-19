@@ -111,10 +111,9 @@ public class GraphicalUserInterface extends Application implements UserInterface
     public void setSetUpScene() {
         this.stage.setScene(this.gameSetUpScene);
     }
-    
+
     public void resetGameValues() {
         this.startController.setDefaultValuesForController();
-        this.setUpController.setDefaultValuesForController();
         this.playGameController.setDefaultValuesForController();
     }
 
@@ -123,6 +122,11 @@ public class GraphicalUserInterface extends Application implements UserInterface
         System.exit(0);
     }
 
+    /**
+     * If the class instance is null, then sets a new instance.
+     *
+     * @return Instance of the class
+     */
     public static UserInterface getInstance() {
         if (instance == null) {
             GraphicalUserInterface newInterface = new GraphicalUserInterface();
@@ -130,15 +134,6 @@ public class GraphicalUserInterface extends Application implements UserInterface
             instance = newInterface;
         }
         return instance;
-    }
-
-    @Override
-    public void setUpScanner(Scanner scanner) {
-    }
-
-    @Override
-    public void abandonInstance() {
-        this.instance = null;
     }
 
     @Override
@@ -313,7 +308,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.playGameController.changeNewGameButtonVisibility(true);
             resetGameValues();
         });
-        
+
         this.needToSetPlayGameScene = true;
 
         while (!this.playGameController.wantsToReplay) {
@@ -340,7 +335,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
     }
 
     @Override
-    public int getRow(int seaSize) {
+    public int getRow() {
         if (needToSetPlayGameScene) {
             String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.rowValue,
                     () -> this.setUpController.areCoordinatesSet);
@@ -353,7 +348,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
     }
 
     @Override
-    public int getColumn(int seaSize) {
+    public int getColumn() {
         if (needToSetPlayGameScene) {
             String result = this.getVariableAfterItHasBeenSetInController(() -> this.setUpController.colValue,
                     () -> this.setUpController.areCoordinatesSet);

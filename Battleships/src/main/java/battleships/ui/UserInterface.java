@@ -13,8 +13,6 @@ import java.util.Scanner;
 
 public interface UserInterface {
 
-    void setUpScanner(Scanner scanner);
-
     /**
      * @return The type of the created UserInterface, if no UserInterface has been created upon calling, returns null
      */
@@ -31,8 +29,6 @@ public interface UserInterface {
             return null;
         }
     }
-
-    void abandonInstance();
 
     void welcome();
     
@@ -58,9 +54,9 @@ public interface UserInterface {
 
     void gameOver(Player player);
 
-    int getRow(int seaSize);
+    int getRow();
 
-    int getColumn(int seaSize);
+    int getColumn();
 
     String getDirection(int ship);
 

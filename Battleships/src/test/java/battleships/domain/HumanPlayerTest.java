@@ -31,8 +31,8 @@ public class HumanPlayerTest {
 
     @Test
     public void decideCoordinatesExcecutesCorrectlyWhenShipIsSetAsZero() {
-        when(mockUser.getRow(10)).thenReturn(1);
-        when(mockUser.getColumn(10)).thenReturn(2);
+        when(mockUser.getRow()).thenReturn(1);
+        when(mockUser.getColumn()).thenReturn(2);
         when(mockUser.getDirection(10)).thenReturn("w");
 
         humanTest.decideCoordinates(0, true, 10);
@@ -41,8 +41,8 @@ public class HumanPlayerTest {
 
     @Test
     public void decideCoordinatesExcecutesCorrectlyWhenShipIsNotZeroAndPrintsSea() {
-        when(mockUser.getRow(10)).thenReturn(3);
-        when(mockUser.getColumn(10)).thenReturn(1);
+        when(mockUser.getRow()).thenReturn(3);
+        when(mockUser.getColumn()).thenReturn(1);
         when(mockUser.getDirection(10)).thenReturn("d");
 
         humanTest.decideCoordinates(1, true, 10);
@@ -51,8 +51,8 @@ public class HumanPlayerTest {
 
     @Test
     public void decideCoordinatesCallsForPrintForShipPlacementWhenShipIsNotZero() {
-        when(mockUser.getRow(10)).thenReturn(1);
-        when(mockUser.getColumn(10)).thenReturn(1);
+        when(mockUser.getRow()).thenReturn(1);
+        when(mockUser.getColumn()).thenReturn(1);
         when(mockUser.getDirection(10)).thenReturn("s");
 
         humanTest.decideCoordinates(1, true, 10);
@@ -61,8 +61,8 @@ public class HumanPlayerTest {
 
     @Test
     public void decideCoordinatesSetsRowCorrectly() {
-        when(mockUser.getRow(10)).thenReturn(4);
-        when(mockUser.getColumn(10)).thenReturn(1);
+        when(mockUser.getRow()).thenReturn(4);
+        when(mockUser.getColumn()).thenReturn(1);
         when(mockUser.getDirection(10)).thenReturn("s");
 
         testInfo = humanTest.decideCoordinates(0, true, 10);
@@ -71,8 +71,8 @@ public class HumanPlayerTest {
 
     @Test
     public void decideCoordinatesSetsColumnCorrectly() {
-        when(mockUser.getRow(10)).thenReturn(4);
-        when(mockUser.getColumn(10)).thenReturn(1);
+        when(mockUser.getRow()).thenReturn(4);
+        when(mockUser.getColumn()).thenReturn(1);
         when(mockUser.getDirection(10)).thenReturn("s");
 
         testInfo = humanTest.decideCoordinates(0, true, 10);
@@ -81,8 +81,8 @@ public class HumanPlayerTest {
 
     @Test
     public void decideCoordinatesSetsDirectionAsNullWhenNeedForDirectionIsFalse() {
-        when(mockUser.getRow(10)).thenReturn(4);
-        when(mockUser.getColumn(10)).thenReturn(1);
+        when(mockUser.getRow()).thenReturn(4);
+        when(mockUser.getColumn()).thenReturn(1);
         when(mockUser.getDirection(10)).thenReturn("s");
 
         testInfo = humanTest.decideCoordinates(0, false, 10);
@@ -91,8 +91,8 @@ public class HumanPlayerTest {
 
     @Test
     public void decideCoordinatesSetsDirectionCorrectlyWhenNeedForDirectionIsTrue() {
-        when(mockUser.getRow(10)).thenReturn(4);
-        when(mockUser.getColumn(10)).thenReturn(1);
+        when(mockUser.getRow()).thenReturn(4);
+        when(mockUser.getColumn()).thenReturn(1);
         when(mockUser.getDirection(0)).thenReturn("s");
 
         testInfo = humanTest.decideCoordinates(0, true, 10);

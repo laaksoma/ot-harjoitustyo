@@ -45,8 +45,8 @@ public class HumanPlayer extends Player {
             UserInterface.getInstance().printForShipPlacement(ship);
         }
 
-        int row = UserInterface.getInstance().getRow(gameSize);
-        int column = UserInterface.getInstance().getColumn(gameSize);
+        int row = UserInterface.getInstance().getRow();
+        int column = UserInterface.getInstance().getColumn();
         String direction = null;
 
         if (needForDirection) {
