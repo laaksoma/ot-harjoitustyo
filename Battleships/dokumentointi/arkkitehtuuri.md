@@ -16,14 +16,23 @@ Graafinen käyttöliittymä sisältää kolme näkymää:
 joista jokainen on toteutettu omana Scene-olionaan. Näkymät ovat yksi kerrallaan näkyvillä, ja näitä päivitetään asettamalla GraphicalUserInterface-luokassa aina haluttu Scene sopivan set-muotoisen metodin avulla sovelluksen Stagelle. 
 
 ## Sovelluslogiikka 
-Sovelluksen looginen toimintamalli koostuu luokasta Game, ja tämän kanssa vuorovaikuttavan Player-luokan 
-ilmentymistä HumanPlayer ja BotPlayer. 
+Sovelluksen looginen datamalli muodostuu luokkien Player, Sea ja PlacementInfo välille. Luokka Player edustaa abstraktia luokkaa, jolla on kaksi toteuttajaa: HumanPlayer ja BotPlayer. 
+
+[tietokantataulukko]((https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/datamalli-tietokantataulut.png))
+
+Toiminnallisista kokonaisuuksista vastaa luokka Game, joka vuorovaikuttaa käyttöliittymän kanssa ja hallinnoi sovelluksen loogista toimintamallia. Eri toiminnallisuuksista vastaavat eri metodit, kuten esimerkiksi 
+
+- createBoard(int numberOfShips)
+- playGame()
+- gameOver(Player inTurn, Player notInTurn). 
+
+Jotkin luokan metodeista, kuten esimerkiksi metodi _turn_, ovat itsessään hallinnollisia kokonaisuuksia, jotka vastaavat yhdestä ohjelman toiminnallisuudesta pyörittämällä muiden metodien (tässä tapauksessa esimerkiksi _getIndexForAnotherPlayer(Player playerNotWanted)_ ja _areCoordinatesAlreadyUsed(PlacementInfo info, Player otherPlayer)_) avulla tätä kokonaisuutta ja sen logiikkaa. 
 
 ![Pakkauskaavio](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/sovelluslogiikka_laajempi.png)
 
-Käytettävissä on kolme erilaista käyttöliittymää: TestUserInterface, TextUserInterface ja GraphicalUserInterface. Luokka TestUserInterface on vain testien käytettävissä. GraphicalUserInterface on tällä hetkellä asetettu sovelluksessa oletukseksi, ja tulevaisuudessa tulee graafinen käyttöliittymä olemaankin ensisijainen tapa pelata, mutta toistaiseksi voi myös tekstikäyttöliittymää käyttää asettamalla tämän Mainissa (joskin tämä ei ole suotavaa). 
+Käytettävissä on kolme erilaista käyttöliittymää: TestUserInterface, TextUserInterface ja GraphicalUserInterface. Luokka TestUserInterface on vain testien käytettävissä. GraphicalUserInterface on tällä hetkellä asetettu sovelluksessa oletukseksi, mutta TextUserInterface on mahdollista ottaa käyttöön parametrilla _--text_ komentorivikutsun yhteydessä. 
 
-GraphicalUserInterface vuorovaikuttaa battleships.ui-packagen sisällä kolmen FXML-controllerin kanssa: FXMLStartController, FXMLSetUpController ja FXMLPlayGameController.
+GraphicalUserInterface vuorovaikuttaa battleships.ui-packagen sisällä kolmen FXML-controllerin kanssa: FXMLStartController, FXMLSetUpController ja FXMLPlayGameController, joiden avulla on luotu sovelluksen eri näkymät.
 
 ## Tietojen pysyväistallennus
 Ei vielä saatavilla.
