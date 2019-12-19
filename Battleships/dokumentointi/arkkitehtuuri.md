@@ -19,7 +19,7 @@ joista jokainen on toteutettu omana Scene-olionaan. Näkymät ovat yksi kerralla
 Sovelluksen looginen toimintamalli koostuu luokasta Game, ja tämän kanssa vuorovaikuttavan Player-luokan 
 ilmentymistä HumanPlayer ja BotPlayer. 
 
-![Pakkauskaavio](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/kaaviot/sovelluslogiikka_laajempi_ilmandao.png)
+![Pakkauskaavio](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/sovelluslogiikka_laajempi.png)
 
 Käytettävissä on kolme erilaista käyttöliittymää: TestUserInterface, TextUserInterface ja GraphicalUserInterface. Luokka TestUserInterface on vain testien käytettävissä. GraphicalUserInterface on tällä hetkellä asetettu sovelluksessa oletukseksi, ja tulevaisuudessa tulee graafinen käyttöliittymä olemaankin ensisijainen tapa pelata, mutta toistaiseksi voi myös tekstikäyttöliittymää käyttää asettamalla tämän Mainissa (joskin tämä ei ole suotavaa). 
 
