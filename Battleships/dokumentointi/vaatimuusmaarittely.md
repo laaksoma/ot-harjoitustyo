@@ -40,6 +40,7 @@ Peliä ja sen toimintaa voisi kehittää esimerkiksi seuraavilla ominaisuuksilla
 
 * Mahdollisuus muokata pelilaudan kokoa tai laivojen määrää peliasetuksista
 * Mahdollisuus avata ohjeet kesken pelin
+* Mahdollisuus aloittaa uusi peli myös tekstikäyttöliittymällä
 * Mahdollisuus aloittaa uusi peli, vaikka vanha olisi vielä kesken
 * Parhaiden pisteiden suodattaminen viikon, kuukauden tai vuoden perusteella
 * Graafisen käyttöliittymän hionta
