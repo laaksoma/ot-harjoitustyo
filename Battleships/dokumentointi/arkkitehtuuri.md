@@ -35,7 +35,20 @@ Käytettävissä on kolme erilaista käyttöliittymää: TestUserInterface, Text
 GraphicalUserInterface vuorovaikuttaa battleships.ui-packagen sisällä kolmen FXML-controllerin kanssa: FXMLStartController, FXMLSetUpController ja FXMLPlayGameController, joiden avulla on luotu sovelluksen eri näkymät.
 
 ## Tietojen pysyväistallennus
-Ei vielä saatavilla.
+Pakkauksessa battleships.dao luokka ScoreDao huolehtii tietojen tallettamisesta dokumentteihin ja lisäämisestä internettietokantaan. 
+
+Sovelluksessa on noudatettu Data Access Object -suunnittelumallia, ja tietokantayhteydet on eristetty luokkaan ScoreDao, jolloin itse pelin sovelluslogiikka ei toimi näiden kanssa suoraan. Mikäli tietojen pysyväistallennuksen muotoa halutaan muokata, voi muokkaukset toteuttaa luokkaan ScoreDao, joka toimii omana sisäisenä kokonaisuutenaan ollen yhteydessä luokan Game kanssa vain metodien _addWinner(Score score)_ ja _getHighScores()_ kautta. 
+
+### Tiedostot
+Sovellus tallettaa pelaajien nimet ja pisteet erillisiin dokumentteihin, jotka tallennetaan online-tietokantaan [MongoDB](https://www.mongodb.com/):hen, joten sovelluksen käyttäjän ei tarvitse huolehtia erillisistä tiedostoista, jotka kulkisivat sovelluksen mukana paikallisesti. 
+
+Tiedot tallennetaan formaatissa 
+<pre>
+new Document("name", Pelaaja)
+        .append("points", 199);
+</pre>
+
+jolloin avaimet _name_ ja _points_ vastaavat luokan Score olion vastaavia tietoja, joissa _winnerName_ pitää kirjaa pelaajan nimestä, ja _winnerPoints_ pitää kirjaa tämän saamista pisteistä.
 
 ## Päätoiminnallisuudet
 ### Pelin aloittaminen
