@@ -31,6 +31,8 @@ Sovellus tarjoaa käyttäjälle mahdollisuuden pelata _Battleships_-peliä joko 
   - Pelaaja näkee sekä omansa että toisen meren tilanteen 
     - Jo arvatut ruudut on merkitty 
   - Pelin voittaja on se, joka ensin upottaa toisen laivat 
+  - Kun peli päättyy, pelaajalle tarjotaan viesti tämän voitosta ja pisteet, jotka tämä sai.
+    - Uusi peli -nappi avautuu käytettäväksi, ja sitä painamalla pelaaja pääsee takaisin alkuruutuun.
 
 ## Jatkokehitysideoita
 
@@ -38,7 +40,6 @@ Peliä ja sen toimintaa voisi kehittää esimerkiksi seuraavilla ominaisuuksilla
 
 * Mahdollisuus muokata pelilaudan kokoa tai laivojen määrää peliasetuksista
 * Mahdollisuus avata ohjeet kesken pelin
-* Mahdollisuus aloittaa uusi peli
 * Mahdollisuus aloittaa uusi peli, vaikka vanha olisi vielä kesken
 * Parhaiden pisteiden suodattaminen viikon, kuukauden tai vuoden perusteella
 * Graafisen käyttöliittymän hionta
