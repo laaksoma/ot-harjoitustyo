@@ -23,33 +23,33 @@ Testaus
 ### Suorittaminen komentoriviltä 
 Ohjelman suorittaminen komentoriviltä tapahtuu seuraavalla komennolla (mikäli compile on jo tehty, sanan 'compile' voi jättää välistä): 
 
-> mvn compile exec:java -Dexec.mainClass=battleships.ui.BattleshipsMain
+<pre>mvn compile exec:java -Dexec.mainClass=battleships.ui.BattleshipsMain</pre>
 
 ### Testaus
 Testit suoritetaan komennolla 
 
-> mvn test
+<pre>mvn test</pre>
 
 Testikattavuusraportti luodaan komennolla 
 
-> mvn test jacoco:report
+<pre>mvn test jacoco:report</pre>
 
 ja sitä voi tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
 ### Suoritettavan jarin generointi
 Jar-tiedosto generoidaan hakemistoon _target_ komennolla 
 
-> mvn package
+<pre>mvn package</pre>
 
 ### JavaDoc
 JavaDoc generoidaan hakemistoon _target/site/apidocs/_ komennolla
 
-> mvn javadoc:javadoc
+<pre>mvn javadoc:javadoc</pre>
 
 ### Checkstyle 
 Tiedostoon [checkstyle.xml](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/checkstyle.xml) määritellyt tarkistukset suoritetaan komennolla 
 
-> mvn jxr:jxr checkstyle:checkstyle
+<pre>mvn jxr:jxr checkstyle:checkstyle</pre>
 
 Checkstyle-tarkistusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/checkstyle.html_.
 
