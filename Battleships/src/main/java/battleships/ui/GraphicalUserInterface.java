@@ -111,12 +111,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
     public void setSetUpScene() {
         this.stage.setScene(this.gameSetUpScene);
     }
-//    THIS IS NOT CALLED? IF NOT, REMOVE
-//    public void setPlayGameScene() {
-//        this.stage.setScene(this.playGameScene);
-//    }
-
-    //USE WHEN STARTING A NEW GAME?
+    
     public void resetGameValues() {
         this.startController.setDefaultValuesForController();
         this.setUpController.setDefaultValuesForController();

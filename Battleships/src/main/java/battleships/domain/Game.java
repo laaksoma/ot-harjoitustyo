@@ -234,12 +234,12 @@ public class Game {
         Player notInTurn = this.listOfPlayers.get(i);
         userInterface.printMaskedSea(notInTurn, null, i);
 
-        while (true) {                                                          //THE TURN GOES ON WHILE THIS IS TRUE
+        while (true) {                                                          
             PlacementInfo info = player.decideCoordinates(0, false, this.gameBoardSize);
             int row = info.getRow();
             int column = info.getColumn();
             int shipValue = 0;
-            userInterface.printPoints(player, notInTurn);
+            userInterface.printPoints(player, notInTurn); 
 
             if (areCoordinatesAlreadyUsed(info, notInTurn)) {
                 if (player.getClass() == HumanPlayer.class) {
@@ -248,7 +248,7 @@ public class Game {
                 continue;
             }
 
-            shipValue = notInTurn.getSea().getSea()[row][column];
+            shipValue = notInTurn.getSea().getSea()[row][column]; 
 
             if (notInTurn.getSea().isAreaEmpty(row, column)) {
                 notInTurn.getSea().modifyMaskedSea(row, column, 0);
@@ -261,7 +261,7 @@ public class Game {
                 this.isHit = true;
             }
 
-            updatePlayerPoints(shipValue, player, notInTurn);
+            updatePlayerPoints(shipValue, player); 
 
             if (notInTurn.getSea().seaIsEmpty()) {
                 gameOver(player, notInTurn);
@@ -272,7 +272,7 @@ public class Game {
         }
         return true;
     }
-
+    
     /**
      * Handles the situation when game is over. Calls for
      * {@link Player#setFinalPoints(int)} and adds a winner to the database via
@@ -282,6 +282,8 @@ public class Game {
      * @param inTurn Player who won
      * @param notInTurn Player who lost
      */
+    
+    
     void gameOver(Player inTurn, Player notInTurn) {
         inTurn.setFinalPoints(notInTurn.getSea().getOpenedArea());
 
@@ -293,7 +295,7 @@ public class Game {
         userInterface.gameOver(inTurn);
     }
 
-    private void updatePlayerPoints(int ship, Player player, Player notInTurn) {
+    private void updatePlayerPoints(int ship, Player player) {
         if (this.isHit) {
             this.hitPointModifier = (float) (this.hitPointModifier * 1.2);
         } else {
