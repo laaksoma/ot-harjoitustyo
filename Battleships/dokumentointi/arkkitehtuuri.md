@@ -18,7 +18,7 @@ joista jokainen on toteutettu omana Scene-olionaan. Näkymät ovat yksi kerralla
 ## Sovelluslogiikka 
 Sovelluksen looginen datamalli muodostuu luokkien Player, Sea ja PlacementInfo välille. Luokka Player edustaa abstraktia luokkaa, jolla on kaksi toteuttajaa: HumanPlayer ja BotPlayer. 
 
-[tietokantataulukko]((https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/datamalli-tietokantataulut.png))
+![tietokantataulukko](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/datamalli-tietokantataulut.png)
 
 Toiminnallisista kokonaisuuksista vastaa luokka Game, joka vuorovaikuttaa käyttöliittymän kanssa ja hallinnoi sovelluksen loogista toimintamallia. Eri toiminnallisuuksista vastaavat eri metodit, kuten esimerkiksi 
 
