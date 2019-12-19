@@ -43,5 +43,7 @@ Peliä ja sen toimintaa voisi kehittää esimerkiksi seuraavilla ominaisuuksilla
 * Mahdollisuus aloittaa uusi peli myös tekstikäyttöliittymällä
 * Mahdollisuus aloittaa uusi peli, vaikka vanha olisi vielä kesken
 * Parhaiden pisteiden suodattaminen viikon, kuukauden tai vuoden perusteella
-* Graafisen käyttöliittymän hionta
+* Graafisen käyttöliittymän hionta visuaalisesti
+* Graafisen käyttöliittymän hionta toiminnallisesti, esim. pelaaja näkisi laivat asettaessaan ne, ja voisi viedä ne kursorilla merelleen
+* Yksityiskohtien hiontaa: esim. suuntaa ei kysyttäisi graafisella käyttöliittymällä, kun laivan koko on 1
 * Äänitehosteiden lisäys peliin 
