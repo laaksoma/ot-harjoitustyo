@@ -3,7 +3,7 @@
 Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä joko yksin yksinkertaista tekoälyä vastaan, tai yhdessä kaverin kanssa.
 
 ## Dokumentaatio
-[Arkkitehtuurikuvaus](https://github.com/laaksoma/ot-harjoitustyo/blob/refactoring/Battleships/dokumentointi/arkkitehtuuri.md)
+[Arkkitehtuurikuvaus](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/arkkitehtuuri.md)
 
 [Kayttoohje](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kayttoohje.md)
 
