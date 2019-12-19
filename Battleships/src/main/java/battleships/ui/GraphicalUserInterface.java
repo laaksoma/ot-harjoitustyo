@@ -111,10 +111,10 @@ public class GraphicalUserInterface extends Application implements UserInterface
     public void setSetUpScene() {
         this.stage.setScene(this.gameSetUpScene);
     }
-
-    public void setPlayGameScene() {
-        this.stage.setScene(this.playGameScene);
-    }
+//    THIS IS NOT CALLED? IF NOT, REMOVE
+//    public void setPlayGameScene() {
+//        this.stage.setScene(this.playGameScene);
+//    }
 
     //USE WHEN STARTING A NEW GAME?
     public void resetGameValues() {
@@ -254,11 +254,12 @@ public class GraphicalUserInterface extends Application implements UserInterface
     private boolean needToSetPlayGameScene = true;
 
     private void setSceneForPlayingTheGame() {
-        needToSetPlayGameScene = false;
-        setPlayGameScene();
+        this.playGameController.prepareForReload();
         String name1 = Game.getInstance().getListOfPlayers().get(0).getName();
         String name2 = Game.getInstance().getListOfPlayers().get(1).getName();
         this.playGameController.setPlayerLabels(name1, name2);
+        this.stage.setScene(this.playGameScene);
+        needToSetPlayGameScene = false;
     }
 
     @Override
@@ -292,6 +293,14 @@ public class GraphicalUserInterface extends Application implements UserInterface
                 }
             }
         });
+
+        while (needToSetPlayGameScene) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -309,6 +318,19 @@ public class GraphicalUserInterface extends Application implements UserInterface
             this.playGameController.changeNewGameButtonVisibility(true);
             resetGameValues();
         });
+        
+        this.needToSetPlayGameScene = true;
+
+        while (!this.playGameController.wantsToReplay) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        this.playGameController.wantsToReplay = false;
+        Game.getInstance().finishStartMethod();
     }
 
     private <T> T getVariableAfterItHasBeenSetInController(Supplier<T> variableSupplier, BooleanSupplier condition) {

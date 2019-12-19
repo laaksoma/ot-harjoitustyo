@@ -102,7 +102,7 @@ public class Game {
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 
-        createBoard(2);
+        createBoard(1);
 
     }
 
@@ -185,6 +185,8 @@ public class Game {
         }
     }
 
+    private int helper = 0;
+
     /**
      * Handles the turn order and keeps the turns changing.
      * <p>
@@ -199,6 +201,7 @@ public class Game {
      */
     public void playGame() {
         int i = this.random.nextInt(2);
+        userInterface.printMaskedSea(listOfPlayers.get(getIndexForAnotherPlayer(listOfPlayers.get(i))), null, i);
         boolean isGameGoing = turn(listOfPlayers.get(i));
 
         while (isGameGoing) {

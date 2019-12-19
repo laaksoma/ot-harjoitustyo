@@ -67,8 +67,15 @@ public class FXMLPlayGameController implements Initializable {
     public void setDefaultValuesForController() {
         this.tryAnotherLocation.setVisible(false);
         this.areCoordinatesSet = false;
-        //changeNewGameButtonVisibility(false);
         setPointsForPlayers(0, 0);
+    }
+
+    public void prepareForReload() {
+        changeNewGameButtonVisibility(false);
+        pointsForPlayer1.setVisible(true);
+        pointsForPlayer2.setVisible(true);
+        this.pointsNamePlayer1.setVisible(true);
+        this.pointsNamePlayer2.setVisible(true);
     }
 
     public void setPointsForPlayers(int pointsForPlayerOne, int pointsForPlayerTwo) {
@@ -82,10 +89,13 @@ public class FXMLPlayGameController implements Initializable {
         this.areCoordinatesSet = true;
         this.tryAnotherLocation.setVisible(false);
     }
+    
+    boolean wantsToReplay = false;
 
     private void handleNewGameButtonPress() {
         ((GraphicalUserInterface) GraphicalUserInterface.getInstance()).resetGameValues();
         ((GraphicalUserInterface) GraphicalUserInterface.getInstance()).setStartScene();
+        wantsToReplay = true;
     }
 
     public void changeLabelVisibility(Label label, boolean value) {

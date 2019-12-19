@@ -59,7 +59,6 @@ public class FXMLStartController implements Initializable {
         changeHBoxEnable(this.hBox2, true, false);
         setTextForChooseSomething(null);
         this.gameModeValueSet = false;
-        //reset gameModeValue here
         this.namesSet = false;
         this.p1Name = null;
         this.p2Name = null;
