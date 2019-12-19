@@ -115,7 +115,9 @@ public void handlePlayGameButtonPressAfterGameModeSelected() {
         namesSet = true;
 
         playGameButton.setOnAction((e) -> playGameButtonHandling());
+        
         this.GraphUserInterface.setSetUpScene();
+        playGameButton.setText("OK!");
     }
 
     private void changeRadioButtonEnable(boolean value) {
