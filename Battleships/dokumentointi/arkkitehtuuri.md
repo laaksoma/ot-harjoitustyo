@@ -42,6 +42,9 @@ Peliä pelataan kutsumalla luokan Game metodia _playGame_, joka arpoo aloittajan
 
 ## Ohjelmaan jääneet heikkoudet
 Ohjelman sovelluslogiikka toimii tässä kyseisessä ohjelmassa siten, että Game tuntee käyttöliittymän ja käyttää tätä, eikä toisin päin, mikä paikoitellen tuottaa hieman ongelmia etenkin testattavuuden suhteen. 
+
 Toinen selkeä heikkous on Singletonien käyttö - sekä luokka Game että UserInterface ovat Singleton-luokkia, mikä periytyy myös UserInterfacea edustaville luokille. Tämä vaikeuttaa testaamista, vaikka kiertääkin joitakin pelin toiminnallisia ongelmia toimien ratkaisuna niihin. Loppupeleissä vaihtokauppa ei kuitenkaan ehkä ollut paras mahdollinen. 
+
 Ohjelman konfiguroitavuus on myös melko matala, sillä pelin koko ja laivojen määrä ovat tällä hetkellä kovakoodattuja koodiin. Etenkin graafisen käyttöliittymän kanssa pelin koo'on muokkaaminen olisi hieman isompi työ. 
+
 Graafisen käyttöliittymän kanssa on myös paikoitellen sekavuutta siinä, mitkä asiat ovat luokan GraphicalUserInterface ja mitkä taas FXMLControllerien hallittavissa. Tätä jaottelua olisi syytä parantaa ja hiota selkeämmäksi. 
