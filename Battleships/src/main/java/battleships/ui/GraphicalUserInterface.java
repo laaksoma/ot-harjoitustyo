@@ -294,9 +294,9 @@ public class GraphicalUserInterface extends Application implements UserInterface
     }
 
     @Override
-    public void printPoints(Player playerInTurn, Player playerNotInTurn) {
+    public void printPoints(Player player1, Player player2) {
         Platform.runLater(() -> {
-            this.playGameController.setPointsForPlayers(playerInTurn.getPointsAsInt(), playerNotInTurn.getPointsAsInt());
+            this.playGameController.setPointsForPlayers(player1.getPointsAsInt(), player2.getPointsAsInt());
         });
     }
 

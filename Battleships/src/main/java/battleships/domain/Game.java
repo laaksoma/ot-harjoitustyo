@@ -179,7 +179,7 @@ public class Game {
         int row = info.getRow();
         int column = info.getColumn();
         String dir = info.getDirection();
-        
+
         if (areCoordinatesAllowed(row, column, player, ship, dir, "create")) {
             placeShips(row, column, player, ship, dir);
             return true;
@@ -236,12 +236,13 @@ public class Game {
         Player notInTurn = this.listOfPlayers.get(i);
         userInterface.printMaskedSea(notInTurn, null, i);
 
-        while (true) {                                                          
+        while (true) {
             PlacementInfo info = player.decideCoordinates(0, false, this.gameBoardSize);
             int row = info.getRow();
             int column = info.getColumn();
             int shipValue = 0;
-            userInterface.printPoints(player, notInTurn); 
+            
+            turnPoints(player, notInTurn, i);
 
             if (areCoordinatesAlreadyUsed(info, notInTurn)) {
                 if (player.getClass() == HumanPlayer.class) {
@@ -250,7 +251,7 @@ public class Game {
                 continue;
             }
 
-            shipValue = notInTurn.getSea().getSea()[row][column]; 
+            shipValue = notInTurn.getSea().getSea()[row][column];
 
             if (notInTurn.getSea().isAreaEmpty(row, column)) {
                 notInTurn.getSea().modifyMaskedSea(row, column, 0);
@@ -263,7 +264,7 @@ public class Game {
                 this.isHit = true;
             }
 
-            updatePlayerPoints(shipValue, player); 
+            updatePlayerPoints(shipValue, player);
 
             if (notInTurn.getSea().seaIsEmpty()) {
                 gameOver(player, notInTurn);
@@ -275,6 +276,15 @@ public class Game {
         return true;
     }
     
+    private void turnPoints(Player player, Player notInTurn, int indexOfNotInTurn) {
+        if (indexOfNotInTurn == 0) {
+            userInterface.printPoints(notInTurn, player); 
+        } else {
+            userInterface.printPoints(player, notInTurn); 
+        }
+        
+    }
+
     /**
      * Handles the situation when game is over. Calls for
      * {@link Player#setFinalPoints(int)} and adds a winner to the database via
@@ -284,8 +294,6 @@ public class Game {
      * @param inTurn Player who won
      * @param notInTurn Player who lost
      */
-    
-    
     void gameOver(Player inTurn, Player notInTurn) {
         inTurn.setFinalPoints(notInTurn.getSea().getOpenedArea());
 
