@@ -23,4 +23,6 @@ Päivä | Aika | Työn sisältö
 13.12. | 3 | Pisteytyksen toteutus toiminnallisesti; itse pisteytyksen funktionaalisuus on vielä hakusessa.
 17.12. | 10 | Tietokantatoteutus, DAO ja high score -taulukko toimivat.
 18.12. | 5 | Uuden pelin aloittamisen hiontaa, JavaDocin viimeistely, testausta ja vaatimusmäärittelyn uudelleen rakentaminen.
-Yht. | 108 | 
+19.12. | 6 | Koodin viimeistelyä ja dokumentaation laittamista kuntoon. 
+20.12. | 5 | Sekvenssikaavioiden päivitys ja luonti, testausta ja ScoreDao-testit, arkkitehtuuridokumentin viimeistely. 
+Yht. | 119 | 
