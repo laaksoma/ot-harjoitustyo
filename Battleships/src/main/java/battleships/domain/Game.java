@@ -176,9 +176,12 @@ public class Game {
 
     private boolean askForShips(Player player, int ship) {
         PlacementInfo info = player.decideCoordinates(ship, true, this.gameBoardSize);
-
-        if (areCoordinatesAllowed(info.getRow(), info.getColumn(), player, ship, info.getDirection(), "create")) {
-            placeShips(info.getRow(), info.getColumn(), player, ship, info.getDirection());
+        int row = info.getRow();
+        int column = info.getColumn();
+        String dir = info.getDirection();
+        
+        if (areCoordinatesAllowed(row, column, player, ship, dir, "create")) {
+            placeShips(row, column, player, ship, dir);
             return true;
         } else {
             return false;

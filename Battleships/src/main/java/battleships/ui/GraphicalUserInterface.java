@@ -6,7 +6,6 @@ import battleships.domain.Score;
 import battleships.domain.Sea;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 import javafx.application.Application;
