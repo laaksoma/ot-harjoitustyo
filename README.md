@@ -7,7 +7,7 @@ Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä joko yk
 
 [Kayttoohje](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kayttoohje.md)
 
-Testaus
+[Testausdokumentti](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/testausdokumentti.md)
 
 [Tuntikirjanpito](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/tuntikirjanpito.md)
 
