@@ -50,7 +50,6 @@ public class ScoreDao {
                 .append("points", score.getPoints());
 
         getCollection().insertOne(doc);
-        System.out.println("Winner added!");
     }
 
     /**
