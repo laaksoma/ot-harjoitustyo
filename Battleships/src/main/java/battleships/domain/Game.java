@@ -96,13 +96,13 @@ public class Game {
      * gameMode are set, calls for {@link #addPlayers()} and forwards the game
      * by calling {@link #createBoard}.
      */
-    public void finishStartMethod() {    //THE NUMBER OF SHIPS IS SET HERE AS 1 FOR NOW
+    public void finishStartMethod() {
         refreshUserInterface();
         userInterface.printHighScores(dao.getHighScores());
         this.gameMode = userInterface.getGamemode();
         addPlayers();
 
-        createBoard(1);
+        createBoard(5);
 
     }
 
@@ -231,7 +231,6 @@ public class Game {
         return (mask.equalsIgnoreCase(" O") || mask.equalsIgnoreCase(" X"));
     }
 
-    //CLEAN THIS UP
     private boolean turn(Player player) {
         int i = getIndexForAnotherPlayer(player);
         Player notInTurn = this.listOfPlayers.get(i);
