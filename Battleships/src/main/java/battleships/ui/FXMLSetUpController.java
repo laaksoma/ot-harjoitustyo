@@ -99,7 +99,7 @@ public class FXMLSetUpController implements Initializable {
         direction.clear();
     }
 
-    public boolean shouldAskValuesAgain(String r, String c, String d) {         //If values are incorrect, returns true
+    public boolean shouldAskValuesAgain(String r, String c, String d) {         
         try {
             int intRow = Integer.parseInt(r);
             int intCol = Integer.parseInt(c);

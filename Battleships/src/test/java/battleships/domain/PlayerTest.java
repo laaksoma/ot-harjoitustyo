@@ -1,9 +1,5 @@
 package battleships.domain;
 
-import battleships.domain.BotPlayer;
-import battleships.domain.HumanPlayer;
-import battleships.domain.Player;
-import battleships.domain.Sea;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -16,21 +12,11 @@ public class PlayerTest {
 
     Player human;
     Player bot;
-    private ByteArrayOutputStream contentOutput = new ByteArrayOutputStream();
-    private PrintStream originalOutput = System.out;
-    private String input;
 
     @Before
     public void setUpTests() {
         human = new HumanPlayer("TestName");
         bot = new BotPlayer();
-        //System.setOut(new PrintStream(contentOutput));
-    }
-
-    @After
-    public void restoreDefaultStreams() {
-        System.out.flush();
-        System.setOut(originalOutput);
     }
 
     @Test

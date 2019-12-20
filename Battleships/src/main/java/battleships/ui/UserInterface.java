@@ -4,7 +4,6 @@ import battleships.domain.Player;
 import battleships.domain.Score;
 import battleships.domain.Sea;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Interface class to be implemented by different types of UI's. 

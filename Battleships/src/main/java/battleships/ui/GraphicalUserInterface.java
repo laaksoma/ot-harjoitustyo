@@ -137,7 +137,7 @@ public class GraphicalUserInterface extends Application implements UserInterface
 
     @Override
     public void welcome() {
-        launch(GraphicalUserInterface.class);                                   //STARTGUI
+        launch(GraphicalUserInterface.class);
     }
 
     @Override
@@ -208,7 +208,8 @@ public class GraphicalUserInterface extends Application implements UserInterface
         });
     }
 
-    // DO NOT CHANGE PANE ORDER IN GRAPH BUILDER
+    /*It is highly advised not to change the pane order in GraphBuilder (or in any manner)
+    for the following method is created for the original pane order.*/
     public int getListIndex(int row, int column, int length) {
         return row * length + column;
     }

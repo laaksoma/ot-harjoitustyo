@@ -1,7 +1,5 @@
 package battleships.domain;
 
-import battleships.domain.BotPlayer;
-import battleships.domain.Game;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;

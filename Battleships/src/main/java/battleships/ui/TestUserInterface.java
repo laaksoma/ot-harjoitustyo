@@ -4,7 +4,6 @@ import battleships.domain.Player;
 import battleships.domain.Score;
 import battleships.domain.Sea;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A class made for mocking the {@link UserInterface}.

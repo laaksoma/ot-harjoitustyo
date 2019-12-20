@@ -38,13 +38,6 @@ public class SeaTest {
         Assert.assertArrayEquals(array, this.sea.getMaskedSea());
     }
 
-//    @Test
-//    public void modifySeaModifiesSeaCorrectly() {
-//        this.sea.addShipToTheSea(1, 1, 2);
-//
-//        assertEquals(-2, this.sea.modifySea(1, 1));
-//    }
-
     @Test
     public void modifyMaskedSeaModifiesCorrectlyWhenValueIsZero() {
         assertEquals(" O", this.sea.modifyMaskedSea(1, 1, 0));
@@ -172,16 +165,4 @@ public class SeaTest {
 
         assertTrue(this.sea.equals(copy));
     }
-
-//    @Test
-//    public void equalsReturnsFalseWhenArraysMatchButMasksDiffer() {
-//        //to make this.array==array, and this.mask!=mask
-//        //one needs to modify mask with number other than 0, 
-//        //then modify array back
-//
-//        Sea copy = this.sea;
-//        copy.modifyMaskedSea(1, 1, 1);
-//        copy.modifySea(1, 1);
-//        assertEquals(false, this.sea.equals(copy));
-//    }
 }
