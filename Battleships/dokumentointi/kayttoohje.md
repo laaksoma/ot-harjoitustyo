@@ -2,13 +2,9 @@
 Lataa tiedosto [battleships.jar](https://github.com/laaksoma/ot-harjoitustyo/releases/tag/Loppupalautus).
 
 ### Ohjelman käynnistäminen ja konfigurointi
-Ohjelman voi suorittaa joko tekstikäyttöliittymällä 
+Ohjelman voi suorittaa kansiossa, jossa tiedosto on, komennolla
 
-<pre>java -jar Battleships-1.0-SNAPSHOT.jar --text</pre>
-
-tai graafisella käyttöliittymällä korvaamalla parametrin jollakin muulla tai jättämällä sen pois
-
-<pre>java -jar Battleships-1.0-SNAPSHOT.jar</pre>
+<pre>java -jar Battleships.jar</pre>
 
 ### Pelin aloittaminen
 ![aloitusnäkymä](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/aloitusnakyma.png)
