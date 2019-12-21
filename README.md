@@ -19,6 +19,8 @@ Sovelluksen avulla käyttäjän on mahdollista pelata Battleships-peliä joko yk
 
 [Viikon 6 release](https://github.com/laaksoma/ot-harjoitustyo/releases/tag/Viikko6)
 
+[Loppurelease](https://github.com/laaksoma/ot-harjoitustyo/releases/tag/Loppupalautus)
+
 ## Komentorivitoiminnot
 ### Suorittaminen komentoriviltä 
 Ohjelman suorittaminen komentoriviltä tapahtuu seuraavalla komennolla (mikäli compile on jo tehty, sanan 'compile' voi jättää välistä): 
