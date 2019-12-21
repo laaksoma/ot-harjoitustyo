@@ -6,6 +6,10 @@ Ohjelman voi suorittaa kansiossa, jossa tiedosto on, komennolla
 
 <pre>java -jar Battleships.jar</pre>
 
+Mikäli haluaa käyttää tekstikäyttöliittymää, tulee ohjelma suorittaa parametrin _--text_ kanssa
+
+<pre>java -jar Battleships.jar --text</pre>
+
 ### Pelin aloittaminen
 ![aloitusnäkymä](https://github.com/laaksoma/ot-harjoitustyo/blob/master/Battleships/dokumentointi/kaaviot/aloitusnakyma.png)
 
